@@ -927,6 +927,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dragon
       objectReference: {fileID: 0}
+    - target: {fileID: 7750744678506910722, guid: 8bb85f0d12290594794a2193a58089cb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bb85f0d12290594794a2193a58089cb, type: 3}
 --- !u!1 &1209700393 stripped
@@ -1227,5 +1232,4 @@ MonoBehaviour:
   propPrefabs:
   - {fileID: 9185944105474949634, guid: 0a1697d77e5f576479f6de7a64952c05, type: 3}
   - {fileID: 7623761777359605769, guid: 8ba1a1d185b6b5543a0a76a5a5a4f08b, type: 3}
-  - {fileID: 5178616425068983282, guid: 8bb85f0d12290594794a2193a58089cb, type: 3}
   count: 100

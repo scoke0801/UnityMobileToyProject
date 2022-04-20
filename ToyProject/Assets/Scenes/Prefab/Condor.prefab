@@ -286,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9182134656433864072}
   - component: {fileID: 9090955976011471786}
+  - component: {fileID: 8299085355850966360}
   m_Layer: 0
   m_Name: Condor
   m_TagString: Untagged
@@ -328,6 +329,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8299085355850966360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185944105474949634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cb7416c8bd0e649b62447f6035f329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9186000812271303422
 GameObject:
   m_ObjectHideFlags: 0

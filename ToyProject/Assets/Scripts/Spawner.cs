@@ -40,8 +40,8 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPos = GetRandomPos();
 
         float spawnAngle = Random.Range(0, 360);
-        GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.Euler(0, spawnAngle, 0)); 
-
+        GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.Euler(0, spawnAngle, 0));
+        
         props.Add(instance);
     }
 
@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
         float posY = basePosition.y + Random.Range( size.y * 0.5f, size.y * 1.5f);
         float posZ = basePosition.z + Random.Range(-size.z * 0.5f, size.z * 0.5f);
 
-        return new Vector3(posX, posY, posZ);
+        return new Vector3(posX, 1, posZ);
     }
 
     public void Reset()
