@@ -21,7 +21,7 @@ public class Monster : MonoBehaviour
         
         target = GameManager.instance.GetPlayer();
 
-        speed = 10.0f;
+        speed = 5.0f;
     }
 
     // Update is called once per frame

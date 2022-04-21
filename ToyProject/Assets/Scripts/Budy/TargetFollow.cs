@@ -13,7 +13,7 @@ public class TargetFollow : MonoBehaviour
 
     private void Awake()
     {
-        speed = 3;
+        speed = 1;
         angle = 0;
         radius = 3;
     }
