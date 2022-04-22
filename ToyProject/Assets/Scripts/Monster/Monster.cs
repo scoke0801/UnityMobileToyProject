@@ -11,8 +11,8 @@ public class Monster : MonoBehaviour
 
     State state;
     GameObject target;
-
-    float speed;
+     
+    Status status;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,9 @@ public class Monster : MonoBehaviour
         
         target = GameManager.instance.GetPlayer();
 
-        speed = 5.0f;
+        status = new Status();
+        status.speed = 5.0f;
+        status.hp = 10;
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class Monster : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation( vecToTarget );
             transform.rotation = rotation;
 
-            transform.position += vecToTarget.normalized * speed * Time.deltaTime;
+            transform.position += vecToTarget.normalized * status.speed * Time.deltaTime;
 
             float minDist = 3.0f;
             if ( minDist > Vector3.Magnitude(vecToTarget))
