@@ -29,6 +29,9 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
         // JoystickBackground의 반지름입니다.
         m_fRadius = rectJoyStick.rect.width * 0.5f;
+
+        // 보정
+        m_fRadius *= 0.45f;
     }
 
     void Update()
