@@ -16,22 +16,16 @@ public class Spawner : MonoBehaviour
     {
         area = GetComponent<BoxCollider>();
 
-        for (int i = 0; i < count; ++i)
-        {
-            // 생성용 함수
-            Spawn();
-        }
+        //for (int i = 0; i < count; ++i)
+        //{
+        //    // 생성용 함수
+        //    Spawn();
+        //}
 
         area.enabled = false;
-    }
+    } 
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void Spawn()
+    public void Spawn()
     {
         int selection = Random.Range(0, propPrefabs.Length);
 
@@ -42,7 +36,7 @@ public class Spawner : MonoBehaviour
         float spawnAngle = Random.Range(0, 360);
         GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.Euler(0, spawnAngle, 0));
         
-        props.Add(instance);
+        props.Add(instance);  
     }
 
     private Vector3 GetRandomPos()
@@ -66,4 +60,5 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public int GetMonsterCount() { return props.Count; }
 }
