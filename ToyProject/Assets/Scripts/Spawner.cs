@@ -11,18 +11,15 @@ public class Spawner : MonoBehaviour
     public int count = 100;
 
     private List<GameObject> props = new List<GameObject>();
+    private GameObject target;
     // Start is called before the first frame update
     void Start()
     {
         area = GetComponent<BoxCollider>();
-
-        //for (int i = 0; i < count; ++i)
-        //{
-        //    // 생성용 함수
-        //    Spawn();
-        //}
-
+         
         area.enabled = false;
+
+        target = GameManager.instance.GetPlayer(); 
     } 
 
     public void Spawn()
@@ -30,9 +27,17 @@ public class Spawner : MonoBehaviour
         int selection = Random.Range(0, propPrefabs.Length);
 
         GameObject selectedPrefab = propPrefabs[selection];
-
-        Vector3 spawnPos = GetRandomPos();
-
+       
+        Vector3 spawnPos;
+        while (true)
+        {
+            spawnPos = GetRandomPos();
+            Vector3 dist = spawnPos - target.transform.position;
+            if (dist.magnitude > 20.0f && dist.magnitude < 70.0f)
+            {
+                break;
+            } 
+        } 
         float spawnAngle = Random.Range(0, 360);
         GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.Euler(0, spawnAngle, 0));
         
