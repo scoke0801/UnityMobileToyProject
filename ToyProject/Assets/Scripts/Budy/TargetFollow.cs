@@ -36,5 +36,9 @@ public class TargetFollow : MonoBehaviour
 
         transform.position = newPosition; 
     }
-     
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }

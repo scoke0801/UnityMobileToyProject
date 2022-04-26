@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
         } 
         float spawnAngle = Random.Range(0, 360);
         GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.Euler(0, spawnAngle, 0));
-        
+          
         props.Add(instance);  
     }
 
