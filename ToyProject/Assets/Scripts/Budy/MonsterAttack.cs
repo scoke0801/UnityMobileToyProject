@@ -39,8 +39,7 @@ public class MonsterAttack : MonoBehaviour
         return;
     }
     private void OnTriggerEnter(Collider other)
-    { 
-        Debug.Log(other.gameObject.name);
+    {  
         if ( other.gameObject.name == "Chicken(Clone)")
         {
             DoAttack();
