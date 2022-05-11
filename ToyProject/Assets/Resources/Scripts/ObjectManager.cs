@@ -37,20 +37,21 @@ public class ObjectManager : MonoBehaviour
 
     void LoadPrefabs()
     {
-        TextAsset fileNameCSV = (TextAsset)Resources.Load("ObjectPrefabList") as TextAsset;
-        string allData = fileNameCSV.text;
-        string[] fileList = allData.Split('\n');
+        TextAsset fileNameCSV = (TextAsset)Resources.Load("ObjectPrefabList") as TextAsset; 
+        string[] fileList = fileNameCSV.text.Split('\n');
 
         objectPrefabs = new GameObject[(int)ObjectType.OBJ_TYPE_MAX];
         for (int i = 1; i < fileList.Length - 1; ++i)
-        {
+        { 
             Debug.Log(fileList[i]);
-            //objectPrefabs[i - 1] = Resources.Load(fileList[i]) as GameObject;
+            
+            fileList[i] = fileList[i].Replace("\r", string.Empty); 
+            objectPrefabs[i - 1] = Resources.Load(fileList[i]) as GameObject;
         }
 
-        objectPrefabs[0] = Resources.Load("Prefabs/Condor") as GameObject;
-        objectPrefabs[1] = Resources.Load("Prefabs/Dragon") as GameObject;
-        objectPrefabs[2] = Resources.Load("Prefabs/TempProjectile") as GameObject;
+        // objectPrefabs[0] = Resources.Load("Prefabs/Condor") as GameObject;
+        // objectPrefabs[1] = Resources.Load("Prefabs/Dragon") as GameObject;
+        // objectPrefabs[2] = Resources.Load("Prefabs/TempProjectile") as GameObject;
     }
 
     void CreateObjects(ObjectType objectType)
