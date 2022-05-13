@@ -7,7 +7,7 @@ public class Common
 
 }
 
-enum ObjectType
+public enum OBJECT_TYPE
 {
     OBJ_TYPE_MIN = 0,
     OBJ_MONSTER_CONDER = OBJ_TYPE_MIN,

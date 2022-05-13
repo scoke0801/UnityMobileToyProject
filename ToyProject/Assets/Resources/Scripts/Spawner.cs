@@ -16,17 +16,14 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         area = GetComponent<BoxCollider>();
-         
-        area.enabled = false;
-
-        target = GameManager.instance.GetPlayer(); 
+        area.enabled = false; 
+        
+        target = GameManager.instance.GetPlayer();
     } 
 
     public void Spawn()
     {
-        int selection = Random.Range(0, propPrefabs.Length);
-
-        GameObject selectedPrefab = propPrefabs[selection];
+        int selection = Random.Range((int)OBJECT_TYPE.OBJ_MONSTER_CONDER, (int)OBJECT_TYPE.OBJ_MONSTER_DRAGON + 1); 
        
         Vector3 spawnPos;
         while (true)
@@ -39,7 +36,10 @@ public class Spawner : MonoBehaviour
             } 
         } 
         float spawnAngle = Random.Range(0, 360);
-        GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.Euler(0, spawnAngle, 0));
+        
+        GameObject instance = ObjectManager.instance.GetObject((OBJECT_TYPE)selection);
+        instance.transform.position = spawnPos;
+        instance.SetActive(true);
           
         props.Add(instance);  
     }
@@ -55,15 +55,6 @@ public class Spawner : MonoBehaviour
 
         return new Vector3(posX, 1, posZ);
     }
-
-    public void Reset()
-    {
-        for (int i = 0; i < props.Count; ++i)
-        {
-            props[i].transform.position = GetRandomPos();
-            props[i].SetActive(true);
-        }
-    }
-
+      
     public int GetMonsterCount() { return props.Count; }
 }

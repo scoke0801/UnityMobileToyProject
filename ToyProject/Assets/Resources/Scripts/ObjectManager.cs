@@ -26,12 +26,12 @@ public class ObjectManager : MonoBehaviour
 
     void CreateObjectPool()
     { 
-        gameObjects = new Queue<GameObject>[(int)ObjectType.OBJ_TYPE_MAX];
+        gameObjects = new Queue<GameObject>[(int)OBJECT_TYPE.OBJ_TYPE_MAX];
         
-        for (int i = (int)ObjectType.OBJ_TYPE_MIN; i < (int)ObjectType.OBJ_TYPE_MAX; ++i)
+        for (int i = (int)OBJECT_TYPE.OBJ_TYPE_MIN; i < (int)OBJECT_TYPE.OBJ_TYPE_MAX; ++i)
         {
             gameObjects[i] = new Queue<GameObject>();
-            CreateObjects((ObjectType)i);
+            CreateObjects((OBJECT_TYPE)i);
         } 
     }
 
@@ -40,7 +40,7 @@ public class ObjectManager : MonoBehaviour
         TextAsset fileNameCSV = (TextAsset)Resources.Load("ObjectPrefabList") as TextAsset; 
         string[] fileList = fileNameCSV.text.Split('\n');
 
-        objectPrefabs = new GameObject[(int)ObjectType.OBJ_TYPE_MAX];
+        objectPrefabs = new GameObject[(int)OBJECT_TYPE.OBJ_TYPE_MAX];
         for (int i = 1; i < fileList.Length - 1; ++i)
         { 
             Debug.Log(fileList[i]);
@@ -54,7 +54,7 @@ public class ObjectManager : MonoBehaviour
         // objectPrefabs[2] = Resources.Load("Prefabs/TempProjectile") as GameObject;
     }
 
-    void CreateObjects(ObjectType objectType)
+    void CreateObjects(OBJECT_TYPE objectType)
     { 
         GameObject targetPrefab = objectPrefabs[(int)objectType];
 
@@ -73,7 +73,7 @@ public class ObjectManager : MonoBehaviour
         }
     }
    
-    GameObject GetObject(ObjectType objectType)
+    public GameObject GetObject(OBJECT_TYPE objectType)
     {  
         if(gameObjects[(int)objectType].Count <= 0)
         {
@@ -85,8 +85,9 @@ public class ObjectManager : MonoBehaviour
     }
 
     // 사용이 끝난 오브젝트를 반환
-    void ReturnObject(ObjectType objectType, GameObject targetObject)
-    {  
+    public void ReturnObject(OBJECT_TYPE objectType, GameObject targetObject)
+    {
+        Debug.Log("Return~~" + targetObject.name);
         targetObject.SetActive(false);
         gameObjects[(int)objectType].Enqueue(targetObject);
     }

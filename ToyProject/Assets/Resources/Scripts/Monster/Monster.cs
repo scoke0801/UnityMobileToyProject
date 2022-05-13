@@ -41,8 +41,22 @@ public class Monster : MonoBehaviour
 
             float minDist = 3.0f;
             if ( minDist > Vector3.Magnitude(vecToTarget))
-            { 
-                Destroy( gameObject );
+            {
+                OBJECT_TYPE objType = OBJECT_TYPE.OBJ_TYPE_MAX;
+                if (gameObject.name.Contains("Condor(Clone)"))
+                {
+                    objType = OBJECT_TYPE.OBJ_MONSTER_CONDER;
+                }
+                else if (gameObject.name.Contains("Dragon(Clone)"))
+                {
+                    objType = OBJECT_TYPE.OBJ_MONSTER_DRAGON;
+                }
+                else
+                {
+                    Debug.LogError("Can't find name" + gameObject.name);
+                }
+
+                ObjectManager.instance.ReturnObject(objType, gameObject);
             }
         }
     }
