@@ -53,7 +53,7 @@ public class Monster : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Can't find name" + gameObject.name);
+                    Debug.LogError("Can't find target name" + gameObject.name);
                 }
 
                 ObjectManager.instance.ReturnObject(objType, gameObject);

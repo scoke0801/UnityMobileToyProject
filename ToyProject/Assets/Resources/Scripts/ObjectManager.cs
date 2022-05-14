@@ -43,15 +43,11 @@ public class ObjectManager : MonoBehaviour
         objectPrefabs = new GameObject[(int)OBJECT_TYPE.OBJ_TYPE_MAX];
         for (int i = 1; i < fileList.Length - 1; ++i)
         { 
-            Debug.Log(fileList[i]);
+            Debug.Log("Load Prefab -" + fileList[i]);
             
             fileList[i] = fileList[i].Replace("\r", string.Empty); 
             objectPrefabs[i - 1] = Resources.Load(fileList[i]) as GameObject;
-        }
-
-        // objectPrefabs[0] = Resources.Load("Prefabs/Condor") as GameObject;
-        // objectPrefabs[1] = Resources.Load("Prefabs/Dragon") as GameObject;
-        // objectPrefabs[2] = Resources.Load("Prefabs/TempProjectile") as GameObject;
+        } 
     }
 
     void CreateObjects(OBJECT_TYPE objectType)
@@ -86,8 +82,7 @@ public class ObjectManager : MonoBehaviour
 
     // 사용이 끝난 오브젝트를 반환
     public void ReturnObject(OBJECT_TYPE objectType, GameObject targetObject)
-    {
-        Debug.Log("Return~~" + targetObject.name);
+    { 
         targetObject.SetActive(false);
         gameObjects[(int)objectType].Enqueue(targetObject);
     }
