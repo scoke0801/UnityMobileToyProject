@@ -12,7 +12,7 @@ public class CSVReader : MonoBehaviour
 
         for(int i = 1; i < fileList.Length - 1; ++i)
         {
-            Debug.Log(fileList[i]);
+            // Debug.Log(fileList[i]);
             // ReadCSV(fileList[i]);
         } 
     }

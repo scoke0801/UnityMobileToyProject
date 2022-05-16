@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        int selection = Random.Range((int)OBJECT_TYPE.OBJ_MONSTER_CONDER, (int)OBJECT_TYPE.OBJ_MONSTER_DRAGON + 1); 
+        int selection = Random.Range((int)OBJECT_TYPE.OBJ_MONSTER_CONDER, (int)OBJECT_TYPE.OBJ_MONSTER_CHICKEN + 1); 
        
         Vector3 spawnPos;
         while (true)

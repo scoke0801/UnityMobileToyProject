@@ -85,5 +85,5 @@ public class ObjectManager : MonoBehaviour
     { 
         targetObject.SetActive(false);
         gameObjects[(int)objectType].Enqueue(targetObject);
-    }
+    } 
 }

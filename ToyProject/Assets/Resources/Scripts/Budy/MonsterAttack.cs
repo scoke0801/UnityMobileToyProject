@@ -13,12 +13,9 @@ public class MonsterAttack : MonoBehaviour
     private Status status;
     private GameObject toCreatePrefab;
 
-    private List<GameObject> projectiles = new List<GameObject>();
-
     // Start is called before the first frame update
     void Start()
-    {
-        toCreatePrefab = Resources.Load<GameObject>("Prefabs/TempProjectile");
+    { 
         status = new Status();
     }
 
@@ -42,24 +39,23 @@ public class MonsterAttack : MonoBehaviour
         Vector3 targetPos = target.gameObject.transform.position;
         Vector3 shootPos = transform.position;
         shootPos.y += 1.5f;
-
-        GameObject newProjectile = Instantiate(toCreatePrefab, shootPos, Quaternion.Euler(0, 0, 0));
-        projectiles.Add(newProjectile);
-
-
-        Destroy(newProjectile, 5.0f);
-
+         
+        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
+        newProjectile.transform.position = shootPos;
+        newProjectile.SetActive(true);
+         
         Debug.Log("Created Projectile!!!");
 
         return;
     }
     private void OnTriggerEnter(Collider other)
-    {  
+    {
+        Debug.Log(other.name);
         if ( other.gameObject.name == "Chicken(Clone)")
         {
             DoAttack(other);
         }
-        else if (other.gameObject.name == "Conder(Clone)")
+        else if (other.gameObject.name == "Condor(Clone)")
         {
             DoAttack(other);
         }

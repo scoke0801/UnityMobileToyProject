@@ -47,9 +47,9 @@ public class Monster : MonoBehaviour
                 {
                     objType = OBJECT_TYPE.OBJ_MONSTER_CONDER;
                 }
-                else if (gameObject.name.Contains("Dragon(Clone)"))
+                else if (gameObject.name.Contains("Chicken(Clone)"))
                 {
-                    objType = OBJECT_TYPE.OBJ_MONSTER_DRAGON;
+                    objType = OBJECT_TYPE.OBJ_MONSTER_CHICKEN;
                 }
                 else
                 {

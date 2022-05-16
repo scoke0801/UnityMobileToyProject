@@ -11,8 +11,8 @@ public enum OBJECT_TYPE
 {
     OBJ_TYPE_MIN = 0,
     OBJ_MONSTER_CONDER = OBJ_TYPE_MIN,
-    OBJ_MONSTER_DRAGON,
-    OBJ_Projectile,
+    OBJ_MONSTER_CHICKEN,
+    OBJ_PROJECTILE,
     OBJ_TYPE_MAX,
 };
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8233754142270099392}
   - component: {fileID: 7688795405286953479}
   - component: {fileID: 8143009027257745790}
+  - component: {fileID: -7191729586642030721}
   m_Layer: 0
   m_Name: TempProjectile
   m_TagString: Untagged
@@ -95,3 +96,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7191729586642030721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4960484961969407112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27bc52dc3ccb474f952d9f879e33338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
