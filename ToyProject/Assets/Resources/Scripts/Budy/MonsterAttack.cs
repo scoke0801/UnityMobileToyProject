@@ -4,7 +4,7 @@ using UnityEngine;
 
 static class Constants
 {
-    public const float MONSTER_ATTACK_COOLTILE = 1.5f;
+    public const float MONSTER_ATTACK_COOLTILE = 0.1f;
 }
 
 public class MonsterAttack : MonoBehaviour
@@ -40,10 +40,9 @@ public class MonsterAttack : MonoBehaviour
         Vector3 shootPos = transform.position;
         shootPos.y += 1.5f;
          
-        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        newProjectile.transform.position = shootPos;
-        newProjectile.SetActive(true);
-         
+        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE); 
+        newProjectile.GetComponent<BaseProjectile>().Shoot(target.gameObject, shootPos);
+          
         Debug.Log("Created Projectile!!!");
 
         return;
