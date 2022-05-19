@@ -14,40 +14,19 @@ public class Projectile : MonoBehaviour
     GameObject target;
 
     PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
+    ProjectileActor actor;
 
     // Start is called before the first frame update
     void Start()
     {
+        actor = new ProjectileLinearActor();
         lifeTime = 3.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (actType)
-        {
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR:
-                {
-                    DoLinearMove();
-                } break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA:
-                {
-                    DoParabolaMove();
-                } break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE:
-                {
-                    DoVerticalWaveMove();
-                } break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_HORIZONTAL_WAVE:
-                {
-                    DoHorizontalWaveMove();
-                } break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING:
-                {
-                    DoTrackingMove();
-                } break;
-        }
-
+        actor.DoMove(this.gameObject);
         UpdateLifeTime();
     }
 
@@ -89,21 +68,5 @@ public class Projectile : MonoBehaviour
         Vector3 newPos = transform.position + direction * speed * Time.deltaTime;
 
         transform.position = newPos; 
-    }
-
-    void DoParabolaMove()
-    {
-
-    }
-    void DoHorizontalWaveMove()
-    {
-
-    }
-    void DoVerticalWaveMove()
-    { 
-    
-    }
-    void DoTrackingMove()
-    { 
-    }
+    } 
 }
