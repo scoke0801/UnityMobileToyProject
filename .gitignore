@@ -74,6 +74,4 @@ crashlytics-build.properties
 **/Library
 **/Logs
 **/UserSettings
-**/build
-ToyProject/Assets/Standard Assets/
-ToyProject/Assets/_Gloomy_Animal/
+**/build 
