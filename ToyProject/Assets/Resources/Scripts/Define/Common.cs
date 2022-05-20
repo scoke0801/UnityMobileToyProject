@@ -26,12 +26,3 @@ public enum PROJECTILE_ACT_TYPE
     PROJECTILE_ACT_TYPE_TRACKING,                         // ÃßÀû
     OBJ_TYPE_MAX,
 };
-
-public class Status
-{
-    public float speed;
-    public float hp;
-    public float attackCoolTime;
-    public float damage;
-  
-}

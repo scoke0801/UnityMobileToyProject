@@ -5,8 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     // 파일에서 읽어올 수 있도록 수정하면 좋지 않을까
-    float lifeTime = 3.0f;
-    float speed = 10.0f;
+    float lifeTime = 3.0f; 
+
+    Status status;
 
     Vector3 direction;
 
@@ -19,8 +20,9 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actor = new ProjectileLinearActor();
         lifeTime = 3.0f;
+        status = new Status();
+        status.speed = 10.0f;
     }
 
     // Update is called once per frame
@@ -44,12 +46,8 @@ public class Projectile : MonoBehaviour
     {
         this.shooter = shooter;
         this.target = target;
-
-        Vector3 targetPosition = target.transform.position;
-        transform.position = shootPos;
-
-        direction = (targetPosition - shootPos).normalized;
-
+         
+        actor = new ProjectileLinearActor(shooter, target, shootPos);
         this.gameObject.SetActive(true);
     }
 
@@ -65,8 +63,5 @@ public class Projectile : MonoBehaviour
 
     void DoLinearMove()
     {
-        Vector3 newPos = transform.position + direction * speed * Time.deltaTime;
-
-        transform.position = newPos; 
     } 
 }
