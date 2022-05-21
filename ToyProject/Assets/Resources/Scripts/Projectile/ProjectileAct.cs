@@ -4,77 +4,110 @@ using UnityEngine;
 
 public interface IProjectileAct  
 {
-    public void DoMove(GameObject gameObject);
+    public void DoMove(Projectile projectile);
 }
 
 public abstract class ProjectileActor : IProjectileAct
 {
     protected GameObject shooter, target;
     protected Status status;
-    public ProjectileActor(GameObject shooter, GameObject target )
+    protected Vector3 direction;
+    public ProjectileActor(GameObject shooter, GameObject target, Vector3 shootPos)
     {
         this.shooter = shooter;
-        this.target = target; 
+        this.target = target;
+        CheckDirection(target, shootPos);
     }
-    public virtual void DoMove(GameObject gameObject)
+    public virtual void DoMove(Projectile projectile)
     {
     }
-}
 
-// 개별 생성자 필요할 수도 ??
-public class ProjectileLinearActor: ProjectileActor
-{
-    Vector3 direction;
-    public ProjectileLinearActor(GameObject shooter, GameObject target, Vector3 shootPos) 
-        : base(shooter, target)
-    {
+    // 대상 객체로의 방향을 계산.
+    protected void CheckDirection(GameObject target, Vector3 shootPos)
+    { 
         Vector3 targetPosition = target.transform.position;
 
         direction = (targetPosition - shootPos).normalized;
     }
-    public override void DoMove(GameObject gameObject)
+}
+ 
+public class ProjectileLinearActor: ProjectileActor
+{ 
+    public ProjectileLinearActor(GameObject shooter, GameObject target, Vector3 shootPos) 
+        : base(shooter, target, shootPos)
+    { 
+    }
+    public override void DoMove(Projectile projectile)
     {
-        Vector3 newPos = gameObject.transform.position + direction * 10.0f * Time.deltaTime;
-        gameObject.transform.position = newPos;
+        Vector3 newPos = projectile.gameObject.transform.position + direction * 10.0f * Time.deltaTime;
+        projectile.gameObject.transform.position = newPos;
     }
 } 
 public class ProjectileParabolaActor : ProjectileActor
 {
     public ProjectileParabolaActor(GameObject shooter, GameObject target, Vector3 shootPos)
-          : base(shooter, target)
+          : base(shooter, target, shootPos)
     {
     }
-    public override void DoMove(GameObject gameObject)
+    public override void DoMove(Projectile projectile)
     {
     }
 }
 public class ProjectileVerticalWaveActor : ProjectileActor
 {
+    float angle = 0.0f;
+    float curveSize = 3.0f;
     public ProjectileVerticalWaveActor(GameObject shooter, GameObject target, Vector3 shootPos)
-             : base(shooter, target)
+             : base(shooter, target, shootPos)
     {
     }
-    public override void DoMove(GameObject gameObject)
+    public override void DoMove(Projectile projectile)
     {
+        Vector3 newPos = projectile.gameObject.transform.position + direction * 10.0f * Time.deltaTime;
+         
+        newPos.y = Mathf.Sin( angle * Mathf.Deg2Rad ) * curveSize;
+        projectile.gameObject.transform.position = newPos;
+
+        angle += 360 * Time.deltaTime;
+        if (angle >= 360.0f)
+        {
+            angle = 0.0f;
+        }
     }
 }
 public class ProjectileHorizontalWaveActor : ProjectileActor
 {
+    float angle = 0.0f;
+    float curveSize = 3.0f;
     public ProjectileHorizontalWaveActor(GameObject shooter, GameObject target, Vector3 shootPos)
-             : base(shooter, target)
+             : base(shooter, target, shootPos)
     {
     }
-    public override void DoMove(GameObject gameObject)
-    {
+    public override void DoMove(Projectile projectile)
+    { 
     }
 }
 public class ProjectileTrackingActor : ProjectileActor
 {
+    const float ORIGIN_TRACKING_TIME = 0.3f;
+    float trackingTime;
     public ProjectileTrackingActor(GameObject shooter, GameObject target, Vector3 shootPos)
-             : base(shooter, target)
+             : base(shooter, target, shootPos)
     {
+        trackingTime = ORIGIN_TRACKING_TIME;
+        CheckDirection(target, shootPos);
     }
-    public override void DoMove(GameObject gameObject)
+    public override void DoMove(Projectile projectile)
     {
+        trackingTime -= Time.deltaTime;
+        if(trackingTime <= 0.0f)
+        {
+            trackingTime = ORIGIN_TRACKING_TIME;
+
+            CheckDirection(target, projectile.gameObject.transform.position);
+        } 
+
+        Vector3 newPos = projectile.gameObject.transform.position + direction * 10.0f * Time.deltaTime;
+        projectile.gameObject.transform.position = newPos;
     }
 }

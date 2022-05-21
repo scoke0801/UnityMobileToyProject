@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        actor.DoMove(this.gameObject);
+        actor.DoMove(this);
         UpdateLifeTime();
     }
 
@@ -46,8 +46,9 @@ public class Projectile : MonoBehaviour
     {
         this.shooter = shooter;
         this.target = target;
-         
-        actor = new ProjectileLinearActor(shooter, target, shootPos);
+
+        // actor = new ProjectileLinearActor(shooter, target, shootPos);
+        actor = new ProjectileVerticalWaveActor(shooter, target, shootPos);
         this.gameObject.SetActive(true);
     }
 
