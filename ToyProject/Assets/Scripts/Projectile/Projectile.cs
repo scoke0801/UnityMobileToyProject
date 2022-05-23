@@ -48,7 +48,8 @@ public class Projectile : MonoBehaviour
         this.target = target;
 
         // actor = new ProjectileLinearActor(shooter, target, shootPos);
-        actor = new ProjectileVerticalWaveActor(shooter, target, shootPos);
+        // actor = new ProjectileVerticalWaveActor(shooter, target, shootPos);
+        actor = new ProjectileParabolaActor(shooter, target, shootPos); 
         this.gameObject.SetActive(true);
     }
 

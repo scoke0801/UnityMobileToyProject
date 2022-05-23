@@ -35,7 +35,7 @@ public class ProjectileLinearActor: ProjectileActor
 { 
     public ProjectileLinearActor(GameObject shooter, GameObject target, Vector3 shootPos) 
         : base(shooter, target, shootPos)
-    { 
+    {  
     }
     public override void DoMove(Projectile projectile)
     {
@@ -45,12 +45,21 @@ public class ProjectileLinearActor: ProjectileActor
 } 
 public class ProjectileParabolaActor : ProjectileActor
 {
+    float power;
+    float attenuation;
     public ProjectileParabolaActor(GameObject shooter, GameObject target, Vector3 shootPos)
           : base(shooter, target, shootPos)
     {
+        attenuation = 15.0f;
+        power = 10.0f;
+        direction.y = 0.0f;
     }
     public override void DoMove(Projectile projectile)
     {
+        Vector3 newPos = projectile.gameObject.transform.position + direction * 10.0f * Time.deltaTime;
+        newPos.y = newPos.y + power * Time.deltaTime;
+        power -= attenuation * Time.deltaTime;
+        projectile.gameObject.transform.position = newPos;
     }
 }
 public class ProjectileVerticalWaveActor : ProjectileActor
