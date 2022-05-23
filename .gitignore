@@ -75,3 +75,4 @@ crashlytics-build.properties
 **/Logs
 **/UserSettings
 **/build 
+**/Temp
