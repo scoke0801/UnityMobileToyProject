@@ -55,7 +55,7 @@ public class Monster : MonoBehaviour
                 {
                     Debug.LogError("Can't find target name" + gameObject.name);
                 }
-
+                GameManager.instance.RefreshWaveCount(gameObject);
                 ObjectManager.instance.ReturnObject(objType, gameObject);
             }
         }

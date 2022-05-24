@@ -56,5 +56,9 @@ public class Spawner : MonoBehaviour
         return new Vector3(posX, 1, posZ);
     }
       
+    public void RemoveObject(GameObject gameObject) 
+    {
+        props.Remove(gameObject);
+    }
     public int GetMonsterCount() { return props.Count; }
 }

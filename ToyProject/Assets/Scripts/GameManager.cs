@@ -81,4 +81,10 @@ public class GameManager : MonoBehaviour
 
         remainMonsterText.text = "Wave : " + spawner.GetMonsterCount().ToString();
     }
+
+    public void RefreshWaveCount(GameObject gameObject)
+    {
+        spawner.RemoveObject(gameObject);
+        remainMonsterText.text = "Wave : " + spawner.GetMonsterCount().ToString();
+    }
 }
