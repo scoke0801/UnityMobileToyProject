@@ -108,6 +108,11 @@ public class ProjectileTrackingActor : ProjectileActor
     }
     public override void DoMove(Projectile projectile)
     {
+        if (!projectile.Target.activeSelf)
+        {
+            ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, projectile.gameObject);
+            return;
+        }
         trackingTime -= Time.deltaTime;
         if(trackingTime <= 0.0f)
         {

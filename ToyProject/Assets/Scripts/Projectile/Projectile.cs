@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     // 파일에서 읽어올 수 있도록 수정하면 좋지 않을까
-    float lifeTime = 3.0f; 
+    float lifeTime = 3.0f;
 
     Status status;
 
@@ -13,6 +13,10 @@ public class Projectile : MonoBehaviour
 
     GameObject shooter;
     GameObject target;
+    public GameObject Target
+    {
+        get { return target; }
+    }
 
     PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     ProjectileActor actor;
@@ -49,7 +53,8 @@ public class Projectile : MonoBehaviour
 
         // actor = new ProjectileLinearActor(shooter, target, shootPos);
         // actor = new ProjectileVerticalWaveActor(shooter, target, shootPos);
-        actor = new ProjectileParabolaActor(shooter, target, shootPos); 
+        // actor = new ProjectileParabolaActor(shooter, target, shootPos); 
+        actor = new ProjectileTrackingActor(shooter, target, shootPos);
         this.gameObject.SetActive(true);
     }
 

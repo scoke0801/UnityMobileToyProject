@@ -1,12 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Common 
-{
-
-}
-
+ 
 public enum OBJECT_TYPE
 {
     OBJ_TYPE_MIN = 0,
@@ -26,3 +21,9 @@ public enum PROJECTILE_ACT_TYPE
     PROJECTILE_ACT_TYPE_TRACKING,                         // ÃßÀû
     OBJ_TYPE_MAX,
 };
+ 
+static class Constants
+{
+    public const float BUDY_ATTACK_COOLTILE = 0.2f; 
+    public const float BUDY_ATTACK_HOLDINGTIME = 0.5f;
+}
