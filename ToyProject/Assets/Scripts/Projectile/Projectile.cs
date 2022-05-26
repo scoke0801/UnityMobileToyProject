@@ -64,7 +64,29 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
+        if ( collision.gameObject ==  GameManager.instance.GetPlayer() )
+        {
+            return;
+        }
+        //OBJECT_TYPE objType = OBJECT_TYPE.OBJ_TYPE_MAX;
+        //if (collision.gameObject.name.Contains("Condor(Clone)"))
+        //{
+        //    objType = OBJECT_TYPE.OBJ_MONSTER_CONDER;
+        //}
+        //else if (collision.gameObject.name.Contains("Chicken(Clone)"))
+        //{
+        //    objType = OBJECT_TYPE.OBJ_MONSTER_CHICKEN;
+        //}
+        //else
+        //{
+        //    Debug.LogError("Can't find target name" + gameObject.name);
+        //}
 
+        //if( objType != OBJECT_TYPE.OBJ_TYPE_MAX )
+        //{ 
+        //    GameManager.instance.RefreshWaveCount(collision.gameObject);
+        //    ObjectManager.instance.ReturnObject(objType, collision.gameObject);
+        //}
         ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
     }
 

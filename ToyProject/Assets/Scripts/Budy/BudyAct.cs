@@ -47,10 +47,11 @@ public class BudyAct : MonoBehaviour
 
         Vector3 targetPos = target.gameObject.transform.position;
         Vector3 shootPos = transform.position;
-        shootPos.y += 1.5f;
+        shootPos.y += 0.5f;
 
         GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
         newProjectile.GetComponent<Projectile>().Shoot(this.gameObject, target.gameObject, shootPos);
+        newProjectile.gameObject.transform.position = shootPos;
 
         Debug.Log("Created Projectile!!!");
 

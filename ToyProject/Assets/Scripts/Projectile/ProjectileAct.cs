@@ -98,7 +98,7 @@ public class ProjectileHorizontalWaveActor : ProjectileActor
 }
 public class ProjectileTrackingActor : ProjectileActor
 {
-    const float ORIGIN_TRACKING_TIME = 0.3f;
+    const float ORIGIN_TRACKING_TIME = 0.15f;
     float trackingTime;
     public ProjectileTrackingActor(GameObject shooter, GameObject target, Vector3 shootPos)
              : base(shooter, target, shootPos)
