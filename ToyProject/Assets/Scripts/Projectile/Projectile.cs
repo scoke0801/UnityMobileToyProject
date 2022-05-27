@@ -46,15 +46,44 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void Shoot(GameObject shooter, GameObject target, Vector3 shootPos)
+    public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, GameObject target, Vector3 shootPos)
     {
         this.shooter = shooter;
         this.target = target;
 
-        // actor = new ProjectileLinearActor(shooter, target, shootPos);
-        // actor = new ProjectileVerticalWaveActor(shooter, target, shootPos);
-        // actor = new ProjectileParabolaActor(shooter, target, shootPos); 
-        actor = new ProjectileTrackingActor(shooter, target, shootPos);
+        switch (actType)
+        {
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR:
+                {
+                    actor = new ProjectileLinearActor(shooter, target, shootPos); 
+                }
+                break;
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA:
+                {
+                    actor = new ProjectileParabolaActor(shooter, target, shootPos);
+                }
+                break;
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE:
+                {
+                    actor = new ProjectileVerticalWaveActor(shooter, target, shootPos);
+                }
+                break;
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_HORIZONTAL_WAVE:
+                {
+                }
+                break;
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING:
+                {
+                    actor = new ProjectileTrackingActor(shooter, target, shootPos);
+                }
+                break;
+            default:
+                {
+                    // to do 
+                    // error
+                }
+                break;
+        } 
         this.gameObject.SetActive(true);
     }
 

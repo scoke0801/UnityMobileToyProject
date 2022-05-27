@@ -7,11 +7,14 @@ public class BudyAct : MonoBehaviour
     [SerializeField]
     private Status status;
     private GameObject toCreatePrefab;
-     
+
+    [SerializeField]
+    private PROJECTILE_ACT_TYPE projectileActType;
     // Start is called before the first frame update
     void Start()
     {
         status = new Status();
+        projectileActType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     }
 
     // Update is called once per frame
@@ -50,7 +53,7 @@ public class BudyAct : MonoBehaviour
         shootPos.y += 0.5f;
 
         GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        newProjectile.GetComponent<Projectile>().Shoot(this.gameObject, target.gameObject, shootPos);
+        newProjectile.GetComponent<Projectile>().Shoot(projectileActType, this.gameObject, target.gameObject, shootPos);
         newProjectile.gameObject.transform.position = shootPos;
 
         Debug.Log("Created Projectile!!!");
@@ -68,5 +71,18 @@ public class BudyAct : MonoBehaviour
         {
             DoAttack(other);
         }
+    }
+
+    public void OnClickedBtn1()
+    {
+        projectileActType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
+    }
+    public void OnClickedBtn2()
+    {
+        projectileActType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE; 
+    }
+    public void OnClickedBtn3()
+    { 
+        projectileActType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING;
     }
 }
