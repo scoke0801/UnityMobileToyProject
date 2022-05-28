@@ -64,7 +64,7 @@ public class Monster : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Contains("TempProjectile(Clone)"))
+        if (collision.gameObject.name.Contains("Projectile(Clone)"))
         {
             GameManager.instance.RefreshWaveCount(gameObject);
             ObjectManager.instance.ReturnObject(objType, gameObject);
