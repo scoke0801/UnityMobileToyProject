@@ -5,11 +5,13 @@ using UnityEngine;
 public class BudyAct : MonoBehaviour
 {
     [SerializeField]
-    private Status status;
-    private GameObject toCreatePrefab;
+    protected Status status;
+
+    protected GameObject toCreatePrefab;
 
     [SerializeField]
-    private PROJECTILE_ACT_TYPE projectileActType;
+    protected PROJECTILE_ACT_TYPE projectileActType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class BudyAct : MonoBehaviour
         }
     }
 
-    void DoAttack(Collider target)
+    virtual public void DoAttack(Collider target)
     {  
         if (status.attackCoolTime > 0.0f)
         {
