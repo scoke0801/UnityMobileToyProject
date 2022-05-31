@@ -16,25 +16,24 @@ public class BudyForwardAttack : BudyAct
         Vector3 shootPos = transform.position;
         shootPos.y += 0.5f;
 
+        Vector3 dir = this.transform.forward;
+
         GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
         if (newProjectile)
         {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE, this.gameObject, target.gameObject, shootPos);
-            newProjectile.gameObject.transform.position = shootPos;
+            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, dir, shootPos);
         }
 
         newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
         if (newProjectile)
         {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING, this.gameObject, target.gameObject, shootPos);
-            newProjectile.gameObject.transform.position = shootPos;
+            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA, this.gameObject, Quaternion.Euler(0, -30, 0) * dir, shootPos);
         }
 
         newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
         if (newProjectile)
         {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA, this.gameObject, target.gameObject, shootPos);
-            newProjectile.gameObject.transform.position = shootPos;
+            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE, this.gameObject, Quaternion.Euler(0, 30, 0) * dir, shootPos);
         }
 
         Debug.Log("Created Projectile!!!");

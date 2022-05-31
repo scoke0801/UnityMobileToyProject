@@ -11,12 +11,7 @@ public class Projectile : MonoBehaviour
 
     Vector3 direction;
 
-    GameObject shooter;
-    GameObject target;
-    public GameObject Target
-    {
-        get { return target; }
-    }
+    GameObject shooter; 
 
     PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     ProjectileActor actor;
@@ -49,41 +44,21 @@ public class Projectile : MonoBehaviour
     public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, GameObject target, Vector3 shootPos)
     {
         this.shooter = shooter;
-        this.target = target;
+        this.transform.position = shootPos;
 
-        switch (actType)
-        {
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR:
-                {
-                    actor = new ProjectileLinearActor(shooter, target, shootPos); 
-                }
-                break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA:
-                {
-                    actor = new ProjectileParabolaActor(shooter, target, shootPos);
-                }
-                break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE:
-                {
-                    actor = new ProjectileVerticalWaveActor(shooter, target, shootPos);
-                }
-                break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_HORIZONTAL_WAVE:
-                {
-                }
-                break;
-            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING:
-                {
-                    actor = new ProjectileTrackingActor(shooter, target, shootPos);
-                }
-                break;
-            default:
-                {
-                    // to do 
-                    // error
-                }
-                break;
-        } 
+        lifeTime = 3.0f;
+
+        actor = ProjectileActor.GetProjectileActor(actType, shooter, target, shootPos);
+        this.gameObject.SetActive(true);
+    }
+    public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, Vector3 direction, Vector3 shootPos)
+    {
+        this.shooter = shooter;
+        this.transform.position = shootPos;
+
+        lifeTime = 3.0f;
+
+        actor = ProjectileActor.GetProjectileActor(actType, shooter, direction, shootPos);
         this.gameObject.SetActive(true);
     }
 
@@ -96,26 +71,7 @@ public class Projectile : MonoBehaviour
         if ( collision.gameObject ==  GameManager.instance.GetPlayer() )
         {
             return;
-        }
-        //OBJECT_TYPE objType = OBJECT_TYPE.OBJ_TYPE_MAX;
-        //if (collision.gameObject.name.Contains("Condor(Clone)"))
-        //{
-        //    objType = OBJECT_TYPE.OBJ_MONSTER_CONDER;
-        //}
-        //else if (collision.gameObject.name.Contains("Chicken(Clone)"))
-        //{
-        //    objType = OBJECT_TYPE.OBJ_MONSTER_CHICKEN;
-        //}
-        //else
-        //{
-        //    Debug.LogError("Can't find target name" + gameObject.name);
-        //}
-
-        //if( objType != OBJECT_TYPE.OBJ_TYPE_MAX )
-        //{ 
-        //    GameManager.instance.RefreshWaveCount(collision.gameObject);
-        //    ObjectManager.instance.ReturnObject(objType, collision.gameObject);
-        //}
+        } 
         ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
     }
 

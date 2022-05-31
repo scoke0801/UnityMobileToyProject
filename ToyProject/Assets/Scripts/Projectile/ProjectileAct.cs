@@ -6,18 +6,20 @@ public interface IProjectileAct
 {
     public void DoMove(Projectile projectile);
 }
-
+ 
 public abstract class ProjectileActor : IProjectileAct
 {
     protected GameObject shooter, target;
     protected Status status;
     protected Vector3 direction;
-    public ProjectileActor(GameObject shooter, GameObject target, Vector3 shootPos)
+
+    public ProjectileActor() { }
+    public ProjectileActor(GameObject shooter, Vector3 direction, Vector3 shootPos)
     {
         this.shooter = shooter;
-        this.target = target;
-        CheckDirection(target, shootPos);
+        this.direction = direction; 
     }
+
     public virtual void DoMove(Projectile projectile)
     {
     }
@@ -29,13 +31,58 @@ public abstract class ProjectileActor : IProjectileAct
 
         direction = (targetPosition - shootPos).normalized;
     }
+    static public ProjectileActor GetProjectileActor(PROJECTILE_ACT_TYPE actType, GameObject shooter, GameObject target, Vector3 shootPos)
+    { 
+        switch (actType)
+        { 
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING:
+                {
+                    return new ProjectileTrackingActor(shooter, target, shootPos);
+                } 
+            default:
+                {
+                    // to do 
+                    // error
+                    Debug.LogError("GetProjectileActor TypeError");
+                }
+                break;
+        }
+        return null;
+    }
+
+    static public ProjectileActor GetProjectileActor(PROJECTILE_ACT_TYPE actType, GameObject shooter, Vector3 direction, Vector3 shootPos)
+    {
+        switch (actType)
+        {
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR:
+                {
+                    return new ProjectileLinearActor(shooter, direction, shootPos);
+                }
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA:
+                {
+                    return new ProjectileParabolaActor(shooter, direction, shootPos);
+                }
+            case PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE:
+                {
+                    return new ProjectileVerticalWaveActor(shooter, direction, shootPos);
+                } 
+            default:
+                {
+                    // to do 
+                    // error
+                    Debug.LogError("GetProjectileActor TypeError");
+                }
+                break;
+        }
+        return null;
+    }
 }
  
 public class ProjectileLinearActor: ProjectileActor
-{ 
-    public ProjectileLinearActor(GameObject shooter, GameObject target, Vector3 shootPos) 
-        : base(shooter, target, shootPos)
-    {  
+{  
+    public ProjectileLinearActor(GameObject shooter, Vector3 direction, Vector3 shootPos)
+        : base(shooter, direction, shootPos)
+    {
     }
     public override void DoMove(Projectile projectile)
     {
@@ -47,8 +94,8 @@ public class ProjectileParabolaActor : ProjectileActor
 {
     float power;
     float attenuation;
-    public ProjectileParabolaActor(GameObject shooter, GameObject target, Vector3 shootPos)
-          : base(shooter, target, shootPos)
+    public ProjectileParabolaActor(GameObject shooter, Vector3 direction, Vector3 shootPos)
+          : base(shooter, direction, shootPos)
     {
         attenuation = 15.0f;
         power = 10.0f;
@@ -66,8 +113,8 @@ public class ProjectileVerticalWaveActor : ProjectileActor
 {
     float angle = 0.0f;
     float curveSize = 3.0f;
-    public ProjectileVerticalWaveActor(GameObject shooter, GameObject target, Vector3 shootPos)
-             : base(shooter, target, shootPos)
+    public ProjectileVerticalWaveActor(GameObject shooter, Vector3 direction, Vector3 shootPos)
+             : base(shooter, direction, shootPos)
     {
     }
     public override void DoMove(Projectile projectile)
@@ -88,8 +135,8 @@ public class ProjectileHorizontalWaveActor : ProjectileActor
 {
     float angle = 0.0f;
     float curveSize = 3.0f;
-    public ProjectileHorizontalWaveActor(GameObject shooter, GameObject target, Vector3 shootPos)
-             : base(shooter, target, shootPos)
+    public ProjectileHorizontalWaveActor(GameObject shooter, Vector3 direction, Vector3 shootPos)
+             : base(shooter, direction, shootPos)
     {
     }
     public override void DoMove(Projectile projectile)
@@ -100,15 +147,15 @@ public class ProjectileTrackingActor : ProjectileActor
 {
     const float ORIGIN_TRACKING_TIME = 0.15f;
     float trackingTime;
-    public ProjectileTrackingActor(GameObject shooter, GameObject target, Vector3 shootPos)
-             : base(shooter, target, shootPos)
+    public ProjectileTrackingActor(GameObject shooter, GameObject target, Vector3 shootPos) : base()
     {
+        this.target = target;
         trackingTime = ORIGIN_TRACKING_TIME;
         CheckDirection(target, shootPos);
-    }
+    } 
     public override void DoMove(Projectile projectile)
     {
-        if (!projectile.Target.activeSelf)
+        if (!target.activeSelf)
         {
             ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, projectile.gameObject);
             return;

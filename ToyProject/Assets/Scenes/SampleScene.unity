@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 853353655}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BudyAct, Assembly-CSharp
         m_MethodName: OnClickedBtn1
         m_Mode: 1
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 853353655}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BudyAct, Assembly-CSharp
         m_MethodName: OnClickedBtn2
         m_Mode: 1
@@ -1051,7 +1051,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &853353655
+--- !u!114 &853353659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1060,10 +1060,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 853353647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14233805dbb16b6479556c5a9b5d0b2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f0be05c2816b78419191851af6a5341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileActType: 0
+  projectileActType: 2
 --- !u!1 &897112093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2053,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 853353655}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BudyAct, Assembly-CSharp
         m_MethodName: OnClickedBtn3
         m_Mode: 1
