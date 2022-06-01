@@ -27,6 +27,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(status.speed, status.speed, status.speed); 
         actor.DoMove(this);
         UpdateLifeTime();
     }
