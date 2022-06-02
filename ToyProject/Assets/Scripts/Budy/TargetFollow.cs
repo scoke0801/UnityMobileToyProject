@@ -25,6 +25,10 @@ public class TargetFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 dir = player.transform.forward * 10000;
+        dir.y = transform.position.y;
+        transform.LookAt(dir, Vector3.up);
+
         angle += Time.deltaTime * speed;
 
         Vector3 newPosition = player.transform.position; 
