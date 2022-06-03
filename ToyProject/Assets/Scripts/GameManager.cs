@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] public CamFollow cam;  
-    [SerializeField] public GameObject player;
-
+    [SerializeField] public GameObject player; 
 
     [SerializeField] public Text remainTimeText;
     [SerializeField] public Text remainMonsterText; 
@@ -29,7 +28,7 @@ public class GameManager : MonoBehaviour
         cam.SetTarget(player.transform, CamFollow.State.Tracking);
 
         gameTime = 300.0f;
-        spawnTime = 0.0f;
+        spawnTime = 0.0f; 
     }
 
     // Update is called once per frame
@@ -86,5 +85,5 @@ public class GameManager : MonoBehaviour
     {
         spawner.RemoveObject(gameObject);
         remainMonsterText.text = "Wave : " + spawner.GetMonsterCount().ToString();
-    }
+    } 
 }

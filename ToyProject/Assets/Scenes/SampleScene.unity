@@ -207,9 +207,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BudyAct, Assembly-CSharp
-        m_MethodName: OnClickedBtn1
+      - m_Target: {fileID: 853353655}
+        m_TargetAssemblyTypeName: Budy, Assembly-CSharp
+        m_MethodName: ChangeBudyAct
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -341,9 +341,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BudyAct, Assembly-CSharp
-        m_MethodName: OnClickedBtn2
+      - m_Target: {fileID: 853353655}
+        m_TargetAssemblyTypeName: Budy, Assembly-CSharp
+        m_MethodName: ChangeBudyForwardAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1051,7 +1051,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &853353659
+--- !u!114 &853353655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1060,10 +1060,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 853353647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0be05c2816b78419191851af6a5341, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f9003c3d39511f4d85c1aa88f06474c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileActType: 2
 --- !u!1 &897112093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,10 +1123,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1135,7 +1134,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Linear
+  m_Text: Budy1
 --- !u!222 &897112096
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1347,10 +1346,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1358,7 +1357,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wave
+  m_Text: Budy2
 --- !u!222 &953163519
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1800,7 +1799,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tracking
+  m_Text: 
 --- !u!222 &1351074922
 CanvasRenderer:
   m_ObjectHideFlags: 0
