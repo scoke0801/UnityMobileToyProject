@@ -95,9 +95,10 @@ GameObject:
   - component: {fileID: 2661727738772020333}
   - component: {fileID: 1673844502534970844}
   - component: {fileID: 6001507869377836492}
+  - component: {fileID: -4203339883363668369}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,3 +164,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771639a4ab0d71448b6eceb9cde8223f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &-4203339883363668369
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456820176026227685}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

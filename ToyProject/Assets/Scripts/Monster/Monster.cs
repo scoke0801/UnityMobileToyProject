@@ -19,7 +19,7 @@ public class Monster : MonoBehaviour
     {
         state = State.Trace;
         
-        target = GameManager.instance.GetPlayer();
+        target = GameManager.instance.GetPlayerObject();
 
         status = new Status();
         status.speed = 5.0f;
@@ -64,7 +64,7 @@ public class Monster : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Contains("Projectile(Clone)"))
+        if ( collision.gameObject.tag == "Projectile" )
         {
             GameManager.instance.RefreshWaveCount(gameObject);
             ObjectManager.instance.ReturnObject(objType, gameObject);

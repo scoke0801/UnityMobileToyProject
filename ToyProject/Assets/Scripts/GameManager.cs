@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] public CamFollow cam;  
-    [SerializeField] public GameObject player; 
+    [SerializeField] public GameObject playerObject;
+    public Player player;
 
     [SerializeField] public Text remainTimeText;
     [SerializeField] public Text remainMonsterText; 
@@ -20,7 +21,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; 
+        instance = this;
+        player = playerObject.GetComponent<Player>();
+        int stop = 3;
     }
     // Start is called before the first frame update
     void Start()
@@ -38,12 +41,16 @@ public class GameManager : MonoBehaviour
         SpawnMonster();
     }
 
-    public GameObject GetPlayer()
+    public GameObject GetPlayerObject()
+    {
+        // 게임 월드 상의 객체들이 Player를 쉽게 찾을 수 있도록
+        return playerObject;
+    }
+    public Player GetPlayer()
     {
         // 게임 월드 상의 객체들이 Player를 쉽게 찾을 수 있도록
         return player;
     }
-
     private void UpdateGameTime()
     { 
         gameTime -= Time.deltaTime;

@@ -58,16 +58,12 @@ public class BudyAct
         shootPos.y += 0.5f;
 
         Vector3 dir = budy.transform.forward;
-
-        for (int i = 0; i < 5; ++i)
+         
+        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
+        if (newProjectile)
         {
-            GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-            if (newProjectile)
-            {
-                newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING, budy.gameObject, target.gameObject, shootPos);
-            }
-            else { break; }
-        } 
+            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING, budy.gameObject, target.gameObject, shootPos);
+        }
 
         Debug.Log("Created Projectile!!!");
 

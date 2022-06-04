@@ -25,7 +25,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         rectJoyStick = transform.Find("JoyStick").GetComponent<RectTransform>();
         rectLever = transform.Find("JoyStick/Lever").GetComponent<RectTransform>();
 
-        player = GameManager.instance.GetPlayer().transform;
+        player = GameManager.instance.GetPlayerObject().transform;
 
         // JoystickBackground의 반지름입니다.
         m_fRadius = rectJoyStick.rect.width * 0.5f;

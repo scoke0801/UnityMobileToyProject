@@ -69,7 +69,7 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        if ( collision.gameObject ==  GameManager.instance.GetPlayer() )
+        if ( collision.gameObject ==  GameManager.instance.GetPlayerObject() )
         {
             return;
         } 

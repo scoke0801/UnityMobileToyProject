@@ -5,11 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Status status;
+
+    public int projectileShootCountAtOnce
+    {
+        get { return projectileShootCountAtOnce; }
+        set { Mathf.Min( Mathf.Max(projectileShootCountAtOnce + value, 3), Constants.MAX_PROJECTILE_SHOOT_COUNT_AT_ONCE); }
+    }
     // Start is called before the first frame update
     void Start()
     {
         status.hp = 10;
         status.speed = 1;
+
+        projectileShootCountAtOnce = 1;
     }
 
     // Update is called once per frame

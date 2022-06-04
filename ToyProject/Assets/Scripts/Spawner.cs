@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
         area = GetComponent<BoxCollider>();
         area.enabled = false; 
         
-        target = GameManager.instance.GetPlayer();
+        target = GameManager.instance.GetPlayerObject();
     } 
 
     public void Spawn()

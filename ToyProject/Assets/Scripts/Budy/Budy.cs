@@ -8,7 +8,7 @@ public class Budy : MonoBehaviour
     protected Status status;
 
     [SerializeField] 
-    private BudyAct budyAct;
+    private BudyAct budyAct; 
 
     // Start is called before the first frame update
     void Start()
