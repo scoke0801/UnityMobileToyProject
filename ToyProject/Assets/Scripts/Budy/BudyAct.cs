@@ -23,7 +23,7 @@ public class BudyAct
     }
       
     // Update is called once per frame
-    public void Update()
+    virtual public void Update()
     {
         // 상태에 따라서 행동하게 수정할 것... 
         if (status.attackHoldingTime > 0.0f)
@@ -31,7 +31,7 @@ public class BudyAct
             status.attackHoldingTime = Mathf.Max(status.attackHoldingTime - Time.deltaTime, 0.0f);
             if (status.attackHoldingTime <= 0.0f)
             {
-                status.attackCoolTime += Constants.BUDY_ATTACK_COOLTILE; 
+                status.attackCoolTime += Constants.BUDY_BASE_ATTACK_COOLTILE; 
             }
         }
         else if (status.attackCoolTime > 0.0f)

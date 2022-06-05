@@ -72,7 +72,12 @@ public class Projectile : MonoBehaviour
         if ( collision.gameObject ==  GameManager.instance.GetPlayerObject() )
         {
             return;
-        } 
+        }
+        if (collision.gameObject.tag == "Projectile")
+        {
+            return;
+        }
+
         ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
     }
 

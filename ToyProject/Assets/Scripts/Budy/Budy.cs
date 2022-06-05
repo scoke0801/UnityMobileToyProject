@@ -25,14 +25,10 @@ public class Budy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name);
-        if (other.gameObject.name == "Chicken(Clone)")
+        if (other.gameObject.tag == "Monster")
         {
             budyAct.DoAttack(other);
-        }
-        else if (other.gameObject.name == "Condor(Clone)")
-        {
-            budyAct.DoAttack(other);
-        }
+        } 
     }
 
     public void ChangeBudyAct()

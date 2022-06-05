@@ -6,7 +6,9 @@ public class Player : MonoBehaviour
 {
     Status status;
 
-    public int projectileShootCountAtOnce
+    private int projectileShootCountAtOnce;
+
+    public int ProjectileShootCountAtOnce
     {
         get { return projectileShootCountAtOnce; }
         set { Mathf.Min( Mathf.Max(projectileShootCountAtOnce + value, 3), Constants.MAX_PROJECTILE_SHOOT_COUNT_AT_ONCE); }
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        status = new Status();
         status.hp = 10;
         status.speed = 1;
 

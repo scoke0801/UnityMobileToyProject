@@ -7,16 +7,24 @@ public class BudyForwardAttack : BudyAct
         : base(budy)
     { 
     }
-    public override void DoAttack(Collider target)
-    {
-        if (status.attackCoolTime > 0.0f)
-        {
-            // 아직 쿨타임이 남아있는 경우
-            Debug.Log(" status.attackCoolTime > 0.0f ");
-            return;
-        }
 
-        Vector3 targetPos = target.gameObject.transform.position;
+
+    override public void Update()
+    { 
+        status.attackCoolTime = status.attackCoolTime - Time.deltaTime;
+        if (status.attackCoolTime <= 0.0f)
+        {
+            Attack();
+            status.attackCoolTime = Constants.BUDY_FORWARD_ATTACK_COOLTILE;
+        } 
+    }
+
+    public override void DoAttack(Collider target)
+    { 
+    }
+
+    void Attack()
+    { 
         Vector3 shootPos = budy.transform.position;
         shootPos.y += 0.5f;
 
@@ -41,7 +49,5 @@ public class BudyForwardAttack : BudyAct
         }
 
         Debug.Log("Created Projectile!!!");
-
-        return;
     }
 } 
