@@ -11,10 +11,12 @@ public class Projectile : MonoBehaviour
 
     Vector3 direction;
 
-    GameObject shooter; 
+    GameObject shooter;
 
     PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     ProjectileActor actor;
+
+    private OBJECT_TYPE objectType; 
 
     // Start is called before the first frame update
     void Start()
@@ -38,14 +40,27 @@ public class Projectile : MonoBehaviour
         if (lifeTime <= 0.0f)
         {
             Debug.Log("Return Projectile Obj");
-            ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
+            ObjectManager.instance.ReturnObject(objectType, this.gameObject);
         }
+    }
+
+    // 추후 수정 필요, 플레이어 직접 공격할 때 사용하기 위함.
+    public void Swing(GameObject shooter, Vector3 direction, Vector3 shootPos)
+    {
+        this.shooter = shooter;
+        this.transform.position = shootPos;
+        objectType = OBJECT_TYPE.OBJ_METAL_PROJECTILE;
+
+        lifeTime = 3.0f;
+        actor = ProjectileActor.GetProjectileActor(actType, shooter, direction, shootPos);
+        this.gameObject.SetActive(true);
     }
 
     public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, GameObject target, Vector3 shootPos)
     {
         this.shooter = shooter;
         this.transform.position = shootPos;
+        objectType = OBJECT_TYPE.OBJ_PROJECTILE;
 
         lifeTime = 3.0f;
 
@@ -56,6 +71,7 @@ public class Projectile : MonoBehaviour
     {
         this.shooter = shooter;
         this.transform.position = shootPos;
+        objectType = OBJECT_TYPE.OBJ_PROJECTILE;
 
         lifeTime = 3.0f;
 

@@ -8,6 +8,7 @@ public enum OBJECT_TYPE
     OBJ_MONSTER_CONDER = OBJ_TYPE_MIN,
     OBJ_MONSTER_CHICKEN,
     OBJ_PROJECTILE,
+    OBJ_METAL_PROJECTILE,
     OBJ_TYPE_MAX,
 };
 
@@ -23,7 +24,9 @@ public enum PROJECTILE_ACT_TYPE
 };
  
 static class Constants
-{
+{ 
+    public const float PLAYER_ATTACK_COOLTILE = 0.1f;
+
     public const float BUDY_BASE_ATTACK_COOLTILE = 0.2f;
     public const float BUDY_FORWARD_ATTACK_COOLTILE = 0.5f;
     public const float BUDY_ATTACK_HOLDINGTIME = 0.5f;

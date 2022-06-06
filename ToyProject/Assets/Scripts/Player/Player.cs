@@ -25,7 +25,34 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    { 
+        status.attackCoolTime = Mathf.Max(status.attackCoolTime - Time.deltaTime, 0.0f); 
+    }
+
+    void Attack()
     {
-        
+        if (status.attackCoolTime > 0.0f)
+        {
+            // 아직 쿨타임이 남아있는 경우
+            Debug.Log("Player status.attackCoolTime > 0.0f ");
+            return;
+        }
+        Vector3 shootPos = transform.position;
+        shootPos.y += 1.5f;
+
+        Vector3 dir = transform.forward;
+
+        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_METAL_PROJECTILE);
+        if (newProjectile)
+        {
+            newProjectile.GetComponent<Projectile>().Swing(this.gameObject, dir, shootPos); 
+        }
+
+        status.attackCoolTime = Constants.PLAYER_ATTACK_COOLTILE;
+    }
+
+    public void OnButtonClick()
+    {
+        Attack();
     }
 }
