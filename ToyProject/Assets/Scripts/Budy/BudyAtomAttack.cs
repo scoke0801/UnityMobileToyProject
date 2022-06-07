@@ -1,29 +1,25 @@
-﻿using System.Collections;
+﻿using UnityEditor;
 using UnityEngine;
-  
-public class BudyForwardAttack : BudyAttack
-{
-    public BudyForwardAttack(Budy budy)
-        : base(budy)
-    { 
-    } 
 
+public class BudyAtomAttack : BudyAttack
+{ 
+    [SerializeField] private GameObject atomPrefab;
+
+    public BudyAtomAttack(Budy budy, int nAtomCount)
+        : base(budy)
+    {
+    }
+      
     override public void Update()
     { 
-        status.attackCoolTime = status.attackCoolTime - Time.deltaTime;
-        if (status.attackCoolTime <= 0.0f)
-        {
-            Attack();
-            status.attackCoolTime = Constants.BUDY_FORWARD_ATTACK_COOLTILE;
-        } 
     }
 
     public override void DoAttack(Collider target)
-    { 
+    {
     }
 
     void Attack()
-    { 
+    {
         Vector3 shootPos = budy.transform.position;
         shootPos.y += 0.5f;
 
@@ -49,4 +45,4 @@ public class BudyForwardAttack : BudyAttack
 
         Debug.Log("Created Projectile!!!");
     }
-} 
+}

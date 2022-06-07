@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BudyAct
+public class BudyAttack
 {
     [SerializeField]
     protected Status status;
@@ -14,7 +12,7 @@ public class BudyAct
 
     protected Budy budy;
 
-    public BudyAct(Budy budy)
+    public BudyAttack(Budy budy)
     {
         this.budy = budy;
         

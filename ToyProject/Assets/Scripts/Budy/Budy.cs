@@ -8,12 +8,12 @@ public class Budy : MonoBehaviour
     protected Status status;
 
     [SerializeField] 
-    private BudyAct budyAct; 
+    private BudyAttack budyAct; 
 
     // Start is called before the first frame update
     void Start()
     {
-        budyAct = new BudyAct(this);
+        budyAct = new BudyAttack(this);
     } 
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class Budy : MonoBehaviour
 
     public void ChangeBudyAct()
     {
-        this.budyAct = new BudyAct(this);
+        this.budyAct = new BudyAttack(this);
     }
     public void ChangeBudyForwardAttack()
     { 
