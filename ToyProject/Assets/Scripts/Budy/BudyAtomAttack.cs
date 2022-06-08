@@ -1,13 +1,27 @@
 ﻿using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BudyAtomAttack : BudyAttack
 { 
     [SerializeField] private GameObject atomPrefab;
 
+    List<GameObject> atoms;
     public BudyAtomAttack(Budy budy, int nAtomCount)
         : base(budy)
     {
+        float speed = 5;
+        float radius = 1;
+        float baseAngle = 360.0f / nAtomCount;
+        GameObject newObjectPrefab = Resources.Load("Prefabs/Atomball") as GameObject;
+        for (int i = 0; i < nAtomCount; ++i)
+        {
+            float angle = baseAngle * i;  
+            GameObject newObject = MonoBehaviour.Instantiate<GameObject>(newObjectPrefab);
+            newObject.transform.position = budy.gameObject.transform.position;
+            TargetFollow script = newObject.AddComponent<TargetFollow>() as TargetFollow;
+            script.SetTarget(budy.gameObject, radius, speed, angle * Mathf.Deg2Rad); 
+        }
     }
       
     override public void Update()
@@ -19,30 +33,6 @@ public class BudyAtomAttack : BudyAttack
     }
 
     void Attack()
-    {
-        Vector3 shootPos = budy.transform.position;
-        shootPos.y += 0.5f;
-
-        Vector3 dir = budy.transform.forward;
-
-        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        if (newProjectile)
-        {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, budy.gameObject, dir, shootPos);
-        }
-
-        newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        if (newProjectile)
-        {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA, budy.gameObject, Quaternion.Euler(0, -30, 0) * dir, shootPos);
-        }
-
-        newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        if (newProjectile)
-        {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE, budy.gameObject, Quaternion.Euler(0, 30, 0) * dir, shootPos);
-        }
-
-        Debug.Log("Created Projectile!!!");
+    { 
     }
 }

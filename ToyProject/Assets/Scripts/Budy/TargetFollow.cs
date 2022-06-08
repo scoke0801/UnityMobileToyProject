@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetFollow : MonoBehaviour
 {
-    public GameObject target;
+    public GameObject target = null;
 
     private float radius;
 
@@ -17,6 +17,14 @@ public class TargetFollow : MonoBehaviour
         angle = 0;
         radius = 3;
     }
+    public void SetTarget(GameObject target, float radius, float speed, float angle)
+    {
+        this.target = target;
+        this.radius = radius;
+        this.speed = speed;
+        this.angle = angle;
+    }
+
     // Start is called before the first frame update
     void Start()
     { 
