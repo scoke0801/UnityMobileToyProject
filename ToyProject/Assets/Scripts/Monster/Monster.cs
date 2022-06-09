@@ -66,9 +66,9 @@ public class Monster : MonoBehaviour
     {
         if ( collision.gameObject.tag == "Projectile" )
         {
+            Debug.Log("Collision Projectile");
             GameManager.instance.RefreshWaveCount(gameObject);
             ObjectManager.instance.ReturnObject(objType, gameObject);
-        }
-
+        } 
     }
 }
