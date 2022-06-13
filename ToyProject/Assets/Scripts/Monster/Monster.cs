@@ -40,6 +40,12 @@ public class Monster : MonoBehaviour
         }
     }
 
+    public void Init() 
+    {
+        status = new Status();
+        status.speed = 5.0f;
+        status.hp = 10;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -67,8 +73,22 @@ public class Monster : MonoBehaviour
         if ( collision.gameObject.tag == "Projectile" )
         {
             Debug.Log("Collision Projectile");
-            GameManager.instance.RefreshWaveCount(gameObject);
-            ObjectManager.instance.ReturnObject(objType, gameObject);
+
+            Attacked(collision.gameObject);
         } 
+    }
+
+    void Attacked(GameObject gameObject)
+    {
+        Projectile projectile = gameObject.GetComponent<Projectile>();
+        if (projectile == null) { return; }
+        Debug.Log("MonsterAttacked");
+
+        this.status.hp -= projectile.status.damage;
+        if(this.status.hp <= 0)
+        { 
+            GameManager.instance.RefreshWaveCount(this.gameObject);
+            ObjectManager.instance.ReturnObject(objType, this.gameObject); 
+        }
     }
 }

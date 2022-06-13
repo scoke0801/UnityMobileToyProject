@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     // 파일에서 읽어올 수 있도록 수정하면 좋지 않을까
     float lifeTime = 3.0f;
 
-    Status status;
+    public Status status;
 
     Vector3 direction;
 
@@ -24,6 +24,7 @@ public class Projectile : MonoBehaviour
         lifeTime = 3.0f;
         status = new Status();
         status.speed = 10.0f;
+        status.damage = 100000.0f;
     }
 
     // Update is called once per frame
@@ -95,9 +96,5 @@ public class Projectile : MonoBehaviour
         }
 
         ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
-    }
-
-    void DoLinearMove()
-    {
     } 
 }

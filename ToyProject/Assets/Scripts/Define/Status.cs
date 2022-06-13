@@ -21,7 +21,7 @@ public class Status
         this.damage = damage;
     }
 }
-
+    
 public class ProjectileStatus
 { }
 
