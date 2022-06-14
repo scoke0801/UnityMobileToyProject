@@ -31,7 +31,10 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.Rotate(status.speed, status.speed, status.speed); 
-        actor.DoMove(this);
+        if(actor != null)
+        {
+            actor.DoMove(this);
+        }
         UpdateLifeTime();
     }
 

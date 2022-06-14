@@ -1486,7 +1486,7 @@ PrefabInstance:
     - target: {fileID: 5176200045673750118, guid: 8bb85f0d12290594794a2193a58089cb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.93
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 5176200045673750118, guid: 8bb85f0d12290594794a2193a58089cb,
         type: 3}
@@ -2471,7 +2471,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 300, y: 2, z: 300}
+  m_Size: {x: 300, y: 3, z: 300}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2145741249
 MeshFilter:
