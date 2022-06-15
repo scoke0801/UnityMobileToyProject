@@ -5,7 +5,8 @@ public class Status
 {
     public float speed;
     public float hp;
-    
+
+    public float lifeTime;              // 활동 시간 or 유지 시간.
     public float attackCoolTime;        // 공격 쿨타임.
     public float attackHoldingTime;     // 공격 유지 시간.
 
@@ -19,6 +20,19 @@ public class Status
         this.attackCoolTime = attackCoolTime;
         this.attackHoldingTime = attackHoldingTime;
         this.damage = damage;
+    }
+
+    void UpdateLifeTime()
+    {
+        lifeTime -= Time.deltaTime;
+    }
+    void UpdateAttackHoldingTime()
+    {
+        attackHoldingTime -= Time.deltaTime;
+    }
+    void UpdateAttackCoolTime()
+    {
+        attackCoolTime -= Time.deltaTime;
     }
 }
     
