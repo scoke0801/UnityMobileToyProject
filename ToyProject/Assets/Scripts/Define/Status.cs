@@ -22,15 +22,15 @@ public class Status
         this.damage = damage;
     }
 
-    void UpdateLifeTime()
+    public void UpdateLifeTime()
     {
         lifeTime -= Time.deltaTime;
     }
-    void UpdateAttackHoldingTime()
+    public void UpdateAttackHoldingTime()
     {
         attackHoldingTime -= Time.deltaTime;
     }
-    void UpdateAttackCoolTime()
+    public void UpdateAttackCoolTime()
     {
         attackCoolTime -= Time.deltaTime;
     }

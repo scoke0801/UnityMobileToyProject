@@ -25,7 +25,12 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        status.UpdateAttackCoolTime();
+        if( status.attackCoolTime < 0.0f)
+        {
+            status.attackCoolTime = 0.0f;
+        } 
         status.attackCoolTime = Mathf.Max(status.attackCoolTime - Time.deltaTime, 0.0f); 
     }
 
