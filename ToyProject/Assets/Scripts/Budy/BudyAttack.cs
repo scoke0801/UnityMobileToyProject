@@ -26,7 +26,7 @@ public class BudyAttack
         // 상태에 따라서 행동하게 수정할 것... 
         if (status.attackHoldingTime > 0.0f)
         {
-            status.attackHoldingTime = Mathf.Max(status.attackHoldingTime - Time.deltaTime, 0.0f);
+            status.UpdateAttackHoldingTime(); 
             if (status.attackHoldingTime <= 0.0f)
             {
                 status.attackCoolTime += Constants.BUDY_BASE_ATTACK_COOLTILE; 
@@ -34,7 +34,7 @@ public class BudyAttack
         }
         else if (status.attackCoolTime > 0.0f)
         {
-            status.attackCoolTime = Mathf.Max(status.attackCoolTime - Time.deltaTime, 0.0f);
+            status.UpdateAttackCoolTime(); 
             if (status.attackHoldingTime <= 0.0f)
             {
                 status.attackHoldingTime += Constants.BUDY_ATTACK_HOLDINGTIME;
