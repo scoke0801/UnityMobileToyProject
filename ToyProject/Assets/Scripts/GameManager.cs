@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
         cam.SetTarget(player.transform, CamFollow.State.Tracking);
 
         gameTime = 300.0f;
-        spawnTime = 0.0f; 
+        spawnTime = 0.0f;
+        Util.OnDrawGizmos(1f, 1f);
     }
 
     // Update is called once per frame
