@@ -19,10 +19,15 @@ public class SceneChanger : MonoBehaviour
 
     public void OnClickLogin()
     {
-        SceneManager.LoadScene("Scenes/MainGame");
+        SceneManager.LoadScene("Scenes/Lobby"); 
     }
 
     public void OnClickLogout()
     { 
+    }
+
+    public void OnClickGameStart()
+    {
+        SceneManager.LoadScene("Scenes/MainGame");  
     }
 }
