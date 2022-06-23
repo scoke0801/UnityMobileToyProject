@@ -28,6 +28,6 @@ public class SceneChanger : MonoBehaviour
 
     public void OnClickGameStart()
     {
-        SceneManager.LoadScene("Scenes/MainGame");  
+        SceneManager.LoadScene("Scenes/MainGame");     
     }
 }
