@@ -19,6 +19,7 @@ public class BudyAtomAttack : BudyAttack
             float angle = baseAngle * i;  
             GameObject newObject = MonoBehaviour.Instantiate<GameObject>(newObjectPrefab);
             newObject.transform.position = budy.gameObject.transform.position;
+
             TargetFollow script = newObject.AddComponent<TargetFollow>() as TargetFollow;
             script.SetTarget(budy.gameObject, radius, speed, angle * Mathf.Deg2Rad); 
         }

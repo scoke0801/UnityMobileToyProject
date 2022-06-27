@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     // 파일에서 읽어올 수 있도록 수정하면 좋지 않을까
-    float lifeTime = 3.0f;
+    public float lifeTime = 3.0f;
 
     public Status status;
 
@@ -21,10 +21,10 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lifeTime = 3.0f;
         status = new Status();
         status.speed = 10.0f;
-        status.damage = 100000.0f;
+        status.damage = 100000.0f; 
+        status.lifeTime = lifeTime;
     }
 
     // Update is called once per frame
@@ -40,8 +40,8 @@ public class Projectile : MonoBehaviour
 
     void UpdateLifeTime()
     {
-        lifeTime -= Time.deltaTime;
-        if (lifeTime <= 0.0f)
+        status.UpdateLifeTime(); 
+        if (status.lifeTime <= 0.0f)
         {
             Debug.Log("Return Projectile Obj");
             ObjectManager.instance.ReturnObject(objectType, this.gameObject);

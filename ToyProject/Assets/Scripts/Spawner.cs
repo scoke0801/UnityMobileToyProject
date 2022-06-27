@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
         {
             spawnPos = GetRandomPos();
             Vector3 dist = spawnPos - target.transform.position;
-            if (dist.magnitude > 20.0f && dist.magnitude < 70.0f)
+            if (dist.magnitude > 20.0f && dist.magnitude < 50.0f)
             {
                 break;
             } 
