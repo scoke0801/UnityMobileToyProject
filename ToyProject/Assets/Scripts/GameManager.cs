@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public CamFollow cam;  
     [SerializeField] public GameObject playerObject;
     public Player player;
+    public Camera mainCamera;
 
     [SerializeField] public Text remainTimeText;
     [SerializeField] public Text remainMonsterText; 
@@ -19,11 +20,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public Spawner spawner;
 
+    Util util;
+
     private void Awake()
     {
         instance = this;
         player = playerObject.GetComponent<Player>();
-        int stop = 3;
+         
+        util = new Util(mainCamera, 10.0f, 10.0f);
     }
     // Start is called before the first frame update
     void Start()
@@ -32,7 +36,7 @@ public class GameManager : MonoBehaviour
 
         gameTime = 300.0f;
         spawnTime = 0.0f;
-        Util.OnDrawGizmos(1f, 1f);
+
     }
 
     // Update is called once per frame
@@ -40,8 +44,13 @@ public class GameManager : MonoBehaviour
     {
         UpdateGameTime();
         SpawnMonster();
-    }
 
+        // util.OnDrawGizmos();
+    }
+    private void OnDrawGizmosSelected()
+    { 
+        util.OnDrawGizmos();
+    } 
     public GameObject GetPlayerObject()
     {
         // 게임 월드 상의 객체들이 Player를 쉽게 찾을 수 있도록
