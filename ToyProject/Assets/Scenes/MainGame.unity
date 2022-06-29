@@ -5652,6 +5652,7 @@ MonoBehaviour:
   cam: {fileID: 1903881205}
   playerObject: {fileID: 1209700393}
   player: {fileID: 0}
+  mainCamera: {fileID: 963194227}
   remainTimeText: {fileID: 1569907933}
   remainMonsterText: {fileID: 1609633172}
   spawner: {fileID: 2145741251}

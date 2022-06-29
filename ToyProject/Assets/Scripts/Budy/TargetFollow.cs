@@ -31,7 +31,7 @@ public class TargetFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Vector3 dir = target.transform.forward * 10000;
         dir.y = transform.position.y;

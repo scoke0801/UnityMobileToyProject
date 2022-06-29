@@ -10,6 +10,8 @@ public class BudyAtomAttack : BudyAttack
     public BudyAtomAttack(Budy budy, int nAtomCount)
         : base(budy)
     {
+        atoms = new List<GameObject>(nAtomCount);
+
         float speed = 5;
         float radius = 1;
         float baseAngle = 360.0f / nAtomCount;
@@ -21,12 +23,22 @@ public class BudyAtomAttack : BudyAttack
             newObject.transform.position = budy.gameObject.transform.position;
 
             TargetFollow script = newObject.AddComponent<TargetFollow>() as TargetFollow;
-            script.SetTarget(budy.gameObject, radius, speed, angle * Mathf.Deg2Rad); 
+            script.SetTarget(budy.gameObject, radius, speed, angle * Mathf.Deg2Rad);
+
+            atoms.Add(newObject);
         }
     }
       
     override public void Update()
-    { 
+    {
+        for (int i = 0; i < atoms.Count; ++i)
+        {
+            if (!atoms[i].activeSelf)
+            {
+                atoms[i].GetComponent<Atomball>().Update();
+                atoms[i].GetComponent<TargetFollow>().Update();
+            }
+        }
     }
 
     public override void DoAttack(Collider target)

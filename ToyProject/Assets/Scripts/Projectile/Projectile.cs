@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
     private OBJECT_TYPE objectType; 
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         status = new Status();
         status.speed = 10.0f;
@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         transform.Rotate(status.speed, status.speed, status.speed); 
         if(actor != null)
@@ -83,7 +83,7 @@ public class Projectile : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == shooter)
         {
