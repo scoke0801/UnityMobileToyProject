@@ -10,9 +10,13 @@ public class Projectile : MonoBehaviour
     public Status status;
 
     Vector3 direction;
-
-    GameObject shooter;
-
+     
+    private GameObject shooter; 
+    public GameObject Shooter
+    {
+        get { return shooter; }
+        set { if (value) shooter = value; }
+    }
     PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     ProjectileActor actor;
 
@@ -40,7 +44,7 @@ public class Projectile : MonoBehaviour
 
     void UpdateLifeTime()
     {
-        status.UpdateLifeTime(); 
+        status.UpdateLifeTime();
         if (status.lifeTime <= 0.0f)
         {
             Debug.Log("Return Projectile Obj");
