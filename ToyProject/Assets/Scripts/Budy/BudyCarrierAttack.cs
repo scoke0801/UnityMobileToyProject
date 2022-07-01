@@ -19,9 +19,11 @@ public class BudyCarrierAttack : BudyAttack
             GameObject newObject = MonoBehaviour.Instantiate<GameObject>(newObjectPrefab);
             newObject.transform.position = budy.gameObject.transform.position;
 
-            // Interceptor script = newObject.AddComponent<Interceptor>() as Interceptor;
-            // script.SetTarget(budy.gameObject, radius, speed, angle * Mathf.Deg2Rad);
+            Interceptor script = newObject.AddComponent<Interceptor>() as Interceptor;
+            script.SetTargetFollow( newObject.GetComponent<TargetFollow>() );
 
+            // script.SetTarget(budy.gameObject, radius, speed, angle * Mathf.Deg2Rad);
+             
             interceptors.Add(newObject);
         }
     }
@@ -36,5 +38,17 @@ public class BudyCarrierAttack : BudyAttack
         //        interceptors[i].GetComponent<TargetFollow>().Update();
         //    }
         //}
+    } 
+    public override void DoAttack(Collider target)
+    {
+        for (int i = 0; i < interceptors.Count; ++i)
+        {
+            if (!interceptors[i].activeSelf)
+            {
+                interceptors[i].GetComponent<Interceptor>().
+                interceptors[i].GetComponent<TargetFollow>().Update();
+                break;
+            }
+        }
     }
 } 
