@@ -17,8 +17,8 @@ public class Projectile : MonoBehaviour
         get { return shooter; }
         set { if (value) shooter = value; }
     }
-    PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
-    ProjectileActor actor;
+    protected PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
+    protected ProjectileActor actor;
 
     private OBJECT_TYPE objectType; 
 
@@ -52,6 +52,11 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public bool GetCanAttack()
+    {
+        if(status == null) { return false; }
+        return status.attackCoolTime <= 0.0f;
+    }
     // 추후 수정 필요, 플레이어 직접 공격할 때 사용하기 위함.
     public void Swing(GameObject shooter, Vector3 direction, Vector3 shootPos)
     {

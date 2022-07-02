@@ -4318,7 +4318,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player
+  m_Text: Budy3
 --- !u!222 &1351074922
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5471,9 +5471,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1209700400}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnButtonClick
+      - m_Target: {fileID: 853353655}
+        m_TargetAssemblyTypeName: Budy, Assembly-CSharp
+        m_MethodName: ChangeBudyCarrierAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

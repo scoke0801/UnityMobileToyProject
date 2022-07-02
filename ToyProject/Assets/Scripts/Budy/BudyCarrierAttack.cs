@@ -10,20 +10,17 @@ public class BudyCarrierAttack : BudyAttack
         : base(budy)
     {
         interceptors = new List<GameObject>(nInterceptorCount);
-
-        float speed = 5;
-        float radius = 1; 
-        GameObject newObjectPrefab = Resources.Load("Prefabs/Atomball") as GameObject;
+         
+        GameObject newObjectPrefab = Resources.Load("Prefabs/Inteceptor") as GameObject;
         for (int i = 0; i < nInterceptorCount; ++i)
         { 
             GameObject newObject = MonoBehaviour.Instantiate<GameObject>(newObjectPrefab);
             newObject.transform.position = budy.gameObject.transform.position;
-
             Interceptor script = newObject.AddComponent<Interceptor>() as Interceptor;
-            script.SetTargetFollow( newObject.GetComponent<TargetFollow>() );
+            script.Shooter = budy.gameObject;
+            script.Init();
+            newObject.SetActive(false);
 
-            // script.SetTarget(budy.gameObject, radius, speed, angle * Mathf.Deg2Rad);
-             
             interceptors.Add(newObject);
         }
     }
@@ -39,14 +36,14 @@ public class BudyCarrierAttack : BudyAttack
         //    }
         //}
     } 
-    public override void DoAttack(Collider target)
+    override public void DoAttack(Collider target)
     {
         for (int i = 0; i < interceptors.Count; ++i)
         {
-            if (!interceptors[i].activeSelf)
+            Interceptor script = interceptors[i].GetComponent<Interceptor>();
+            if (script && !script.gameObject.activeSelf )
             {
-                interceptors[i].GetComponent<Interceptor>().
-                interceptors[i].GetComponent<TargetFollow>().Update();
+                script.FindNewTarget(target);
                 break;
             }
         }
