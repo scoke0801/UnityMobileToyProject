@@ -14,8 +14,8 @@ public class Budy : MonoBehaviour
     void Start()
     {
  //       budyAct = new BudyAttack(this);
-        //budyAct = new BudyAtomAttack(this, 5); 
-        this.budyAct = new BudyCarrierAttack(this, 7);
+        budyAct = new BudyAtomAttack(this, 5); 
+        //this.budyAct = new BudyCarrierAttack(this, 7);
     } 
 
     // Update is called once per frame

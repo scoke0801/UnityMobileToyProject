@@ -43,7 +43,7 @@ public class BudyCarrierAttack : BudyAttack
             Interceptor script = interceptors[i].GetComponent<Interceptor>();
             if (script && !script.gameObject.activeSelf )
             {
-                script.FindNewTarget(target);
+                script.FindNewTarget(target.gameObject);
                 break;
             }
         }

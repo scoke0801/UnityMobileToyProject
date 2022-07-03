@@ -3500,6 +3500,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Budy
       objectReference: {fileID: 0}
+    - target: {fileID: 5178616425068983282, guid: 8bb85f0d12290594794a2193a58089cb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Budy
+      objectReference: {fileID: 0}
     - target: {fileID: 7750744678506910722, guid: 8bb85f0d12290594794a2193a58089cb,
         type: 3}
       propertyPath: m_Enabled

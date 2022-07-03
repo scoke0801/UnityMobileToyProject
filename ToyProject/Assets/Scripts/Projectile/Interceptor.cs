@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 public class Interceptor : Projectile
-{   
+{
+    GameObject target;
     public void Init()
     {
         status = new Status();
@@ -22,13 +23,24 @@ public class Interceptor : Projectile
         {
             Debug.Log("DoMove!!!!!");
             actor.DoMove(this);
+
+            if (Shooter == target)
+            {
+                Vector3 vecToTarget = target.transform.position - transform.position;
+                vecToTarget.y = target.transform.position.y;  
+                if ( 1.5f > Vector3.Magnitude(vecToTarget))
+                {
+                    this.gameObject.SetActive(false);
+                    actor = null; 
+                }
+            }
         }
     }
 
-    public void FindNewTarget(Collider target)
+    public void FindNewTarget(GameObject target)
     {
-        Debug.Log("FindNewTarget" + target.gameObject.name);
-        actor = ProjectileActor.GetProjectileActor(actType, Shooter, target.gameObject, this.gameObject.transform.position);
+        this.target = target; 
+        actor = ProjectileActor.GetProjectileActor(actType, Shooter, target, this.gameObject.transform.position);
         this.gameObject.SetActive(true);
     }
 
@@ -38,14 +50,18 @@ public class Interceptor : Projectile
         {
             return;
         }
-
-        if (collision.gameObject == Shooter )
+        if (collision.gameObject.tag == "Budy") 
         {
+            if (Shooter == target)
+            {
+                this.gameObject.SetActive(false);
+                actor = null;
+            }
             return;
         }
 
         if (collision.gameObject.tag == "Projectile")
-        {
+        { 
             return;
         }
         if (collision.gameObject.tag == "Obstacle")
@@ -53,7 +69,7 @@ public class Interceptor : Projectile
             return;
         }
 
-        actor = null;
+        FindNewTarget(Shooter);
         status.attackCoolTime = 5.0f;
 
         // ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
