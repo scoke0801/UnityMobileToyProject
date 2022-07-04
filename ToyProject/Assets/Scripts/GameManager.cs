@@ -21,17 +21,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Spawner spawner;
 
     Util util;
-
-    private void Awake()
-    {
-        instance = this;
-        player = playerObject.GetComponent<Player>();
-         
-        util = new Util(mainCamera, 10.0f, 10.0f);
-    }
+     
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+        player = playerObject.GetComponent<Player>();
+
+        util = new Util(mainCamera, 10.0f, 10.0f);
+
         cam.SetTarget(player.transform, CamFollow.State.Tracking);
 
         gameTime = 300.0f;
@@ -62,7 +60,9 @@ public class GameManager : MonoBehaviour
         return player;
     }
     private void UpdateGameTime()
-    { 
+    {
+        if (remainTimeText == null) { return; }
+
         gameTime -= Time.deltaTime;
         if (gameTime < 0){ gameTime = 0.0f; }
 
@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     private void SpawnMonster()
     {
+        if (spawner == null) { return; }
+
         if (gameTime <= 0.0f)
         {
             return;
