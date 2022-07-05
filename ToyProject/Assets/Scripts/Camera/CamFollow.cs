@@ -27,7 +27,7 @@ public class CamFollow : MonoBehaviour
 
     private float lastZoomSpeed;
 
-    private Vector3 offset;
+    [SerializeField]private Vector3 offset;
     private State state
     {
         set
@@ -53,7 +53,7 @@ public class CamFollow : MonoBehaviour
     {
         cam = GetComponentInChildren<Camera>();
         state = State.Idle;
-        offset = transform.position;
+        //offset = transform.position;
     }
 
     private void Move()
