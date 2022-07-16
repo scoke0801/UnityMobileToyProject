@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 enum SceneEnterTriggerType
 {
     NONE = -1,
     SHOP,
     GAME,
+    MANAGEMENT,
 }
 
 public class LobbyEnterHelper : MonoBehaviour
@@ -33,8 +35,16 @@ public class LobbyEnterHelper : MonoBehaviour
                     Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.SHOP");
                 }break;
             case SceneEnterTriggerType.GAME:
-                { 
-                }break;
+                {
+                    SceneManager.LoadScene("Scenes/MainGame");
+                    Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.GAME");
+                }
+                break;
+            case SceneEnterTriggerType.MANAGEMENT: 
+                {
+                    Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.MANAGEMENT");
+                }
+                break;
             default:
                 { 
                 }break;
