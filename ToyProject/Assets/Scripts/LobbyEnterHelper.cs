@@ -2,17 +2,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 
-enum SceneEnterTriggerType
+public enum SceneType
 {
     NONE = -1,
+    LOBBY,
     SHOP,
     GAME,
+    GAME_INFINITE,
     MANAGEMENT,
 }
 
 public class LobbyEnterHelper : MonoBehaviour
 {
-    [SerializeField] SceneEnterTriggerType sceneEnterTrigerType;
+    [SerializeField] SceneType sceneType;
 
     // Use this for initialization
     void Start()
@@ -28,20 +30,36 @@ public class LobbyEnterHelper : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch (sceneEnterTrigerType)
+        Scene scene = GameManager.instance.GetCurrentScene();
+        switch (sceneType)
         {
-            case SceneEnterTriggerType.SHOP:
+            case SceneType.SHOP:
                 {
                     Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.SHOP");
                 }break;
-            case SceneEnterTriggerType.GAME:
+            case SceneType.GAME:
+            case SceneType.GAME_INFINITE:
                 {
-                    SceneManager.LoadScene("Scenes/MainGame");
+                    LobbyScene lobbyScene = (LobbyScene)scene;
+                    if (lobbyScene == null)
+                    {
+                        Debug.LogWarning("OnTriggerEnter < lobbyScene is empty");
+                        break;
+                    }
+                    lobbyScene.ActiveGameModePannel();
                     Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.GAME");
                 }
                 break;
-            case SceneEnterTriggerType.MANAGEMENT: 
+
+            case SceneType.MANAGEMENT:
                 {
+                    LobbyScene lobbyScene = (LobbyScene)scene;
+                    if (lobbyScene == null)
+                    {
+                        Debug.LogWarning("OnTriggerEnter < lobbyScene is empty");
+                        break;
+                    }
+                    lobbyScene.ActiveStatusModifyPannel();
                     Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.MANAGEMENT");
                 }
                 break;

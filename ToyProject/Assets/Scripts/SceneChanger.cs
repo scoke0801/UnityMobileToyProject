@@ -30,7 +30,7 @@ public class SceneChanger : MonoBehaviour
         { 
             Social.localUser.Authenticate((bool isSuccess, string errorMsz) =>
            {
-               Debug.Log("login attemp" + isSuccess + errorMsz);
+               Debug.Log("login attemp" + isSuccess + " " + errorMsz);
                //to do
                SceneManager.LoadScene("Scenes/Lobby"); 
            });
