@@ -145,11 +145,11 @@ public class LobbyScene : Scene
             lineRender.SetPosition(2, points[2].rectTransform.position);
             lineRender.SetPosition(3, points[3].rectTransform.position);
             lineRender.SetPosition(4, points[4].rectTransform.position);
+            for (int i = 0; i < 5; ++i)
+            {
+                lineRender.SetPosition(i, points[i].rectTransform.position);
+            }
             lineRender.SetPosition(5, points[0].rectTransform.position);
-            //for (int i = 1; i < 2; ++i)
-            //{
-            //    lineRender.SetPosition(1, points[i].rectTransform.position);
-            //}
             Debug.Log("DrawLine");
         }
     }
