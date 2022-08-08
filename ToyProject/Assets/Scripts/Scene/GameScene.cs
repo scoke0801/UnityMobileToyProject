@@ -27,7 +27,7 @@ public class GameScene : Scene
         remainTimeText = canvas.transform.Find("RemainTime").GetComponent<TextMeshProUGUI>(); 
         remainMonsterText = canvas.transform.Find("ReamainMonsterCount").GetComponent<TextMeshProUGUI>();
 
-        gameTime = 15.0f;
+        gameTime = 150.0f;
         spawnTime = 0.0f;
     }
 

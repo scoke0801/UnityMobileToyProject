@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
-    public float rotateSpeed = 180.0f;
+    public float rotateSpeed = 20.0f;
 
     private Rigidbody playerRigidboy;
     private PlayerInput playerInput;
