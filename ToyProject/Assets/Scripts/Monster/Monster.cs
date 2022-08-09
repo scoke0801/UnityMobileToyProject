@@ -13,7 +13,8 @@ public class Monster : MonoBehaviour
     GameObject target;
      
     Status status;
-    OBJECT_TYPE objType;
+    public OBJECT_TYPE objType { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,21 +24,7 @@ public class Monster : MonoBehaviour
 
         status = new Status();
         status.speed = 5.0f;
-        status.hp = 10;
-
-        objType = OBJECT_TYPE.OBJ_TYPE_MAX;
-        if (gameObject.name.Contains("Condor(Clone)"))
-        {
-            objType = OBJECT_TYPE.OBJ_MONSTER_CONDER;
-        }
-        else if (gameObject.name.Contains("Chicken(Clone)"))
-        {
-            objType = OBJECT_TYPE.OBJ_MONSTER_CHICKEN;
-        }
-        else
-        {
-            Debug.LogError("Can't find target name" + gameObject.name);
-        }
+        status.hp = 10; 
     }
 
     public void Init() 
@@ -46,6 +33,7 @@ public class Monster : MonoBehaviour
         status.speed = 5.0f;
         status.hp = 10;
     }
+     
     // Update is called once per frame
     void Update()
     {

@@ -6,11 +6,11 @@ public class ObjectManager : MonoBehaviour
 { 
     public static ObjectManager instance = null;
 
-    public int MAX_OBJECT_COUNT = 50; // 50俺究 积己
+    public int MAX_OBJECT_COUNT = 20; // 20俺究 积己
 
     Queue<GameObject>[] gameObjects;
 
-    GameObject[] objectPrefabs;
+    public GameObject[] objectPrefabs;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +64,12 @@ public class ObjectManager : MonoBehaviour
         {
             GameObject newObject = Instantiate(targetPrefab); 
             // newObject.GetComponent<~~~>().init(this)
-            newObject.SetActive(false); 
+            newObject.SetActive(false);
+            Monster monScript = newObject.GetComponent<Monster>();
+            if (monScript)
+            {
+                monScript.objType = objectType;
+            }
             gameObjects[(int)objectType].Enqueue(newObject);
         }
     }

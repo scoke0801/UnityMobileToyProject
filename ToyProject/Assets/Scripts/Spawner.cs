@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        int selection = Random.Range((int)OBJECT_TYPE.OBJ_MONSTER_CONDER, (int)OBJECT_TYPE.OBJ_MONSTER_CHICKEN + 1); 
+        int selection = Random.Range((int)OBJECT_TYPE.OBJ_MONSTER_GHOST_MALE, (int)OBJECT_TYPE.OBJ_MONSTER_GOBLIN_FEMALE + 1); 
        
         Vector3 spawnPos;
         while (true)
@@ -54,11 +54,10 @@ public class Spawner : MonoBehaviour
         Vector3 basePosition = transform.position;
         Vector3 size = area.size;
 
-        float posX = basePosition.x + Random.Range(-size.x * 0.5f, size.x * 0.5f);
-        float posY = basePosition.y + Random.Range( size.y * 0.5f, size.y * 1.5f);
+        float posX = basePosition.x + Random.Range(-size.x * 0.5f, size.x * 0.5f); 
         float posZ = basePosition.z + Random.Range(-size.z * 0.5f, size.z * 0.5f);
 
-        return new Vector3(posX, 1, posZ);
+        return new Vector3(posX, 0, posZ);
     }
       
     public void RemoveObject(GameObject gameObject) 

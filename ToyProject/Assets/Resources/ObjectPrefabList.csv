@@ -1,5 +1,10 @@
 ﻿PrefabPath
-Prefabs/Condor
-Prefabs/Chicken
+Prefabs/Ghost_01
+Prefabs/Ghost_02
+Prefabs/Rock_Golem
+Prefabs/Skeleton_Knight
+Prefabs/Skeleton_Slave
+Prefabs/Goblin_Male
+Prefabs/Goblin_Female
 Prefabs/Projectile
 Prefabs/MetalProjectile
