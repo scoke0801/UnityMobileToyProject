@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Rotate();
 
-        playerAnimator.SetFloat("Move", playerInput.move);
+        playerAnimator.SetFloat("Forward", playerInput.move); 
+        playerAnimator.SetFloat("Turn", playerInput.rotate);
     }
 
     private void Move()

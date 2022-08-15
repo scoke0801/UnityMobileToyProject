@@ -62,8 +62,7 @@ public class ObjectManager : MonoBehaviour
          
         for (int i = 0; i < MAX_OBJECT_COUNT; ++i)
         {
-            GameObject newObject = Instantiate(targetPrefab); 
-            // newObject.GetComponent<~~~>().init(this)
+            GameObject newObject = Instantiate(targetPrefab);  
             newObject.SetActive(false);
             Monster monScript = newObject.GetComponent<Monster>();
             if (monScript)
