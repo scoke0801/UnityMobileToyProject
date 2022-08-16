@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 { 
-    public static ObjectManager instance = null;
+    private static ObjectManager _instance;
+    public static ObjectManager instance {
+        get 
+        { 
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<ObjectManager>();
+            }
+            return _instance;
+        } 
+    }
 
     public int MAX_OBJECT_COUNT = 20; // 20개씩 생성
 
@@ -14,12 +24,7 @@ public class ObjectManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-
+    { 
         LoadPrefabs();
         CreateObjectPool();
     }

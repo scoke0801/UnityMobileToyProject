@@ -5,8 +5,18 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
+    private static GameManager _instance;
+    public static GameManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<GameManager>();
+            }
+            return _instance;
+        } 
+    }
     public CamFollow camFollow;
     public GameObject playerObject;
 
@@ -16,10 +26,8 @@ public class GameManager : MonoBehaviour
 
      
     // Start is called before the first frame update
-    void Start()
-    {
-        instance = this;
-
+    void Awake()
+    { 
         switch (sceneType)
         {
             case SceneType.LOBBY:

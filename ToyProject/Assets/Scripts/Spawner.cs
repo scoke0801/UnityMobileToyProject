@@ -38,13 +38,8 @@ public class Spawner : MonoBehaviour
         float spawnAngle = Random.Range(0, 360);
         
         GameObject instance = ObjectManager.instance.GetObject((OBJECT_TYPE)selection);
-        instance.SetActive(true);
         instance.transform.position = spawnPos;
-        Monster monsterScript = instance.GetComponent<Monster>();
-        if (monsterScript != null)
-        {
-            monsterScript.Init();
-        }
+        instance.SetActive(true); 
 
         props.Add(instance);  
     }
