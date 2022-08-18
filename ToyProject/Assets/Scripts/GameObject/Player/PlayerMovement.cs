@@ -31,8 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        Vector3 moveDist = playerInput.move * transform.forward * moveSpeed * Time.deltaTime;
-
+        Vector3 moveDist = playerInput.move * transform.forward * moveSpeed * Time.deltaTime; 
         playerRigidboy.MovePosition(playerRigidboy.position + moveDist);
     }
 

@@ -17,12 +17,14 @@ public class Monster : LivingObject
     public OBJECT_TYPE objType { get; set; }
 
     private AudioSource audioSource;
-    private Animator animator; 
+    private Animator animator;
+    private Rigidbody monsterRigidboy;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>(); 
+        animator = GetComponent<Animator>();
+        monsterRigidboy = GetComponent<Rigidbody>();
     } 
      
     protected override void OnEnable()
@@ -47,7 +49,9 @@ public class Monster : LivingObject
 
         if (state == State.Trace)
         {
-            transform.position += vecToTarget.normalized * status.speed * Time.deltaTime;
+            Vector3 moveDist = vecToTarget.normalized * status.speed * Time.deltaTime;
+
+            monsterRigidboy.MovePosition(monsterRigidboy.position + moveDist);
 
             float minDist = 3.0f;
             if (minDist > Vector3.Magnitude(vecToTarget))

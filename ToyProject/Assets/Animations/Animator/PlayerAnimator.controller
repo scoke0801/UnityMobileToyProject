@@ -1030,7 +1030,7 @@ AnimatorState:
   - {fileID: 110135218}
   m_StateMachineBehaviours: []
   m_Position: {x: 588, y: 96, z: 0}
-  m_IKOnFeet: 1
+  m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_SpeedParameterActive: 0
