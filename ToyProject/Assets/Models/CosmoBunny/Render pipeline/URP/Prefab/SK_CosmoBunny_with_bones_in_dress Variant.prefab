@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a90e4206eb096a54c87b2ad76349843c,
@@ -65,7 +66,8 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a90e4206eb096a54c87b2ad76349843c,
         type: 3}
       propertyPath: m_Name
-      value: SK_CosmoBunny_with_bones_in_dress
+      value: SK_CosmoBunny_with_bones_in_dress Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: a90e4206eb096a54c87b2ad76349843c, type: 3}
