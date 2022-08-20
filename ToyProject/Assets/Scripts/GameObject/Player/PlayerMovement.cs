@@ -43,4 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidboy.rotation = playerRigidboy.rotation * Quaternion.Euler(0f, turn, 0f);
     }
+
+    public void Dash()
+    { 
+    }
 }
