@@ -11,11 +11,13 @@ public class PlayerShooter : MonoBehaviour
     private PlayerInput playerInput;
     private Animator playerAnimator;
 
+    public PlayerGun gun;
+
     // Use this for initialization
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
-        playerAnimator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>(); 
     }
 
     private void OnEnable()
@@ -59,11 +61,15 @@ public class PlayerShooter : MonoBehaviour
     {
         Debug.Log("Reload!");   
         playerAnimator.SetTrigger("Reload");
+
+        gun.Reload();
     }
 
     public void Shoot()
     {
         Debug.Log("Shoot!");
         playerAnimator.SetTrigger("Shoot");
+
+        gun.Fire();
     }
 } 

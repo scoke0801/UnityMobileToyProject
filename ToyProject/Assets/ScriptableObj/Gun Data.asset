@@ -17,5 +17,5 @@ MonoBehaviour:
   damage: 25
   startAmmoRemain: 100
   ammoCapacity: 25
-  timeBetFire: 0.12
-  reloadTime: 1.8
+  timeBetFire: 0.1
+  reloadTime: 1

@@ -6,9 +6,9 @@ public class PlayerGun : MonoBehaviour
     // 총의 상태를 표현하는 데 사용할 타입을 선언
     public enum State
     {
-        Ready, // 발사 준비됨
-        Empty, // 탄알집이 빔
-        Reloading // 재장전 중
+        Ready,      // 발사 준비됨
+        Empty,      // 탄알집이 빔
+        Reloading   // 재장전 중
     }
 
     public State state { get; private set; } // 현재 총의 상태
@@ -29,11 +29,16 @@ public class PlayerGun : MonoBehaviour
 
     private float lastFireTime; // 총을 마지막으로 발사한 시점
 
+    LineRenderer lineRenderer;
+
     private void Awake()
     {
         // 사용할 컴포넌트의 참조 가져오기
         gunAudioPlayer = GetComponent<AudioSource>();
-        
+        lineRenderer = GetComponent<LineRenderer>();
+
+        lineRenderer.positionCount = 2;
+        lineRenderer.enabled = false;
     }
 
     private void OnEnable()
@@ -49,20 +54,58 @@ public class PlayerGun : MonoBehaviour
     // 발사 시도
     public void Fire()
     {
+        if(state == State.Ready && Time.time >= lastFireTime + gunData.timeBetFire )
+        {
+            lastFireTime = Time.time;
 
+            Shot();
+        }
     }
 
     // 실제 발사 처리
     private void Shot()
     {
+        RaycastHit hit;
+        Vector3 hitPos = Vector3.zero;
 
+        if (Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
+        {
+            IDamageable target = hit.collider.GetComponent<IDamageable>();
+            if (target != null)
+            {
+                target.OnDamage(gunData.damage, hit.point, hit.normal);
+            }
+            hitPos = hit.point;
+        }
+        else 
+        {
+            hitPos = fireTransform.position + fireTransform.forward * fireDistance;
+        }
+
+        StartCoroutine(ShotEffect(hitPos));
+
+        //  Todo 탄창 처리.
+        --curAmmo;
+        if(curAmmo <= 0)
+        {
+            state = State.Empty;
+        }
     }
 
     // 발사 이펙트와 소리를 재생하고 탄알 궤적을 그림
     private IEnumerator ShotEffect(Vector3 hitPosition)
-    { 
-        // 0.03초 동안 잠시 처리를 대기
-        yield return new WaitForSeconds(0.03f); 
+    {
+        muzzleFlashEffect.Play();
+        shellEjectEffect.Play();
+
+        lineRenderer.SetPosition(0, fireTransform.position);
+        lineRenderer.SetPosition(1, hitPosition);
+        lineRenderer.enabled = true;
+         
+        // 0.05초 동안 잠시 처리를 대기
+        yield return new WaitForSeconds(0.05f);
+        
+        lineRenderer.enabled = false;
     }
 
     // 재장전 시도
@@ -83,5 +126,7 @@ public class PlayerGun : MonoBehaviour
 
         // 총의 현재 상태를 발사 준비된 상태로 변경
         state = State.Ready;
+
+        curAmmo = gunData.ammoCapacity; 
     }
 } 
