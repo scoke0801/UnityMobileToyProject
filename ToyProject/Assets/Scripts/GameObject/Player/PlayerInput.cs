@@ -17,6 +17,8 @@ public class PlayerInput : MonoBehaviour
     private PlayerShooter playerShooter;
     private PlayerMovement playerMovement;
 
+    public JoyStick joyStick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +31,12 @@ public class PlayerInput : MonoBehaviour
     {
         move = Input.GetAxis(moveAixName);
         rotate = Input.GetAxis(rotateAxisName);
-        // fire = Input.GetButton(fireButtonName);
-        // reload = Input.GetButton(reloadButtonName);
+
+        if (joyStick && joyStick.touch)
+        {
+            move = joyStick.move;
+            rotate = joyStick.rotate;
+        } 
     }
 
     public void OnButtonClickRightMain()

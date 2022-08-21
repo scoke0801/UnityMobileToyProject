@@ -17,8 +17,9 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     Vector2 vecNormal;
 
-    bool bTouch = false;
-
+    public bool touch { get; private set; }
+    public float move { get; private set; }
+    public float rotate { get; private set; }
 
     void Start()
     {
@@ -36,11 +37,10 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     void Update()
     {
-        if (bTouch)
+        if (touch)
         {
            // player.position += vecMove;
-        }
-
+        } 
     }
 
     void OnTouch(Vector2 vecTouch)
@@ -52,31 +52,38 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         rectLever.localPosition = vec;
 
         // 조이스틱 배경과 조이스틱과의 거리 비율로 이동합니다.
-        float fSqr = (rectJoyStick.position - rectLever.position).sqrMagnitude / (m_fRadius * m_fRadius);
+        // float fSqr = (rectJoyStick.position - rectLever.position).sqrMagnitude / (m_fRadius * m_fRadius);
+        move = (rectJoyStick.position - rectLever.position).sqrMagnitude / (m_fRadius * m_fRadius); ;
+        move *= 10.0f;
 
+        Debug.Log(move);
         // 터치위치 정규화
         Vector2 vecNormal = vec.normalized;
 
-        vecMove = new Vector3(vecNormal.x * m_fSpeed * Time.deltaTime * fSqr, 0f, vecNormal.y * m_fSpeed * Time.deltaTime * fSqr);
-        player.eulerAngles = new Vector3(0f, Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg, 0f);
+        //vecMove = new Vector3(vecNormal.x * m_fSpeed * Time.deltaTime * fSqr, 0f, vecNormal.y * m_fSpeed * Time.deltaTime * fSqr);
+        // player.eulerAngles = new Vector3(0f, Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg, 0f);
+
+        rotate = Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg;
+        rotate /= 360.0f ;
+        Debug.Log(rotate);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         OnTouch(eventData.position);
-        bTouch = true;
+        touch = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         OnTouch(eventData.position);
-        bTouch = true;
+        touch = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         // 원래 위치로 되돌립니다.
         rectLever.localPosition = Vector2.zero;
-        bTouch = false;
+        touch = false;
     }
 }
