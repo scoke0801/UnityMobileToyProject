@@ -62,7 +62,6 @@ public class PlayerGun : MonoBehaviour
 
             Shot();
         }
-        ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
     }
 
     // 실제 발사 처리
@@ -87,6 +86,11 @@ public class PlayerGun : MonoBehaviour
 
         StartCoroutine(ShotEffect(hitPos));
 
+        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
+        if (newProjectile)
+        {
+            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos, fireTransform.position);
+        }
         //  Todo 탄창 처리.
         --curAmmo;
         if(curAmmo <= 0)
@@ -101,14 +105,14 @@ public class PlayerGun : MonoBehaviour
         muzzleFlashEffect.Play();
         shellEjectEffect.Play();
 
-        lineRenderer.SetPosition(0, fireTransform.position);
-        lineRenderer.SetPosition(1, hitPosition);
-        lineRenderer.enabled = true;
+        //lineRenderer.SetPosition(0, fireTransform.position);
+        //lineRenderer.SetPosition(1, hitPosition);
+        //lineRenderer.enabled = true;
          
         // 0.05초 동안 잠시 처리를 대기
         yield return new WaitForSeconds(0.05f);
         
-        lineRenderer.enabled = false;
+        //lineRenderer.enabled = false;
     }
 
     // 재장전 시도
