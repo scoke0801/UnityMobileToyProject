@@ -39,6 +39,8 @@ public class PlayerGun : MonoBehaviour
 
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
+
+
     }
 
     private void OnEnable()
@@ -60,6 +62,7 @@ public class PlayerGun : MonoBehaviour
 
             Shot();
         }
+        ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
     }
 
     // 실제 발사 처리
