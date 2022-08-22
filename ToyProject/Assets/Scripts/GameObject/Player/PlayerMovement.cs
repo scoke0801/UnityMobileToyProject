@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
+    public float moveSpeed = 5.0f; 
     public float rotateSpeed = 40.0f;
 
     private Rigidbody playerRigidboy;
@@ -45,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Dash()
-    { 
+    {
+        Debug.Log("Dash!");
+        Vector3 moveDist = transform.forward * moveSpeed * 1.2f;
+        playerRigidboy.MovePosition(playerRigidboy.position + moveDist);
     }
 }

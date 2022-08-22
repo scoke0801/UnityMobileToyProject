@@ -28,19 +28,11 @@ public class PlayerGun : MonoBehaviour
     public int curAmmo; // 현재 탄알집에 남아 있는 탄알
 
     private float lastFireTime; // 총을 마지막으로 발사한 시점
-
-    LineRenderer lineRenderer;
-
+     
     private void Awake()
     {
         // 사용할 컴포넌트의 참조 가져오기
-        gunAudioPlayer = GetComponent<AudioSource>();
-        lineRenderer = GetComponent<LineRenderer>();
-
-        lineRenderer.positionCount = 2;
-        lineRenderer.enabled = false;
-
-
+        gunAudioPlayer = GetComponent<AudioSource>(); 
     }
 
     private void OnEnable()
@@ -84,7 +76,9 @@ public class PlayerGun : MonoBehaviour
             hitPos = fireTransform.position + fireTransform.forward * fireDistance;
         }
 
-        StartCoroutine(ShotEffect(hitPos));
+        // 발사 이펙트와 소리를 재생 
+        muzzleFlashEffect.Play();
+        shellEjectEffect.Play();
 
         GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
         if (newProjectile)
@@ -97,23 +91,7 @@ public class PlayerGun : MonoBehaviour
         {
             state = State.Empty;
         }
-    }
-
-    // 발사 이펙트와 소리를 재생하고 탄알 궤적을 그림
-    private IEnumerator ShotEffect(Vector3 hitPosition)
-    {
-        muzzleFlashEffect.Play();
-        shellEjectEffect.Play();
-
-        //lineRenderer.SetPosition(0, fireTransform.position);
-        //lineRenderer.SetPosition(1, hitPosition);
-        //lineRenderer.enabled = true;
-         
-        // 0.05초 동안 잠시 처리를 대기
-        yield return new WaitForSeconds(0.05f);
-        
-        //lineRenderer.enabled = false;
-    }
+    } 
 
     // 재장전 시도
     public bool Reload()
