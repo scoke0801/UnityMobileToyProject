@@ -75,6 +75,7 @@ public class Monster : LivingObject
      
     private IEnumerator FindTarget()
     {
+        WaitForSeconds var = new WaitForSeconds(0.15f);
         while ( !isDead )
         {
             if (state == State.Trace && target )
@@ -86,7 +87,7 @@ public class Monster : LivingObject
                 transform.rotation = rotation; 
             }
             // 0.15초 동안 잠시 처리를 대기
-            yield return new WaitForSeconds(0.15f); 
+            yield return var;
         }
     }
     override public void OnDamage(float damage, Vector3 hitPos, Vector3 hitNormal)
