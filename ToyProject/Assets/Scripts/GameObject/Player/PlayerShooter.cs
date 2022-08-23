@@ -50,13 +50,7 @@ public class PlayerShooter : MonoBehaviour
         playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, leftHandPos.rotation);
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+     
     public void ReloadGun()
     {
         Debug.Log("Reload!");   

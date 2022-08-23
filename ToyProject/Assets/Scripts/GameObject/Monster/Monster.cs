@@ -43,13 +43,13 @@ public class Monster : LivingObject
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if( isDead ) { return; }
 
         if (state == State.Trace)
         {
-            Vector3 moveDist = vecToTarget.normalized * status.speed * Time.deltaTime;
+            Vector3 moveDist = vecToTarget.normalized * status.speed * Time.fixedDeltaTime;
 
             monsterRigidboy.MovePosition(monsterRigidboy.position + moveDist);
 

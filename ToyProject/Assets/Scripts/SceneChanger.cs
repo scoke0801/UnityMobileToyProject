@@ -17,13 +17,7 @@ public class SceneChanger : MonoBehaviour
         ////PlayGamesPlatform È°¼ºÈ­
         //PlayGamesPlatform.Activate();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+     
     public void OnClickLogin()
     {
         //if (PlayGamesPlatform.Instance.IsAuthenticated() == false)

@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
         Rotate();
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        Vector3 moveDist = playerInput.move * transform.forward * moveSpeed * Time.deltaTime; 
+        Vector3 moveDist = playerInput.move * transform.forward * moveSpeed * Time.fixedDeltaTime; 
         playerRigidboy.MovePosition(playerRigidboy.position + moveDist);
     }
 
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if( playerInput.move == 0.0f ) { return; }
 
-        float turn = playerInput.rotate * rotateSpeed * Time.deltaTime;
+        float turn = playerInput.rotate * rotateSpeed * Time.fixedDeltaTime;
 
         playerRigidboy.rotation = playerRigidboy.rotation * Quaternion.Euler(0f, turn, 0f);
     }
