@@ -74,6 +74,7 @@ public class ObjectManager : MonoBehaviour
             {
                 monScript.objType = objectType;
             }
+            newObject.transform.SetParent(this.gameObject.transform);
             gameObjects[(int)objectType].Enqueue(newObject);
         }
     }
