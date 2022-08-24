@@ -20,8 +20,7 @@ public class Interceptor : Projectile
         {
         }
         if (actor != null)
-        {
-            Debug.Log("DoMove!!!!!");
+        { 
             actor.DoMove(this);
 
             if (Shooter == target)
@@ -50,7 +49,7 @@ public class Interceptor : Projectile
         {
             return;
         }
-        if (collision.gameObject.tag == "Budy") 
+        if (collision.gameObject.CompareTag("Budy")) 
         {
             if (Shooter == target)
             {
@@ -60,11 +59,11 @@ public class Interceptor : Projectile
             return;
         }
 
-        if (collision.gameObject.tag == "Projectile")
+        if (collision.gameObject.CompareTag("Projectile"))
         { 
             return;
         }
-        if (collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             return;
         }

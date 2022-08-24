@@ -6,11 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameScene : Scene
-{
-    public TextMeshProUGUI remainTimeText;
-    public TextMeshProUGUI remainMonsterText;
-   
-    
+{ 
     private float gameTime = 300.0f;
     private float spawnTime = 1.0f;
 
@@ -21,11 +17,7 @@ public class GameScene : Scene
     public GameScene(GameObject playerObject, CamFollow camFollow ) : base( playerObject, camFollow )
     {
         // util = new Util(mainCamera, 10.0f, 10.0f); 
-        spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
-
-        GameObject canvas = GameObject.Find("Canvas");
-        remainTimeText = canvas.transform.Find("RemainTime").GetComponent<TextMeshProUGUI>(); 
-        remainMonsterText = canvas.transform.Find("ReamainMonsterCount").GetComponent<TextMeshProUGUI>();
+        spawner = GameObject.Find("Spawner").GetComponent<Spawner>(); 
 
         gameTime = 150.0f;
         spawnTime = 0.0f;
@@ -41,9 +33,7 @@ public class GameScene : Scene
         SpawnMonster();
     }
     private void UpdateGameTime()
-    {
-        if (remainTimeText == null) { return; }
-
+    { 
         gameTime -= Time.deltaTime;
         if (gameTime < 0) 
         {
@@ -53,7 +43,7 @@ public class GameScene : Scene
 
         int min = (int)(gameTime / 60.0f);
         int sec = (int)(gameTime - min * 60.0f);
-        remainTimeText.text = min.ToString() + " : " + sec.ToString(); 
+        UIManager.instance.UpdateGameTime(min.ToString() + " : " + sec.ToString()); 
     }
 
     private void SpawnMonster()
@@ -81,13 +71,13 @@ public class GameScene : Scene
         {
             spawner.Spawn();
         }
-
-        remainMonsterText.text = "Wave : " + spawner.GetMonsterCount().ToString();
+        UIManager.instance.UpdateRemainMonsterText("Wave : " + spawner.GetMonsterCount().ToString());
     }
 
     public void RefreshWaveCount(GameObject gameObject)
     {
         spawner.RemoveObject(gameObject);
-        remainMonsterText.text = "Wave : " + spawner.GetMonsterCount().ToString();
+
+        UIManager.instance.UpdateRemainMonsterText("Wave : " + spawner.GetMonsterCount().ToString()); 
     }
 }

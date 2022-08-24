@@ -26,7 +26,7 @@ public class Atomball : Projectile
         {
             return;
         }
-        if (collision.gameObject.tag == "Projectile")
+        if (collision.gameObject.CompareTag("Projectile"))
         {
             return;
         }

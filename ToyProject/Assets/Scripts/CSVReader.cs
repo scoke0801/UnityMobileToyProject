@@ -15,12 +15,7 @@ public class CSVReader : MonoBehaviour
             // Debug.Log(fileList[i]);
             // ReadCSV(fileList[i]);
         } 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    } 
     private void ReadAllStat()
     {
 

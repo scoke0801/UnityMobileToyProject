@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    RectTransform rectJoyStick;
-    RectTransform rectLever;
+    [SerializeField] RectTransform rectJoyStick;
+    [SerializeField] RectTransform rectLever;
 
     Transform player;
 
@@ -22,10 +22,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public float rotate { get; private set; }
 
     void Start()
-    {
-        rectJoyStick = transform.Find("JoyStick").GetComponent<RectTransform>();
-        rectLever = transform.Find("JoyStick/Lever").GetComponent<RectTransform>();
-
+    { 
         player = GameManager.instance.GetPlayerObject().transform;
 
         // JoystickBackground의 반지름입니다.

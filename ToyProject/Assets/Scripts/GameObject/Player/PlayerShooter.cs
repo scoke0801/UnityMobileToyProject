@@ -20,15 +20,15 @@ public class PlayerShooter : MonoBehaviour
         playerAnimator = GetComponent<Animator>(); 
     }
 
-    private void OnEnable()
-    {
+    //private void OnEnable()
+    //{
         
-    }
+    //}
 
-    private void OnDisable()
-    {
+    //private void OnDisable()
+    //{
         
-    }
+    //}
 
     private void OnAnimatorIK(int layerIndex)
     {

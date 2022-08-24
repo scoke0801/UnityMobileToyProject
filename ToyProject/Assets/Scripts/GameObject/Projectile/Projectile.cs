@@ -102,7 +102,7 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        if (collision.gameObject.tag == "Projectile")
+        if (collision.gameObject.CompareTag( "Projectile" ))
         {
             return;
         }

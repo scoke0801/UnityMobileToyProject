@@ -62,9 +62,7 @@ public class BudyAttack
         {
             newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING, budy.gameObject, target.gameObject, shootPos);
         }
-
-        Debug.Log("Created Projectile!!!");
-
+         
         return;
     }
 }

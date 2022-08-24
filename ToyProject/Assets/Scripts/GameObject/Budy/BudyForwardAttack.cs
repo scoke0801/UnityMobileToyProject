@@ -46,7 +46,5 @@ public class BudyForwardAttack : BudyAttack
         {
             newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE, budy.gameObject, Quaternion.Euler(0, 30, 0) * dir, shootPos);
         }
-
-        Debug.Log("Created Projectile!!!");
     }
 } 

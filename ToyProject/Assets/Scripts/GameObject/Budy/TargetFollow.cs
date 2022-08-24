@@ -24,12 +24,7 @@ public class TargetFollow : MonoBehaviour
         this.speed = speed;
         this.angle = angle;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    { 
-    }
-
+     
     // Update is called once per frame
     public void Update()
     {
@@ -48,9 +43,5 @@ public class TargetFollow : MonoBehaviour
 
         transform.position = newPosition; 
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
+     
 }

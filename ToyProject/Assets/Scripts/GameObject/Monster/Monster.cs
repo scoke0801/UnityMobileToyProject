@@ -63,7 +63,7 @@ public class Monster : LivingObject
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ( collision.gameObject.tag == "Projectile" )
+        if ( collision.gameObject.CompareTag("Projectile") )
         {  
             Projectile projectile = gameObject.GetComponent<Projectile>();
             if (projectile == null) { return; }
