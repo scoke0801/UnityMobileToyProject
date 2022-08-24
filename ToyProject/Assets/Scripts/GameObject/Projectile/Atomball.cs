@@ -30,8 +30,6 @@ public class Atomball : Projectile
         {
             return;
         }
-
-        Debug.Log("Atom!!!");
         this.gameObject.SetActive(false); 
         status.attackCoolTime += 5.0f;
         // ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);

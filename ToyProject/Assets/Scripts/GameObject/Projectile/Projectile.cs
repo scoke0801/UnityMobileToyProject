@@ -47,7 +47,6 @@ public class Projectile : MonoBehaviour
         status.UpdateLifeTime();
         if (status.lifeTime <= 0.0f)
         {
-            Debug.Log("Return Projectile Obj");
             ObjectManager.instance.ReturnObject(objectType, this.gameObject);
         }
     }

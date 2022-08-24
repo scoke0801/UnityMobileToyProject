@@ -26,7 +26,6 @@ public class Budy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.gameObject.CompareTag("Monster"))
         {
             budyAct.DoAttack(other);

@@ -150,7 +150,6 @@ public class LobbyScene : Scene
                 lineRender.SetPosition(i, points[i].rectTransform.position);
             }
             lineRender.SetPosition(5, points[0].rectTransform.position);
-            Debug.Log("DrawLine");
         }
     }
     void Start()
