@@ -49,7 +49,9 @@ public class UIManager
 
 		GameObject gameObject = Managers.Resource.Instantiate(prefab);
 		if (parent != null)
+		{
 			gameObject.transform.SetParent(parent);
+		}
 
 		gameObject.transform.localScale = Vector3.one;
 		gameObject.transform.localPosition = prefab.transform.position;
@@ -60,7 +62,9 @@ public class UIManager
 	public T ShowSceneUI<T>(string name = null) where T : UIScene
 	{
 		if (string.IsNullOrEmpty(name))
+		{
 			name = typeof(T).Name;
+		}
 
 		GameObject gameObject = Managers.Resource.Instantiate($"UI/Scene/{name}");
 		T sceneUI = Util.GetOrAddComponent<T>(gameObject);
@@ -85,11 +89,18 @@ public class UIManager
 		_popupStack.Push(popup);
 
 		if (parent != null)
+		{
 			gameObject.transform.SetParent(parent);
+		}
 		else if (_sceneUI != null)
+		{
 			gameObject.transform.SetParent(_sceneUI.transform);
+
+		}
 		else
+		{
 			gameObject.transform.SetParent(Root.transform);
+		}
 
 		gameObject.transform.localScale = Vector3.one;
 		gameObject.transform.localPosition = prefab.transform.position;
@@ -106,7 +117,9 @@ public class UIManager
 	public T PeekPopupUI<T>() where T : UIPopup
 	{
 		if (_popupStack.Count == 0)
+		{
 			return null;
+		}
 
 		return _popupStack.Peek() as T;
 	}
@@ -114,7 +127,9 @@ public class UIManager
 	public void ClosePopupUI(UIPopup popup)
 	{
 		if (_popupStack.Count == 0)
+		{
 			return;
+		}
 
 		if (_popupStack.Peek() != popup)
 		{
@@ -139,7 +154,9 @@ public class UIManager
 	public void CloseAllPopupUI()
 	{
 		while (_popupStack.Count > 0)
+		{
 			ClosePopupUI();
+		}
 	}
 
 	public void Clear()

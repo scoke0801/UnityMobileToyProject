@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+/*
+#region prev
 public class GameScene : Scene
 { 
     private float gameTime = 300.0f;
@@ -80,5 +82,26 @@ public class GameScene : Scene
         spawner.RemoveObject(gameObject);
 
       //  UIManager.instance.UpdateRemainMonsterText("Wave : " + spawner.GetMonsterCount().ToString()); 
+    }
+}
+#endregion
+*/
+public class GameScene : BaseScene
+{ 
+    protected override bool Init()
+    {
+        if (base.Init() == false)
+        {
+            return false;
+        }
+
+        SceneType = Define.Scene.Game;
+        Managers.UI.ShowPopupUI<UIGameControl>();
+        Debug.Log("GameScene < Init");
+
+        for (int i = 0; i < 10; i++)
+            Managers.Resource.Instantiate("Goblin_Male");
+
+        return true;
     }
 }

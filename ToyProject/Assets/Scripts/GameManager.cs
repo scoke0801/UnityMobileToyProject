@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
                 } break;
             case SceneType.GAME:
                 {
-                    currentScene = new GameScene(playerObject, camFollow);
+                    //currentScene = new GameScene(playerObject, camFollow);
                 } break;
             case SceneType.GAME_INFINITE:
                 { 
@@ -68,10 +68,10 @@ public class GameManager : MonoBehaviour
 
     public void RefreshWaveCount(GameObject gameObject)
     {
-        GameScene gameScene = (GameScene)currentScene;
-        if (gameScene != null)
+        //GameScene gameScene = (GameScene)currentScene;
+        //if (gameScene != null)
         {
-            gameScene.RefreshWaveCount(gameObject);
+            //gameScene.RefreshWaveCount(gameObject);
         }
     }
      

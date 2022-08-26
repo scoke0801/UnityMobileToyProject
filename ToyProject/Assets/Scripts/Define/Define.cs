@@ -10,4 +10,14 @@ public class Define
 		PointerDown,
 		PointerUp,
 	}
+
+	public enum Scene
+	{
+		None,
+		Title,
+		Loading,
+		Lobby,
+		Game,
+		Test,
+	}
 }
