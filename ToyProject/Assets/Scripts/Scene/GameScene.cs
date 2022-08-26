@@ -21,6 +21,7 @@ public class GameScene : Scene
 
         gameTime = 150.0f;
         spawnTime = 0.0f;
+        Managers.UI.ShowPopupUI<UIGameControl>();
     }
 
     void Start()
@@ -43,7 +44,7 @@ public class GameScene : Scene
 
         int min = (int)(gameTime / 60.0f);
         int sec = (int)(gameTime - min * 60.0f);
-        UIManager.instance.UpdateGameTime(min.ToString() + " : " + sec.ToString()); 
+       // UIManager.instance.UpdateGameTime(min.ToString() + " : " + sec.ToString()); 
     }
 
     private void SpawnMonster()
@@ -71,13 +72,13 @@ public class GameScene : Scene
         {
             spawner.Spawn();
         }
-        UIManager.instance.UpdateRemainMonsterText("Wave : " + spawner.GetMonsterCount().ToString());
+      //  UIManager.instance.UpdateRemainMonsterText("Wave : " + spawner.GetMonsterCount().ToString());
     }
 
     public void RefreshWaveCount(GameObject gameObject)
     {
         spawner.RemoveObject(gameObject);
 
-        UIManager.instance.UpdateRemainMonsterText("Wave : " + spawner.GetMonsterCount().ToString()); 
+      //  UIManager.instance.UpdateRemainMonsterText("Wave : " + spawner.GetMonsterCount().ToString()); 
     }
 }

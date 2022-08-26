@@ -54,10 +54,6 @@ public class GameManager : MonoBehaviour
         {
             currentScene.Update();
         } 
-    }
-    private void OnDrawGizmosSelected()
-    { 
-        // util.OnDrawGizmos();
     } 
     public GameObject GetPlayerObject()
     {
