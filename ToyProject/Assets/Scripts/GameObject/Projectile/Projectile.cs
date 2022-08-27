@@ -97,10 +97,10 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        if ( collision.gameObject ==  GameManager.instance.GetPlayerObject() )
-        {
-            return;
-        }
+        //if ( collision.gameObject ==  GameManager.instance.GetPlayerObject() )
+        //{
+        //    return;
+        //}
         if (collision.gameObject.CompareTag( "Projectile" ))
         {
             return;

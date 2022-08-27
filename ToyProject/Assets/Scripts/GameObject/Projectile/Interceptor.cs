@@ -45,10 +45,10 @@ public class Interceptor : Projectile
 
     new void OnCollisionEnter(Collision collision)
     { 
-        if (collision.gameObject == GameManager.instance.GetPlayerObject())
-        {
-            return;
-        }
+        //if (collision.gameObject == GameManager.instance.GetPlayerObject())
+        //{
+        //    return;
+        //}
         if (collision.gameObject.CompareTag("Budy")) 
         {
             if (Shooter == target)

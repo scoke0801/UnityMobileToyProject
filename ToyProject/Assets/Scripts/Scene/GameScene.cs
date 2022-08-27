@@ -96,14 +96,10 @@ public class GameScene : BaseScene
         }
 
         SceneType = Define.Scene.Game;
-        Managers.UI.PushPopupUI<UIGameControl>();
+        Managers.UI.PushPopupUI<UIGameControl>(); 
 
-        Managers.UI.HidePopupUI<UIGameControl>();
-
-        Managers.UI.PushPopupUI<UIEffectSelect>();
-
-        Managers.UI.HidePopupUI<UIEffectSelect>();
-
+        // 생성 후 안보이도록.
+        Managers.UI.HidePopupUI<UIEffectSelect>(); 
         Managers.UI.ShowPopupUI<UIEffectSelect>();
 
         Debug.Log("GameScene < Init");

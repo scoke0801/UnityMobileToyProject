@@ -12,6 +12,7 @@ public class Managers : MonoBehaviour
     private static UIManager _uiManager = new UIManager();
     private static SceneManagerEx _sceneManager = new SceneManagerEx();
     private static PoolManager _poolManager = new PoolManager();
+    private static GameManager _gameManager = new GameManager(); 
 
     #endregion
     ////////////////////////////////////////////////////////////////////////////
@@ -23,6 +24,8 @@ public class Managers : MonoBehaviour
     public static ResourceManager Resource { get { Init(); return _resourceManager; } }
     public static SceneManagerEx Scene { get { Init(); return _sceneManager; } }
     public static PoolManager Pool { get { Init(); return _poolManager; } }
+    public static GameManager Game { get { Init(); return _gameManager; } }
+    public static PrefabManager Prefab { get { return PrefabManager.instance; } }
 
     #endregion 
     ////////////////////////////////////////////////////////////////////////////
@@ -47,9 +50,12 @@ public class Managers : MonoBehaviour
             //s_adsManager.Init();
             //s_iapManager.Init();
             //s_dataManager.Init();
+            _gameManager.Init();
             _resourceManager.Init();
             _sceneManager.Init();
+
             //s_soundManager.Init();
+            PrefabManager.instance.Init();
 
             Application.targetFrameRate = 60;
         }

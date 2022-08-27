@@ -33,7 +33,7 @@ public class Monster : LivingObject
         
         state = State.Trace;
 
-        target = GameManager.instance.GetPlayerObject();
+        //target = GameManager.instance.GetPlayerObject();
 
         status = new Status();
         status.speed = 5.0f;
@@ -111,7 +111,7 @@ public class Monster : LivingObject
         // 1.8초 동안 잠시 처리를 대기
         yield return new WaitForSeconds(1.8f);
          
-        GameManager.instance.RefreshWaveCount(gameObject);
+        Managers.Game.RefreshWaveCount(gameObject);
         ObjectManager.instance.ReturnObject(objType, gameObject); 
     }
 }

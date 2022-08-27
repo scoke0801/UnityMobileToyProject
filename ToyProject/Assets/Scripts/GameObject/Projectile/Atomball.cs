@@ -22,10 +22,10 @@ public class Atomball : Projectile
     }
     new void OnCollisionEnter(Collision collision)
     { 
-        if (collision.gameObject == GameManager.instance.GetPlayerObject())
-        {
-            return;
-        }
+        //if (collision.gameObject == GameManager.instance.GetPlayerObject())
+        //{
+        //    return;
+        //}
         if (collision.gameObject.CompareTag("Projectile"))
         {
             return;

@@ -23,7 +23,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     void Start()
     { 
-        player = GameManager.instance.GetPlayerObject().transform;
+       // player = GameManager.instance.GetPlayerObject().transform;
 
         // JoystickBackground의 반지름입니다.
         m_fRadius = rectJoyStick.rect.width * 0.5f;
