@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 782861777831214589}
   - component: {fileID: 4114333122911587271}
   - component: {fileID: 6249876896888256787}
+  - component: {fileID: 4125478292820951493}
   m_Layer: 5
   m_Name: UIGameControl
   m_TagString: Untagged
@@ -444,6 +445,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4125478292820951493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862051207016859877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322db7180e737be4caa60fbca808e733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectJoyStick: {fileID: 2384761346623505493}
+  rectLever: {fileID: 4731934284247839498}
 --- !u!1 &3164410138127154560
 GameObject:
   m_ObjectHideFlags: 0

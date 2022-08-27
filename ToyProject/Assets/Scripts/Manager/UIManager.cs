@@ -75,7 +75,7 @@ public class UIManager
 		return sceneUI;
 	}
 
-	public T ShowPopupUI<T>(string name = null, Transform parent = null) where T : UIPopup
+	public T PushPopupUI<T>(string name = null, Transform parent = null) where T : UIPopup
 	{
 		if (string.IsNullOrEmpty(name))
 		{
@@ -139,11 +139,54 @@ public class UIManager
 
 		ClosePopupUI();
 	}
+	public void ShowPopupUI<T>() where T : UIPopup
+	{
+		if (_popupStack.Count == 0)
+		{
+			return;
+		}
+		T popup = FindPopup<T>();
 
+		if (popup != null)
+		{
+			// 이미 존재하는 팝업인 경우 
+			ShowPopupUI(popup);
+		}
+        else // popup == null
+        {
+			// 존재하지 않는 팝업인 경우, 새롭게 생성
+			PushPopupUI<T>();
+        }
+	}
+
+	public void ShowPopupUI(UIPopup popup)
+	{
+		popup.gameObject.SetActive(true);
+	}
+	public void HidePopupUI<T>() where T : UIPopup
+	{
+		if (_popupStack.Count == 0)
+		{
+			return;
+		}
+		T popup = FindPopup<T>();
+
+        if (popup != null) 
+		{
+			HidePopupUI(popup);
+		}
+	}
+
+	public void HidePopupUI(UIPopup popup)
+	{
+		popup.gameObject.SetActive(false);
+	}
 	public void ClosePopupUI()
 	{
 		if (_popupStack.Count == 0)
+		{
 			return;
+		}
 
 		UIPopup popup = _popupStack.Pop();
 		Managers.Resource.Destroy(popup.gameObject);

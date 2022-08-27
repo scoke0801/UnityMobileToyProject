@@ -51,7 +51,8 @@ public class UIBase : MonoBehaviour
             }
         }
     } 
-    protected void BindObject(Type type) { Bind<GameObject>(type); } 
+    protected void BindObject(Type type) { Bind<GameObject>(type); }
+    protected void BindPanel(Type type) { Bind<Panel>(type); }
     protected void BindImage(Type type) { Bind<Image>(type); }
     protected void BindText(Type type) { Bind<TextMeshProUGUI>(type); }
     protected void BindButton(Type type) { Bind<Button>(type); }
@@ -91,7 +92,8 @@ public class UIBase : MonoBehaviour
         return objects[idx] as T;
     }
 
-    protected GameObject GetObject(int idx) { return Get<GameObject>(idx); } 
+    protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
+    protected Panel GetPanel(int idx) { return Get<Panel>(idx); }
     protected TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); }
     protected Button GetButton(int idx) { return Get<Button>(idx); }
     protected Image GetImage(int idx) { return Get<Image>(idx); }

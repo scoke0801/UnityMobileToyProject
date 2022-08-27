@@ -96,11 +96,20 @@ public class GameScene : BaseScene
         }
 
         SceneType = Define.Scene.Game;
-        Managers.UI.ShowPopupUI<UIGameControl>();
+        Managers.UI.PushPopupUI<UIGameControl>();
+
+        Managers.UI.HidePopupUI<UIGameControl>();
+
+        Managers.UI.PushPopupUI<UIEffectSelect>();
+
+        Managers.UI.HidePopupUI<UIEffectSelect>();
+
+        Managers.UI.ShowPopupUI<UIEffectSelect>();
+
         Debug.Log("GameScene < Init");
 
-        for (int i = 0; i < 10; i++)
-            Managers.Resource.Instantiate("Goblin_Male");
+        //for (int i = 0; i < 10; i++)
+          //  Managers.Resource.Instantiate("Goblin_Male");
 
         return true;
     }

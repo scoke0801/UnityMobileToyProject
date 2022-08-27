@@ -21,7 +21,7 @@ public class UIGameControl : UIPopup
 		ControlSubButton2,
 		ControlSubButton3
 	}
-	 
+ 
 	public override bool Init()
 	{
 		if (base.Init() == false)
