@@ -19,17 +19,7 @@ public class PlayerShooter : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>(); 
     }
-
-    //private void OnEnable()
-    //{
-        
-    //}
-
-    //private void OnDisable()
-    //{
-        
-    //}
-
+      
     private void OnAnimatorIK(int layerIndex)
     {
         // IK .. 역 운동학

@@ -79,11 +79,13 @@ public class PlayerGun : MonoBehaviour
         // 발사 이펙트와 소리를 재생 
         muzzleFlashEffect.Play();
         shellEjectEffect.Play();
+         
+        GameObject prefab = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
+        GameObject instance = Managers.Pool.Pop(prefab).gameObject;
 
-        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        if (newProjectile)
+        if (instance)
         {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos, fireTransform.position);
+            instance.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos, fireTransform.position);
         }
         //  Todo 탄창 처리.
         --curAmmo;

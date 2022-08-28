@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using static Define;
 
 public class UIGameControl : UIPopup
-{ 
+{
+	PlayerShooter _playerShooter;
+	PlayerMovement _playerMovement;
 	enum Texts
 	{
 		RemainTime,
@@ -41,25 +43,32 @@ public class UIGameControl : UIPopup
 		GetButton((int)Buttons.ControlSubButton2).gameObject.BindEvent(OnClickContorlSub2Button);
 		GetButton((int)Buttons.ControlSubButton3).gameObject.BindEvent(OnClickContorlSub3Button);
 
-		//GetText((int)Texts.StartButtonText).text = Managers.GetText(Define.StartButtonText);
-		//GetText((int)Texts.ContinueButtonText).text = Managers.GetText(Define.ContinueButtonText);
-		//GetText((int)Texts.CollectionButtonText).text = Managers.GetText(Define.CollectionButtonText);
-		
 		//Managers.Sound.Clear();
 		//Managers.Sound.Play(Sound.Effect, "Sound_MainTitle");
+
+		GameObject player = Managers.Game.Player;
+		if (player)
+		{
+			_playerShooter = player.GetComponent<PlayerShooter>();
+			_playerMovement = player.GetComponent<PlayerMovement>();
+		}
+
 		return true;
 	}
 
 	void OnClickContorlMainButton()
 	{
+		_playerShooter.Shoot();
 		Debug.Log("OnClickContorlMainButton");
 	}
 	void OnClickContorlDashButton()
 	{
+		_playerMovement.Dash();
 		Debug.Log("OnClickContorlDashButton");
 	}
 	void OnClickContorlReloadButton()
 	{
+		_playerShooter.ReloadGun();
 		Debug.Log("OnClickContorlReloadButton");
 	}
 	void OnClickContorlSub1Button()

@@ -7,7 +7,7 @@ public class Pool : MonoBehaviour
     public GameObject Original { get; private set; }
     public Transform Root { get; set; }
 
-    Stack<Poolable> _poolStack = new Stack<Poolable>();
+    Stack<GameObject> _poolStack = new Stack<GameObject>();
 
     public void Init(GameObject original, int count = 5)
     {
@@ -24,44 +24,43 @@ public class Pool : MonoBehaviour
 
         }
     }
-    Poolable Create()
+    GameObject Create()
     {
         GameObject gameObject = Object.Instantiate<GameObject>(Original);
         gameObject.name = Original.name; // 뒤에 붙는 (Clone) 없앰. 원본 프리팹과 이름 같게.
-        return gameObject.GetOrAddComponent<Poolable>();
+        return gameObject; 
     }
 
     // 풀에 넣어주기 (오브젝트 비활성화)
-    public void Push(Poolable poolable) 
+    public void Push(GameObject gameObject) 
     {
-        if (poolable == null)
+        if (gameObject == null)
         {
             return;
         }
 
-        poolable.transform.parent = Root;
-        poolable.gameObject.SetActive(false);
-        poolable.IsUsing = false;
+        gameObject.transform.parent = Root;
+        gameObject.gameObject.SetActive(false); 
 
-        _poolStack.Push(poolable);
+        _poolStack.Push(gameObject);
     }
-    public Poolable Pop(Transform parent) // 풀로부터 꺼내오기 (오브젝트 활성화)
+    public GameObject Pop(Transform parent) // 풀로부터 꺼내오기 (오브젝트 활성화)
     {
-        Poolable poolable;
+        GameObject gameObject;
 
         // 스택(대기상태)이 빈 크기 X 즉 하나라도 재활용 할 수 있는 애가 있다면 
         if (_poolStack.Count > 0)
         {
-            poolable = _poolStack.Pop();
+            gameObject = _poolStack.Pop();
         }
         else // _poolStack.Count == 0
         {
             // 스택이 비어있는 경우, 객체 추가.
-            poolable = Create();
+            gameObject = Create();
         }
 
         // 활성화 
-        poolable.gameObject.SetActive(true);  
+        gameObject.SetActive(true);
 
         //// DontDestroyOnLoad 해제 용도
         //if (parent == null)
@@ -70,9 +69,8 @@ public class Pool : MonoBehaviour
         //}
 
         // 파라미터로 받은 parent 를 부모로 설정
-        poolable.transform.parent = parent; 
-        poolable.IsUsing = true;
+        gameObject.transform.parent = parent;  
 
-        return poolable;
+        return gameObject;
     }
 } 

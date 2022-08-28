@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
         status.UpdateLifeTime();
         if (status.lifeTime <= 0.0f)
         {
-            ObjectManager.instance.ReturnObject(objectType, this.gameObject);
+            Managers.Pool.Push(gameObject); 
         }
     }
 
@@ -97,15 +97,14 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        //if ( collision.gameObject ==  GameManager.instance.GetPlayerObject() )
-        //{
-        //    return;
-        //}
+        if ( collision.gameObject == Managers.Game.Player )
+        {
+            return;
+        }
         if (collision.gameObject.CompareTag( "Projectile" ))
         {
             return;
         }
-
-        ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
+        Managers.Pool.Push(collision.gameObject); 
     } 
 }

@@ -27,18 +27,18 @@ public class PoolManager
 
         _pool.Add(original.name, pool);
     }
-    public void Push(Poolable poolable)
+    public void Push(GameObject gameObject)
     {
-        string name = poolable.gameObject.name;
+        string name = gameObject.name;
         if (_pool.ContainsKey(name) == false)
         {
-            GameObject.Destroy(poolable.gameObject);
+            GameObject.Destroy(gameObject);
             return;
         }
 
-        _pool[name].Push(poolable);
+        _pool[name].Push(gameObject);
     }
-    public Poolable Pop(GameObject original, Transform parent = null)
+    public GameObject Pop(GameObject original, Transform parent = null)
     {
         if (_pool.ContainsKey(original.name) == false) // Key는 원본 프리팹 이름으로 저장되므로 해당 프리팹으로 만든 오브젝트풀이 있나 검색. 
             CreatePool(original); // 없다면 새로운 풀을 만든다. 

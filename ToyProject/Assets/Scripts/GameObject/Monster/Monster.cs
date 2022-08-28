@@ -112,6 +112,6 @@ public class Monster : LivingObject
         yield return new WaitForSeconds(1.8f);
 
         ((GameScene)(Managers.Scene.CurrentScene)).RefreshWaveCount(gameObject);
-        Managers.Pool.Push(gameObject.GetComponent<Poolable>()); 
+        Managers.Pool.Push(gameObject);  
     }
 }

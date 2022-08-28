@@ -63,14 +63,8 @@ public class ResourceManager
 	{
 		if (gameObject == null)
 			return;
-
-		Poolable poolable = gameObject.GetComponent<Poolable>();
-		if (poolable != null)
-		{
-			Managers.Pool.Push(poolable);
-			return;
-		}
-
-		Object.Destroy(gameObject);
+		 
+		Managers.Pool.Push(gameObject);
+		return;
 	}
 }

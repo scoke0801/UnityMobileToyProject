@@ -66,8 +66,9 @@ public class Spawner : MonoBehaviour
       
     public void RemoveObject(GameObject gameObject) 
     {
-        Poolable poolable = gameObject.GetComponent<Poolable>();
-        Managers.Pool.Push(poolable);
+        Managers.Pool.Push(gameObject); 
+        
+        --_monsterCount;
     }
     public int GetMonsterCount() { return _monsterCount; }
 }
