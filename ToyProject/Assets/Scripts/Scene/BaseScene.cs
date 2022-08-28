@@ -4,6 +4,8 @@ using UnityEngine;
 public class BaseScene : MonoBehaviour
 {
     public Define.Scene SceneType = Define.Scene.None;
+    
+    public SceneData _sceneData;
 
     protected bool _init = false; 
     void Start()

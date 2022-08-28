@@ -24,7 +24,7 @@ public class SceneManagerEx : MonoBehaviour
     {
         get 
         {
-            return GameObject.Find("Scene").GetComponent<BaseScene>(); 
+            return GameObject.Find("@Scene").GetComponent<BaseScene>(); 
         }
     }
 

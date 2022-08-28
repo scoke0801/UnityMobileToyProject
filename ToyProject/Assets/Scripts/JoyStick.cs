@@ -22,9 +22,12 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public float rotate { get; private set; }
 
     void Start()
-    { 
-       // player = GameManager.instance.GetPlayerObject().transform;
-
+    {
+        GameScene gameScene = (GameScene)Managers.Scene.CurrentScene;
+        if(gameScene && gameScene.Player)
+        {
+            player = gameScene.Player.transform;
+        }
         // JoystickBackground의 반지름입니다.
         m_fRadius = rectJoyStick.rect.width * 0.5f;
 
@@ -36,7 +39,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         if (touch)
         {
-           // player.position += vecMove;
+           player.position += vecMove;
         } 
     }
 
@@ -58,7 +61,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         Vector2 vecNormal = vec.normalized;
 
         //vecMove = new Vector3(vecNormal.x * m_fSpeed * Time.deltaTime * fSqr, 0f, vecNormal.y * m_fSpeed * Time.deltaTime * fSqr);
-        // player.eulerAngles = new Vector3(0f, Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg, 0f);
+        player.eulerAngles = new Vector3(0f, Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg, 0f);
 
         rotate = Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg;
         rotate /= 360.0f ;

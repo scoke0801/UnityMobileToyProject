@@ -50,9 +50,10 @@ public class Managers : MonoBehaviour
             //s_adsManager.Init();
             //s_iapManager.Init();
             //s_dataManager.Init();
-            _gameManager.Init();
             _resourceManager.Init();
             _sceneManager.Init();
+
+            _gameManager.Init();
 
             //s_soundManager.Init();
             PrefabManager.instance.Init();

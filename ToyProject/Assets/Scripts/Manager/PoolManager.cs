@@ -17,7 +17,15 @@ public class PoolManager
         {
             return;
         }
-         
+
+    }
+    public void CreatePool(GameObject original, int count = 5)
+    {
+        Pool pool = new Pool();
+        pool.Init(original, count); 
+        pool.Root.parent = _root;
+
+        _pool.Add(original.name, pool);
     }
     public void Push(Poolable poolable)
     {
@@ -29,14 +37,6 @@ public class PoolManager
         }
 
         _pool[name].Push(poolable);
-    }
-    public void CreatePool(GameObject original, int count = 5)
-    {
-        Pool pool = new Pool();
-        pool.Init(original, count); // Init 을 통해 해당 Pool은 DontDestroyOnLoad가 된다.
-        pool.Root.parent = _root;
-
-        _pool.Add(original.name, pool);
     }
     public Poolable Pop(GameObject original, Transform parent = null)
     {

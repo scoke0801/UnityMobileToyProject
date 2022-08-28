@@ -92,10 +92,10 @@ public class UIBase : MonoBehaviour
         return objects[idx] as T;
     }
 
-    protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
-    protected Panel GetPanel(int idx) { return Get<Panel>(idx); }
-    protected TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); }
-    protected Button GetButton(int idx) { return Get<Button>(idx); }
-    protected Image GetImage(int idx) { return Get<Image>(idx); }
+    public GameObject GetObject(int idx) { return Get<GameObject>(idx); }
+    public Panel GetPanel(int idx) { return Get<Panel>(idx); }
+    public TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); }
+    public Button GetButton(int idx) { return Get<Button>(idx); }
+    public Image GetImage(int idx) { return Get<Image>(idx); }
     #endregion
 }

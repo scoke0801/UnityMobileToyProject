@@ -4,44 +4,53 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private BoxCollider area;
+    private BoxCollider area; 
 
-    public GameObject[] propPrefabs;
+    private int _monsterCount = 0;
+    private GameObject _target;
 
-    public int count = 100;
-
-    private List<GameObject> props = new List<GameObject>();
-    private GameObject target;
-    // Start is called before the first frame update
     void Start()
     {
         area = GetComponent<BoxCollider>();
-        area.enabled = false; 
-        
-        //target = Managers.Game.GetPlayerObject();
+        area.enabled = false;
+
+        _target = Managers.Game.Player;
+
+        for (PrefabTypeName index = PrefabTypeName.MonsterStart; index <= PrefabTypeName.MonsterEnd; ++index)
+        {
+            GameObject prefab = Managers.Prefab.GetPrefab(index);
+            Managers.Pool.CreatePool(prefab, 20);
+        } 
     } 
 
     public void Spawn()
-    {
-        int selection = Random.Range((int)OBJECT_TYPE.OBJ_MONSTER_GHOST_MALE, (int)OBJECT_TYPE.OBJ_MONSTER_GOBLIN_FEMALE + 1); 
+    { 
+        int selection = Random.Range((int)PrefabTypeName.MonsterStart, (int)PrefabTypeName.MonsterEnd + 1); 
        
         Vector3 spawnPos;
+        int count = 0;
         while (true)
         {
             spawnPos = GetRandomPos();
-            Vector3 dist = spawnPos - target.transform.position;
+            Vector3 dist = spawnPos - _target.transform.position;
             if (dist.magnitude > 20.0f && dist.magnitude < 50.0f)
             {
                 break;
-            } 
+            }
+            ++count;
+            if(count > 5)
+            {
+                break;
+            }
         } 
         float spawnAngle = Random.Range(0, 360);
-        
-        GameObject instance = ObjectManager.instance.GetObject((OBJECT_TYPE)selection);
-        instance.transform.position = spawnPos;
-        instance.SetActive(true); 
 
-        props.Add(instance);  
+        GameObject prefab = Managers.Prefab.GetPrefab((PrefabTypeName)selection); 
+        GameObject instance = Managers.Pool.Pop(prefab).gameObject;
+
+        instance.transform.position = spawnPos;
+        instance.SetActive(true);
+        ++_monsterCount;
     }
 
     private Vector3 GetRandomPos()
@@ -57,7 +66,8 @@ public class Spawner : MonoBehaviour
       
     public void RemoveObject(GameObject gameObject) 
     {
-        props.Remove(gameObject);
+        Poolable poolable = gameObject.GetComponent<Poolable>();
+        Managers.Pool.Push(poolable);
     }
-    public int GetMonsterCount() { return props.Count; }
+    public int GetMonsterCount() { return _monsterCount; }
 }
