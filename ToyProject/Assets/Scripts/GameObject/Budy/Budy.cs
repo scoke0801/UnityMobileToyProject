@@ -16,8 +16,7 @@ public class Budy : MonoBehaviour
         budyAct = new BudyCarrierAttack(this, 7);
         //budyAct = new BudyAtomAttack(this, 5);  
     } 
-
-    // Update is called once per frame
+ 
     void Update()
     {
        budyAct.Update();
