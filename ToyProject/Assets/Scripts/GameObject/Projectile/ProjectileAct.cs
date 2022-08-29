@@ -157,8 +157,7 @@ public class ProjectileTrackingActor : ProjectileActor
     {
         if (!target.activeSelf)
         {
-            Managers.Pool.Push(projectile.gameObject);
-            // ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, projectile.gameObject);
+            Managers.Pool.Push(projectile.gameObject); 
             return;
         }
         trackingTime -= Time.deltaTime;

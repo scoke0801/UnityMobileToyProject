@@ -44,8 +44,7 @@ public class Monster : LivingObject
 
         StartCoroutine(FindTarget());
     }
-
-    // Update is called once per frame
+     
     void FixedUpdate()
     {
         if( isDead ) { return; }
@@ -110,6 +109,6 @@ public class Monster : LivingObject
         yield return new WaitForSeconds(1.8f);
         Debug.Log($"ReturnObject {this.gameObject.name}");
         ((GameScene)(Managers.Scene.CurrentScene)).RefreshWaveCount(this.gameObject);
-        Managers.Pool.Push(this.gameObject);  
+        //Managers.Pool.Push(this.gameObject);  
     }
 }

@@ -20,4 +20,6 @@ public class Define
 		Game,
 		Test,
 	}
+
+	public const int STAGE_WAVE_COUNT = 100;
 }

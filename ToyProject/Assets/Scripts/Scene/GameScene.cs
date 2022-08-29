@@ -16,6 +16,8 @@ public class GameScene : BaseScene
     public GameObject Player { get { return _player; } }
 
     private Spawner _spawner;
+    private int _spawnedCount = 0;
+
     protected override bool Init()
     {
         Debug.Log("GameScene < Init Begin");
@@ -94,7 +96,7 @@ public class GameScene : BaseScene
     private void SpawnMonster()
     {
         if (_spawner == null) { return; }
-
+        if (_spawnedCount > Define.STAGE_WAVE_COUNT) { return; }
         if (_gameTime <= 0.0f)
         {
             return;
@@ -108,6 +110,7 @@ public class GameScene : BaseScene
         // 랜덤하게 다음에 생성할 시간을 지정
         float nextSpawnTime = Random.Range(0.5f, 1.5f);
         int spawnCount = Random.Range(1, 5);
+        _spawnedCount += spawnCount;
 
         _spawnTime = nextSpawnTime;
 
@@ -116,7 +119,7 @@ public class GameScene : BaseScene
             _spawner.Spawn();
         }
 
-        _uiGameControl.UpdateWaveCount("Wave : " + _spawner.GetMonsterCount().ToString()); 
+        _uiGameControl.UpdateWaveCount("Wave : " + _spawner.GetMonsterCount().ToString());
     }
 
     public void RefreshWaveCount(GameObject gameObject)

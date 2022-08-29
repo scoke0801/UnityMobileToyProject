@@ -106,28 +106,15 @@ public class Projectile : MonoBehaviour
     }
 
     protected void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == shooter)
+    { 
+        if (collision.gameObject.CompareTag("Monster"))
         {
-            return;
+            Monster monster = collision.gameObject.GetComponent<Monster>();
+            if (monster == null) { return; }
+              
+            Vector3 vecNormal = collision.contacts[0].point - gameObject.transform.position;
+            monster.OnDamage(status.damage, collision.contacts[0].point, vecNormal);
         }
-        if ( collision.gameObject == Managers.Game.Player )
-        {
-            return;
-        }
-        if (collision.gameObject.CompareTag( "Projectile" ))
-        {
-            return;
-        }
-        if (collision.gameObject.CompareTag("Budy"))
-        {
-            return;
-        } 
-        if( collision.gameObject.CompareTag("Obstacle"))
-        {
-            return;
-        }
-
-        Managers.Pool.Push(collision.gameObject); 
+        // Managers.Pool.Push(collision.gameObject); 
     } 
 }
