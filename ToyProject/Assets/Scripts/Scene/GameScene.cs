@@ -62,12 +62,14 @@ public class GameScene : BaseScene
     }
     private void InitObjects()
     {
+        GameObject prefab = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
+        Managers.Pool.CreatePool(prefab, 50);
+
         _spawner = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Spawner), this.transform).GetComponent<Spawner>();
         _spawner.transform.position = Vector3.zero;
 
-
-        GameObject prefab = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
-        Managers.Pool.CreatePool(prefab, 50);
+        GameObject budy = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Budy), this.transform);
+        budy.GetComponent<TargetFollow>().target = _player;
     }
 
     public void Update()

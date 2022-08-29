@@ -29,22 +29,22 @@ public class BudyForwardAttack : BudyAttack
 
         Vector3 dir = budy.transform.forward;
 
-        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        if (newProjectile)
-        {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, budy.gameObject, dir, shootPos);
-        }
+        //GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
+        //if (newProjectile)
+        //{
+        //    newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, budy.gameObject, dir, shootPos);
+        //}
 
-        newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        if (newProjectile)
-        {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA, budy.gameObject, Quaternion.Euler(0, -30, 0) * dir, shootPos);
-        }
+        //newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
+        //if (newProjectile)
+        //{
+        //    newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA, budy.gameObject, Quaternion.Euler(0, -30, 0) * dir, shootPos);
+        //}
 
-        newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
-        if (newProjectile)
-        {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE, budy.gameObject, Quaternion.Euler(0, 30, 0) * dir, shootPos);
-        }
+        //newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
+        //if (newProjectile)
+        //{
+        //    newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE, budy.gameObject, Quaternion.Euler(0, 30, 0) * dir, shootPos);
+        //}
     }
 } 

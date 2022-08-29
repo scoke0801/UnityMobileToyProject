@@ -20,7 +20,6 @@ public class BudyAttack
         projectileActType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     }
       
-    // Update is called once per frame
     virtual public void Update()
     {
         // 상태에 따라서 행동하게 수정할 것... 
@@ -56,8 +55,8 @@ public class BudyAttack
         shootPos.y += 0.5f;
 
         Vector3 dir = budy.transform.forward;
-         
-        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_PROJECTILE);
+          
+        GameObject newProjectile = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
         if (newProjectile)
         {
             newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING, budy.gameObject, target.gameObject, shootPos);

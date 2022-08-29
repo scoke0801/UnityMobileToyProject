@@ -63,7 +63,7 @@ public class ResourceManager
 	{
 		if (gameObject == null)
 			return;
-		 
+
 		Managers.Pool.Push(gameObject);
 		return;
 	}

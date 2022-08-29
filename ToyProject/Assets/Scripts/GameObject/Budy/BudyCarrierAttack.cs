@@ -5,13 +5,14 @@ public class BudyCarrierAttack : BudyAttack
 {
     [SerializeField] private GameObject atomPrefab;
 
-    List<GameObject> interceptors;
+    List<GameObject> _objects;
+    List<Interceptor> _scripts;
     public BudyCarrierAttack(Budy budy, int nInterceptorCount)
         : base(budy)
     {
-        interceptors = new List<GameObject>(nInterceptorCount);
-         
-        GameObject newObjectPrefab = Resources.Load("Prefabs/Inteceptor") as GameObject;
+        _objects = new List<GameObject>(nInterceptorCount);
+
+        GameObject newObjectPrefab = Managers.Prefab.GetPrefab(PrefabTypeName.Inteceptor);
         for (int i = 0; i < nInterceptorCount; ++i)
         { 
             GameObject newObject = MonoBehaviour.Instantiate<GameObject>(newObjectPrefab);
@@ -21,29 +22,17 @@ public class BudyCarrierAttack : BudyAttack
             script.Init();
             newObject.SetActive(false);
 
-            interceptors.Add(newObject);
+            _objects.Add(newObject);
         }
     }
 
-    override public void Update()
-    {
-        //for (int i = 0; i < interceptors.Count; ++i)
-        //{
-        //    if (!interceptors[i].activeSelf)
-        //    {
-        //        interceptors[i].GetComponent<Atomball>().Update();
-        //        interceptors[i].GetComponent<TargetFollow>().Update();
-        //    }
-        //}
-    } 
     override public void DoAttack(Collider target)
     {
-        for (int i = 0; i < interceptors.Count; ++i)
-        {
-            Interceptor script = interceptors[i].GetComponent<Interceptor>();
-            if (script && !script.gameObject.activeSelf )
+        for (int i = 0; i < _objects.Count; ++i)
+        { 
+            if (_scripts[i] && !_scripts[i].gameObject.activeSelf )
             {
-                script.FindNewTarget(target.gameObject);
+                _scripts[i].FindNewTarget(target.gameObject);
                 break;
             }
         }

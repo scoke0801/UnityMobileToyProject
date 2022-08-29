@@ -46,8 +46,8 @@ public class Player : MonoBehaviour
         shootPos.y += 1.5f;
 
         Vector3 dir = transform.forward;
-
-        GameObject newProjectile = ObjectManager.instance.GetObject(OBJECT_TYPE.OBJ_METAL_PROJECTILE);
+         
+        GameObject newProjectile = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
         if (newProjectile)
         {
             newProjectile.GetComponent<Projectile>().Swing(this.gameObject, dir, shootPos); 

@@ -15,10 +15,7 @@ public class Interceptor : Projectile
     
     new public void Update()
     {
-        status.UpdateAttackCoolTime();
-        if (status.attackCoolTime <= 0.0f)
-        {
-        }
+        status.UpdateAttackCoolTime(); 
         if (actor != null)
         { 
             actor.DoMove(this);
@@ -44,11 +41,11 @@ public class Interceptor : Projectile
     }
 
     new void OnCollisionEnter(Collision collision)
-    { 
-        //if (collision.gameObject == GameManager.instance.GetPlayerObject())
-        //{
-        //    return;
-        //}
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
         if (collision.gameObject.CompareTag("Budy")) 
         {
             if (Shooter == target)
@@ -58,7 +55,6 @@ public class Interceptor : Projectile
             }
             return;
         }
-
         if (collision.gameObject.CompareTag("Projectile"))
         { 
             return;

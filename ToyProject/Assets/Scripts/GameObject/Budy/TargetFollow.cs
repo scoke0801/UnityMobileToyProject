@@ -24,8 +24,7 @@ public class TargetFollow : MonoBehaviour
         this.speed = speed;
         this.angle = angle;
     }
-     
-    // Update is called once per frame
+      
     public void Update()
     {
         Vector3 dir = target.transform.forward * 10000;

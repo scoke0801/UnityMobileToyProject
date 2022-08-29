@@ -47,6 +47,7 @@ public class Projectile : MonoBehaviour
         status.UpdateLifeTime();
         if (status.lifeTime <= 0.0f)
         {
+            Debug.Log(gameObject.name);
             Managers.Pool.Push(gameObject); 
         }
     }
@@ -105,6 +106,12 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
+        if (collision.gameObject.CompareTag("Budy"))
+        {
+            return;
+        }
+
+
         Managers.Pool.Push(collision.gameObject); 
     } 
 }

@@ -27,8 +27,7 @@ public class Spawner : MonoBehaviour
     { 
         int selection = Random.Range((int)PrefabTypeName.MonsterStart, (int)PrefabTypeName.MonsterEnd + 1); 
        
-        Vector3 spawnPos;
-        int count = 0;
+        Vector3 spawnPos; 
         while (true)
         {
             spawnPos = GetRandomPos();
@@ -36,12 +35,7 @@ public class Spawner : MonoBehaviour
             if (dist.magnitude > 20.0f && dist.magnitude < 50.0f)
             {
                 break;
-            }
-            ++count;
-            if(count > 5)
-            {
-                break;
-            }
+            } 
         } 
         float spawnAngle = Random.Range(0, 360);
 
@@ -58,14 +52,16 @@ public class Spawner : MonoBehaviour
         Vector3 basePosition = transform.position;
         Vector3 size = area.size;
 
-        float posX = basePosition.x + Random.Range(-size.x * 0.5f, size.x * 0.5f); 
+        float posX = basePosition.x + Random.Range(-size.x * 0.5f, size.x * 0.5f);
+        float posY = Random.Range(0.0f, 5.0f);
         float posZ = basePosition.z + Random.Range(-size.z * 0.5f, size.z * 0.5f);
 
-        return new Vector3(posX, 0, posZ);
+        return new Vector3(posX, posY, posZ);
     }
       
     public void RemoveObject(GameObject gameObject) 
     {
+        Debug.Log(gameObject.name + "RemoveObject");
         Managers.Pool.Push(gameObject); 
         
         --_monsterCount;

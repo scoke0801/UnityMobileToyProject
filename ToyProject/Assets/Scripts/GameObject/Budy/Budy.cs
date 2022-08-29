@@ -12,16 +12,15 @@ public class Budy : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        budyAct = new BudyAttack(this);
-        //budyAct = new BudyAtomAttack(this, 5); 
-        this.budyAct = new BudyCarrierAttack(this, 7);
+    { 
+        budyAct = new BudyCarrierAttack(this, 7);
+        //budyAct = new BudyAtomAttack(this, 5);  
     } 
 
     // Update is called once per frame
     void Update()
     {
-        budyAct.Update();
+       budyAct.Update();
     } 
 
     private void OnTriggerEnter(Collider other)

@@ -23,6 +23,8 @@ public enum PrefabTypeName
     Chicken,
     Condor,
     Spawner,
+
+    Budy,
 }
 public class PrefabManager : MonoBehaviour
 {
