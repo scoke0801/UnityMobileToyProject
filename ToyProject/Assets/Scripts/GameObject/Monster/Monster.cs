@@ -16,15 +16,17 @@ public class Monster : LivingObject
     Status status;
     public OBJECT_TYPE objType { get; set; }
 
-    private AudioSource audioSource;
-    private Animator animator;
-    private Rigidbody monsterRigidboy;
+    private AudioSource _audioSource;
+    private Animator _animator;
+    private Rigidbody _monsterRigidboy;
+    private CapsuleCollider _collider;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
-        monsterRigidboy = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
+        _monsterRigidboy = GetComponent<Rigidbody>();
+        _collider = GetComponent<CapsuleCollider>();
     } 
      
     protected override void OnEnable()
@@ -37,7 +39,8 @@ public class Monster : LivingObject
 
         status = new Status();
         status.speed = 5.0f;
-        status.hp = 10; 
+        status.hp = 10;
+        _collider.enabled = true;
 
         StartCoroutine(FindTarget());
     }
@@ -51,13 +54,7 @@ public class Monster : LivingObject
         {
             Vector3 moveDist = vecToTarget.normalized * status.speed * Time.fixedDeltaTime;
 
-            monsterRigidboy.MovePosition(monsterRigidboy.position + moveDist);
-
-            float minDist = 3.0f;
-            if (minDist > Vector3.Magnitude(vecToTarget))
-            {
-                Die();
-            }
+            _monsterRigidboy.MovePosition(_monsterRigidboy.position + moveDist); 
         }
     }
 
@@ -101,8 +98,9 @@ public class Monster : LivingObject
 
         base.Die();
 
-        // audioSource.PlayOneShot();
-        animator.SetBool("Die", true);
+        // _audioSource.PlayOneShot();
+        _animator.SetBool("Die", true);
+        _collider.enabled = false;
 
         StartCoroutine(ReturnObject());
     }

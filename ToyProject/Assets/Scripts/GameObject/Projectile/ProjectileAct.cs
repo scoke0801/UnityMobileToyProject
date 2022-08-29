@@ -86,7 +86,7 @@ public class ProjectileLinearActor: ProjectileActor
     }
     public override void DoMove(Projectile projectile)
     {
-        Vector3 newPos = projectile.gameObject.transform.position + direction * 10.0f * Time.deltaTime;
+        Vector3 newPos = projectile.gameObject.transform.position + direction * 30.0f * Time.deltaTime;
         projectile.gameObject.transform.position = newPos;
     }
 } 

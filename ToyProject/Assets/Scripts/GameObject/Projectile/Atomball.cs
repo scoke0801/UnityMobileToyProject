@@ -3,12 +3,10 @@ using UnityEngine;
   
 public class Atomball : Projectile
 {
-    new void Start()
+    new void Awake()
     {
-        base.Start(); 
+        base.Awake(); 
     }
-     
-    
     new public void Update()
     {
         if (status.attackCoolTime >= 0.0f)

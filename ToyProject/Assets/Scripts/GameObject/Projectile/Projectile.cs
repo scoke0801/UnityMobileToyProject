@@ -20,17 +20,30 @@ public class Projectile : MonoBehaviour
     protected PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     protected ProjectileActor actor;
 
-    private OBJECT_TYPE objectType; 
-
-    // Start is called before the first frame update
-    protected void Start()
+    private OBJECT_TYPE objectType;
+    private TrailRenderer _trailRenderer;
+     
+    protected void Awake()
     {
         status = new Status();
-        status.speed = 10.0f;
+        status.speed = 40.0f;
         status.damage = 100000.0f; 
         status.lifeTime = lifeTime;
+        _trailRenderer = GetComponent<TrailRenderer>();
     }
 
+    private void OnEnable()
+    {
+        if (status == null)
+        {
+            status = new Status();
+        }
+
+        status.speed = 40.0f;
+        status.damage = 100000.0f;
+        status.lifeTime = lifeTime; 
+    }
+      
     // Update is called once per frame
     protected void Update()
     {
@@ -46,8 +59,7 @@ public class Projectile : MonoBehaviour
     {
         status.UpdateLifeTime();
         if (status.lifeTime <= 0.0f)
-        {
-            Debug.Log(gameObject.name);
+        { 
             Managers.Pool.Push(gameObject); 
         }
     }
@@ -89,6 +101,7 @@ public class Projectile : MonoBehaviour
         lifeTime = 3.0f;
 
         actor = ProjectileActor.GetProjectileActor(actType, shooter, direction, shootPos);
+        _trailRenderer.Clear();
         this.gameObject.SetActive(true);
     }
 
@@ -109,8 +122,11 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Budy"))
         {
             return;
+        } 
+        if( collision.gameObject.CompareTag("Obstacle"))
+        {
+            return;
         }
-
 
         Managers.Pool.Push(collision.gameObject); 
     } 
