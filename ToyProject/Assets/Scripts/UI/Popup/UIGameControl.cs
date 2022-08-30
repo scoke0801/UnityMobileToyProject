@@ -11,7 +11,9 @@ public class UIGameControl : UIPopup
 	enum Texts
 	{
 		RemainTime,
-		RemainMonsterWave, 
+		RemainMonsterWave,
+		HeartText,
+		AmmoText
 	}
 
 	enum Buttons
@@ -51,6 +53,8 @@ public class UIGameControl : UIPopup
 		{
 			_playerShooter = player.GetComponent<PlayerShooter>();
 			_playerMovement = player.GetComponent<PlayerMovement>();
+
+			UpdateAmmoText(_playerShooter.gun.curAmmo);
 		}
 
 		return true;
@@ -93,4 +97,15 @@ public class UIGameControl : UIPopup
 	{
 		GetText((int)Texts.RemainMonsterWave).text = text;
 	}
+	public void UpdateHeartText(int hp)
+	{
+		string text = $"x +{hp}";
+		GetText((int)Texts.HeartText).text = text;
+	}
+
+    public void UpdateAmmoText(int ammo)
+	{
+		string text = $"x {ammo}";
+		GetText((int)Texts.AmmoText).text = text; 
+	} 
 }

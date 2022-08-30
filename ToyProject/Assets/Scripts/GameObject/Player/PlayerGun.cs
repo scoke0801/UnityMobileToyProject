@@ -91,7 +91,9 @@ public class PlayerGun : MonoBehaviour
         }
         //  Todo 탄창 처리.
         --curAmmo;
-        if(curAmmo <= 0)
+        ((GameScene)(Managers.Scene.CurrentScene)).RefreshPlayerAmmoText(curAmmo);
+        
+        if (curAmmo <= 0)
         {
             state = State.Empty;
         }
@@ -117,5 +119,6 @@ public class PlayerGun : MonoBehaviour
         state = State.Ready;
 
         curAmmo = gunData.ammoCapacity; 
+        ((GameScene)(Managers.Scene.CurrentScene)).RefreshPlayerAmmoText(curAmmo);
     }
 } 

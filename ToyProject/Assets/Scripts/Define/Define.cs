@@ -21,5 +21,5 @@ public class Define
 		Test,
 	}
 
-	public const int STAGE_WAVE_COUNT = 100;
+	public const int STAGE_WAVE_COUNT = 30;
 }

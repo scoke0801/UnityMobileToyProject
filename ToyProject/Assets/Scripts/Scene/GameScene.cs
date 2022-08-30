@@ -18,6 +18,9 @@ public class GameScene : BaseScene
     private Spawner _spawner;
     private int _spawnedCount = 0;
 
+    bool _isGamePaused;
+    public bool IsGamePaused { get { return _isGamePaused; }}
+
     protected override bool Init()
     {
         Debug.Log("GameScene < Init Begin");
@@ -27,9 +30,10 @@ public class GameScene : BaseScene
         }
 
         SceneType = Define.Scene.Game;
+        _isGamePaused = false;
 
-        InitUI();
         InitPlayer();
+        InitUI();
 
         // 카메라 초기화는 플레이어 초기화 이후에 실행되어야 합니다!
         InitCamera();
@@ -41,7 +45,7 @@ public class GameScene : BaseScene
 
     private void InitUI()
     {
-        _uiGameControl = Managers.UI.PushPopupUI<UIGameControl>();
+        _uiGameControl = Managers.UI.PushPopupUI<UIGameControl>(); 
 
         // 생성 후 안보이도록. 
         Managers.UI.PushPopupUI<UIEffectSelect>();
@@ -126,6 +130,23 @@ public class GameScene : BaseScene
     {
         _spawner.RemoveObject(gameObject);
 
-        _uiGameControl.UpdateWaveCount("Wave : " + _spawner.GetMonsterCount().ToString()); 
+        int nRemainMonsterCount = _spawner.GetMonsterCount();
+        Debug.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
+        _uiGameControl.UpdateWaveCount("Wave : " + nRemainMonsterCount.ToString()); 
+
+        if( nRemainMonsterCount == 0 && _spawnedCount >= Define.STAGE_WAVE_COUNT )
+        {
+            _isGamePaused = true;
+            Managers.UI.HidePopupUI<UIGameControl>();
+            Managers.UI.ShowPopupUI<UIEffectSelect>();
+        }
+    }
+    public void RefreshPlayerHeartText(Player gameObject)
+    {
+        //_uiGameControl.UpdateWaveCount("Wave : " + _spawner.GetMonsterCount().ToString());
+    }
+    public void RefreshPlayerAmmoText(int ammo)
+    { 
+        _uiGameControl.UpdateAmmoText(ammo);
     }
 }
