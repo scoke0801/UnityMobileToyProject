@@ -39,7 +39,7 @@ public class UIEffectSelect : UIPopup
 			return false;
 		}
 
-		Debug.Log("UIGameControl::Init");
+		Debug.Log("UIEffectSelect::Init");
 
 		BindPanel(typeof(Panels));
 		BindText(typeof(Texts));
@@ -61,14 +61,30 @@ public class UIEffectSelect : UIPopup
 
 	void OnClickButton1()
 	{
+		GameScene scene = (GameScene)Managers.Scene.CurrentScene;
+        if (scene)
+        {
+			scene.ShowGameResult();
+        }
+
 		Debug.Log("OnClickButton1");
 	}
 	void OnClickButton2()
 	{
+		GameScene scene = (GameScene)Managers.Scene.CurrentScene;
+		if (scene)
+		{
+			scene.ShowGameResult();
+		}
 		Debug.Log("OnClickButton2");
 	}
 	void OnClickButton3()
 	{
+		GameScene scene = (GameScene)Managers.Scene.CurrentScene;
+		if (scene)
+		{
+			scene.ShowGameResult();
+		}
 		Debug.Log("OnClickButton3");
 	} 
 }

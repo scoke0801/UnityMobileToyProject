@@ -7,7 +7,7 @@ using Cinemachine;
 
 public class GameScene : BaseScene
 {
-    private float _gameTime = 300.0f;
+    private float _gameTime = 30.0f;
     private float _spawnTime = 1.0f;
     UIGameControl _uiGameControl;
 
@@ -39,6 +39,9 @@ public class GameScene : BaseScene
         InitCamera();
         InitObjects();
 
+        _gameTime = 30.0f;
+        StartCoroutine(TimeEndCheck());
+
         Debug.Log("GameScene < Init End");
         return true;
     }
@@ -50,6 +53,9 @@ public class GameScene : BaseScene
         // 생성 후 안보이도록. 
         Managers.UI.PushPopupUI<UIEffectSelect>();
         Managers.UI.HidePopupUI<UIEffectSelect>();
+
+        Managers.UI.PushPopupUI<UIGameResult>();
+        Managers.UI.HidePopupUI<UIGameResult>();
     }
 
     private void InitPlayer()
@@ -123,7 +129,7 @@ public class GameScene : BaseScene
             _spawner.Spawn();
         }
 
-        _uiGameControl.UpdateWaveCount("Wave : " + _spawner.GetMonsterCount().ToString());
+        _uiGameControl.UpdateWaveCount(_spawner.GetMonsterCount());
     }
 
     public void RefreshWaveCount(GameObject gameObject)
@@ -132,7 +138,7 @@ public class GameScene : BaseScene
 
         int nRemainMonsterCount = _spawner.GetMonsterCount();
         Debug.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
-        _uiGameControl.UpdateWaveCount("Wave : " + nRemainMonsterCount.ToString()); 
+        _uiGameControl.UpdateWaveCount(nRemainMonsterCount); 
 
         if( nRemainMonsterCount == 0 && _spawnedCount >= Define.STAGE_WAVE_COUNT )
         {
@@ -148,5 +154,27 @@ public class GameScene : BaseScene
     public void RefreshPlayerAmmoText(int ammo)
     { 
         _uiGameControl.UpdateAmmoText(ammo);
+    }
+    public void ShowGameResult()
+    { 
+        Managers.UI.HidePopupUI<UIEffectSelect>();
+        Managers.UI.ShowPopupUI<UIGameResult>();
+    }
+
+    private IEnumerator TimeEndCheck()
+    {
+        yield return new WaitForSeconds(_gameTime);
+
+        if (_isGamePaused) { yield break; }
+
+        int nRemainMonsterCount = _spawner.GetMonsterCount();
+        Debug.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
+        _uiGameControl.UpdateWaveCount(nRemainMonsterCount);
+         
+        _isGamePaused = true; 
+        Managers.UI.HidePopupUI<UIGameControl>();
+        Managers.UI.HidePopupUI<UIEffectSelect>();
+
+        Managers.UI.ShowPopupUI<UIGameResult>();
     }
 }

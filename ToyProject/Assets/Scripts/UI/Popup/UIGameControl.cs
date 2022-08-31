@@ -55,6 +55,7 @@ public class UIGameControl : UIPopup
 			_playerMovement = player.GetComponent<PlayerMovement>();
 
 			UpdateAmmoText(_playerShooter.gun.curAmmo);
+			UpdateWaveCount(0);
 		}
 
 		return true;
@@ -93,9 +94,9 @@ public class UIGameControl : UIPopup
 		GetText((int)Texts.RemainTime).text = text;
 	}
 
-	public void UpdateWaveCount(string text)
+	public void UpdateWaveCount(int count)
 	{
-		GetText((int)Texts.RemainMonsterWave).text = text;
+		GetText((int)Texts.RemainMonsterWave).text = $"Wave : {count}";
 	}
 	public void UpdateHeartText(int hp)
 	{
