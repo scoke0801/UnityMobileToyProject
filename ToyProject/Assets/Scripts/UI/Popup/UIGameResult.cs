@@ -2,15 +2,7 @@
 using UnityEngine;
 
 public class UIGameResult : UIPopup
-{
-	enum Panels
-	{
-		BasePanel,
-		Panel1,
-		Panel2,
-		Panel3,
-	}
-
+{ 
 	enum Texts
 	{
 		PlayerLevelText,
@@ -37,9 +29,8 @@ public class UIGameResult : UIPopup
 			return false;
 		}
 
-		Debug.Log("UIGameResult::Init");
-
-		BindPanel(typeof(Panels));
+		DebugWrapper.Log("UIGameResult::Init");
+		 
 		BindText(typeof(Texts));
 		BindButton(typeof(Buttons));
 		BindImage(typeof(Images));
@@ -57,11 +48,11 @@ public class UIGameResult : UIPopup
 	}
 
 	void OnClickContinueButton()
-	{ 
-		Debug.Log("OnClickContinueButton");
+	{
+		DebugWrapper.Log("OnClickContinueButton");
 	}
 	void OnClickExitButton()
-	{ 
-		Debug.Log("OnClickExitButton");
+	{
+		DebugWrapper.Log("OnClickExitButton");
 	} 
 }

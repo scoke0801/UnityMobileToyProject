@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6878172687195803459}
   - component: {fileID: 7569298915375458728}
   - component: {fileID: 7567932794894673844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AtomBallLines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2884890062260785919}
   - component: {fileID: 6248276988741765988}
   - component: {fileID: 8858801684953918076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AtomBallSpheres
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 9034123832691498685}
   - component: {fileID: -656328324940288900}
   - component: {fileID: 5648641360253050088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AtomBall
   m_TagString: Projectile
   m_Icon: {fileID: 0}

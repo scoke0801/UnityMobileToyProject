@@ -19,8 +19,7 @@ public class Projectile : MonoBehaviour
     }
     protected PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
     protected ProjectileActor actor;
-
-    private OBJECT_TYPE objectType;
+     
     private TrailRenderer _trailRenderer;
      
     protected void Awake()
@@ -43,9 +42,8 @@ public class Projectile : MonoBehaviour
         status.damage = 100000.0f;
         status.lifeTime = lifeTime; 
     }
-      
-    // Update is called once per frame
-    protected void Update()
+       
+    void Update()
     {
         transform.Rotate(status.speed, status.speed, status.speed); 
         if(actor != null)
@@ -73,8 +71,7 @@ public class Projectile : MonoBehaviour
     public void Swing(GameObject shooter, Vector3 direction, Vector3 shootPos)
     {
         this.shooter = shooter;
-        this.transform.position = shootPos;
-        objectType = OBJECT_TYPE.OBJ_METAL_PROJECTILE;
+        this.transform.position = shootPos; 
 
         lifeTime = 3.0f;
         actor = ProjectileActor.GetProjectileActor(actType, shooter, direction, shootPos);
@@ -84,8 +81,7 @@ public class Projectile : MonoBehaviour
     public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, GameObject target, Vector3 shootPos)
     {
         this.shooter = shooter;
-        this.transform.position = shootPos;
-        objectType = OBJECT_TYPE.OBJ_PROJECTILE;
+        this.transform.position = shootPos; 
 
         lifeTime = 3.0f;
 
@@ -95,8 +91,7 @@ public class Projectile : MonoBehaviour
     public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, Vector3 direction, Vector3 shootPos)
     {
         this.shooter = shooter;
-        this.transform.position = shootPos;
-        objectType = OBJECT_TYPE.OBJ_PROJECTILE;
+        this.transform.position = shootPos; 
 
         lifeTime = 3.0f;
 

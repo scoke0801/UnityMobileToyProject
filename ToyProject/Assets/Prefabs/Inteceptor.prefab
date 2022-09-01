@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2273945450492412300}
   - component: {fileID: 3317711427242656320}
   - component: {fileID: 7441987431782022781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BuckyBallLines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6311044139394289305}
   - component: {fileID: 350658055888039838}
   - component: {fileID: -4540196645365604192}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Inteceptor
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 2106173970864867944}
   - component: {fileID: 3104120662097627587}
   - component: {fileID: 7682779623703353513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BuckyBallAtoms
   m_TagString: Untagged
   m_Icon: {fileID: 0}

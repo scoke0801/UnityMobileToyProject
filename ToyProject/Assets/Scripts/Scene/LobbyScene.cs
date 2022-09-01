@@ -178,13 +178,11 @@ public class LobbyScene : Scene
 
     public void OnClickGameModeSelect_1()
     {
-        selectedSceneType = SceneType.GAME;
-        Debug.Log("OnClickGameModeSelect_1");
+        selectedSceneType = SceneType.GAME; 
     }
     public void OnClickGameModeSelect_2()
     {
-        selectedSceneType = SceneType.GAME_INFINITE;
-        Debug.Log("GameModeSelect_2");
+        selectedSceneType = SceneType.GAME_INFINITE; 
     }
     public void OnClickGameStartButton()
     {

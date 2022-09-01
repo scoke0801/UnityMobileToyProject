@@ -2,15 +2,7 @@
 using UnityEngine;
 
 public class UIEffectSelect : UIPopup
-{
-	enum Panels
-	{
-		BasePanel,
-		Panel1,
-		Panel2,
-		Panel3,
-	}
-
+{ 
 	enum Texts
 	{
 		TitleText,
@@ -39,9 +31,8 @@ public class UIEffectSelect : UIPopup
 			return false;
 		}
 
-		Debug.Log("UIEffectSelect::Init");
-
-		BindPanel(typeof(Panels));
+		DebugWrapper.Log("UIEffectSelect::Init");
+		 
 		BindText(typeof(Texts));
 		BindButton(typeof(Buttons));
 		BindImage(typeof(Images));
@@ -67,7 +58,7 @@ public class UIEffectSelect : UIPopup
 			scene.ShowGameResult();
         }
 
-		Debug.Log("OnClickButton1");
+		DebugWrapper.Log("OnClickButton1");
 	}
 	void OnClickButton2()
 	{
@@ -76,7 +67,7 @@ public class UIEffectSelect : UIPopup
 		{
 			scene.ShowGameResult();
 		}
-		Debug.Log("OnClickButton2");
+		DebugWrapper.Log("OnClickButton2");
 	}
 	void OnClickButton3()
 	{
@@ -85,6 +76,6 @@ public class UIEffectSelect : UIPopup
 		{
 			scene.ShowGameResult();
 		}
-		Debug.Log("OnClickButton3");
+		DebugWrapper.Log("OnClickButton3");
 	} 
 }

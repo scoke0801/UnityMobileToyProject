@@ -45,8 +45,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Dash()
-    {
-        Debug.Log("Dash!");
+    { 
         Vector3 moveDist = transform.forward * moveSpeed * 1.2f;
         playerRigidboy.MovePosition(playerRigidboy.position + moveDist);
     }

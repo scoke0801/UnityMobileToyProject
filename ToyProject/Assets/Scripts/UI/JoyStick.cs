@@ -55,8 +55,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         // float fSqr = (rectJoyStick.position - rectLever.position).sqrMagnitude / (m_fRadius * m_fRadius);
         move = (rectJoyStick.position - rectLever.position).sqrMagnitude / (m_fRadius * m_fRadius); ;
         move *= 10.0f;
-
-        Debug.Log(move);
+         
         // 터치위치 정규화
         Vector2 vecNormal = vec.normalized;
 
@@ -64,8 +63,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         player.eulerAngles = new Vector3(0f, Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg, 0f);
 
         rotate = Mathf.Atan2(vecNormal.x, vecNormal.y) * Mathf.Rad2Deg;
-        rotate /= 360.0f ;
-        Debug.Log(rotate);
+        rotate /= 360.0f ; 
     }
 
     public void OnDrag(PointerEventData eventData)

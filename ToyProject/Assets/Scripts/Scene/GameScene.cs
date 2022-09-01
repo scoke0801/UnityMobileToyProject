@@ -20,7 +20,7 @@ public class GameScene : BaseScene
 
     protected override bool Init()
     {
-        Debug.Log("GameScene < Init Begin");
+        DebugWrapper.Log("GameScene < Init Begin");
         if (base.Init() == false)
         {
             return false;
@@ -38,7 +38,7 @@ public class GameScene : BaseScene
         _gameTime = 30.0f;
         StartCoroutine(TimeEndCheck());
 
-        Debug.Log("GameScene < Init End");
+        DebugWrapper.Log("GameScene < Init End");
         return true;
     }
 
@@ -133,7 +133,7 @@ public class GameScene : BaseScene
         _spawner.RemoveObject(gameObject);
 
         int nRemainMonsterCount = _spawner.GetMonsterCount();
-        Debug.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
+        DebugWrapper.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount); 
 
         if( nRemainMonsterCount == 0 && _spawnedCount >= Define.STAGE_WAVE_COUNT )
@@ -164,7 +164,7 @@ public class GameScene : BaseScene
         if (Managers.Game.IsGamePaused) { yield break; }
 
         int nRemainMonsterCount = _spawner.GetMonsterCount();
-        Debug.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
+        DebugWrapper.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount);
 
         Managers.Game.GamePause(true); 

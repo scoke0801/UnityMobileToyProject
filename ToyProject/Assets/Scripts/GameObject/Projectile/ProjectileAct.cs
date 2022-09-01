@@ -43,7 +43,7 @@ public abstract class ProjectileActor : IProjectileAct
                 {
                     // to do 
                     // error
-                    Debug.LogError("GetProjectileActor TypeError");
+                    DebugWrapper.LogError("GetProjectileActor TypeError");
                 }
                 break;
         }
@@ -70,7 +70,7 @@ public abstract class ProjectileActor : IProjectileAct
                 {
                     // to do 
                     // error
-                    Debug.LogError("GetProjectileActor TypeError");
+                    DebugWrapper.LogError("GetProjectileActor TypeError");
                 }
                 break;
         }

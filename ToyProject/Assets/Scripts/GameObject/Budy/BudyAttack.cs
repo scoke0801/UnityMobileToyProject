@@ -46,7 +46,7 @@ public class BudyAttack
         if (status.attackCoolTime > 0.0f)
         {
             // 아직 쿨타임이 남아있는 경우
-            Debug.Log(" status.attackCoolTime > 0.0f ");
+            DebugWrapper.Log("status.attackCoolTime > 0.0f");
             return;
         }
 

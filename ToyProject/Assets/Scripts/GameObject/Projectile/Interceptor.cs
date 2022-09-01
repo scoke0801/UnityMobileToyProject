@@ -13,7 +13,7 @@ public class Interceptor : Projectile
         actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING;
     }
     
-    new public void Update()
+    public void Update()
     {
         status.UpdateAttackCoolTime(); 
         if (actor != null)
@@ -41,11 +41,7 @@ public class Interceptor : Projectile
     }
 
     new void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            return;
-        }
+    { 
         if (collision.gameObject.CompareTag("Budy")) 
         {
             if (Shooter == target)
@@ -55,18 +51,13 @@ public class Interceptor : Projectile
             }
             return;
         }
-        if (collision.gameObject.CompareTag("Projectile"))
-        { 
-            return;
-        }
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Monster"))
         {
+            FindNewTarget(Shooter);
+            status.attackCoolTime = 5.0f;
             return;
-        }
-
-        FindNewTarget(Shooter);
-        status.attackCoolTime = 5.0f;
-
+        } 
+          
         // ObjectManager.instance.ReturnObject(OBJECT_TYPE.OBJ_PROJECTILE, this.gameObject);
     }
 } 

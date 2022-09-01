@@ -47,12 +47,11 @@ public class UIBase : MonoBehaviour
 
             if (objects[index] == null)
             {
-                Debug.Log($"Failed To Bind({names[index]})");
+                DebugWrapper.Log($"Failed To Bind({names[index]})");
             }
         }
     } 
-    protected void BindObject(Type type) { Bind<GameObject>(type); }
-    protected void BindPanel(Type type) { Bind<Panel>(type); }
+    protected void BindObject(Type type) { Bind<GameObject>(type); } 
     protected void BindImage(Type type) { Bind<Image>(type); }
     protected void BindText(Type type) { Bind<TextMeshProUGUI>(type); }
     protected void BindButton(Type type) { Bind<Button>(type); }
@@ -92,8 +91,7 @@ public class UIBase : MonoBehaviour
         return objects[idx] as T;
     }
 
-    public GameObject GetObject(int idx) { return Get<GameObject>(idx); }
-    public Panel GetPanel(int idx) { return Get<Panel>(idx); }
+    public GameObject GetObject(int idx) { return Get<GameObject>(idx); } 
     public TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); }
     public Button GetButton(int idx) { return Get<Button>(idx); }
     public Image GetImage(int idx) { return Get<Image>(idx); }

@@ -60,8 +60,7 @@ public class Spawner : MonoBehaviour
     }
       
     public void RemoveObject(GameObject gameObject) 
-    {
-        Debug.Log(gameObject.name + "RemoveObject");
+    { 
         Managers.Pool.Push(gameObject); 
         
         --_monsterCount;

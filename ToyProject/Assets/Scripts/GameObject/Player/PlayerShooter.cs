@@ -42,16 +42,14 @@ public class PlayerShooter : MonoBehaviour
     }
      
     public void ReloadGun()
-    {
-        Debug.Log("Reload!");   
+    { 
         playerAnimator.SetTrigger("Reload");
 
         gun.Reload();
     }
 
     public void Shoot()
-    {
-        Debug.Log("Shoot!");
+    { 
         playerAnimator.SetTrigger("Shoot");
 
         gun.Fire();

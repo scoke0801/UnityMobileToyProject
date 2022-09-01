@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         if (status.attackCoolTime > 0.0f)
         {
             // 아직 쿨타임이 남아있는 경우
-            Debug.Log("Player status.attackCoolTime > 0.0f ");
+            DebugWrapper.Log("Player status.attackCoolTime > 0.0f ");
             return;
         }
         Vector3 shootPos = transform.position;

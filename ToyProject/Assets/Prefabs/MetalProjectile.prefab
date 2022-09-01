@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4488130345579492206}
   - component: {fileID: 8139995901621271473}
   - component: {fileID: 460620033615029631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SplitMetalBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6216674661803450470}
   - component: {fileID: 7463532148170076953}
   - component: {fileID: -207833685835777956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MetalProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -177,3 +177,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771639a4ab0d71448b6eceb9cde8223f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 3

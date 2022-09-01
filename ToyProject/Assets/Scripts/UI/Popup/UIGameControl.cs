@@ -33,7 +33,7 @@ public class UIGameControl : UIPopup
 			return false;
 		}
 
-		Debug.Log("UIGameControl::Init");
+		DebugWrapper.Log("UIGameControl::Init");
 		 
 		BindText(typeof(Texts));
 		BindButton(typeof(Buttons)); 
@@ -64,29 +64,29 @@ public class UIGameControl : UIPopup
 	void OnClickContorlMainButton()
 	{
 		_playerShooter.Shoot();
-		Debug.Log("OnClickContorlMainButton");
+		DebugWrapper.Log("OnClickContorlMainButton");
 	}
 	void OnClickContorlDashButton()
 	{
 		_playerMovement.Dash();
-		Debug.Log("OnClickContorlDashButton");
+		DebugWrapper.Log("OnClickContorlDashButton");
 	}
 	void OnClickContorlReloadButton()
 	{
 		_playerShooter.ReloadGun();
-		Debug.Log("OnClickContorlReloadButton");
+		DebugWrapper.Log("OnClickContorlReloadButton");
 	}
 	void OnClickContorlSub1Button()
 	{
-		Debug.Log("OnClickContorlSub1Button");
+		DebugWrapper.Log("OnClickContorlSub1Button");
 	}
 	void OnClickContorlSub2Button()
 	{
-		Debug.Log("OnClickContorlSub2Button");
+		DebugWrapper.Log("OnClickContorlSub2Button");
 	}
 	void OnClickContorlSub3Button()
 	{
-		Debug.Log("OnClickContorlSub3Button");
+		DebugWrapper.Log("OnClickContorlSub3Button");
 	}
 
     public void UpdateGameTime(string text)

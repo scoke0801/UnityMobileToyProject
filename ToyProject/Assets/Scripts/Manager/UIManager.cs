@@ -105,7 +105,7 @@ public class UIManager
 		gameObject.transform.localScale = Vector3.one;
 		gameObject.transform.localPosition = prefab.transform.position;
 
-		Debug.Log("ShowPopupUI");
+		DebugWrapper.Log("ShowPopupUI");
 		return popup;
 	}
 
@@ -133,7 +133,7 @@ public class UIManager
 
 		if (_popupStack.Peek() != popup)
 		{
-			Debug.Log("Close Popup Failed!");
+			DebugWrapper.Log("Close Popup Failed!");
 			return;
 		}
 
