@@ -18,9 +18,6 @@ public class GameScene : BaseScene
     private Spawner _spawner;
     private int _spawnedCount = 0;
 
-    bool _isGamePaused;
-    public bool IsGamePaused { get { return _isGamePaused; }}
-
     protected override bool Init()
     {
         Debug.Log("GameScene < Init Begin");
@@ -29,8 +26,7 @@ public class GameScene : BaseScene
             return false;
         }
 
-        SceneType = Define.Scene.Game;
-        _isGamePaused = false;
+        SceneType = Define.Scene.Game; 
 
         InitPlayer();
         InitUI();
@@ -142,7 +138,7 @@ public class GameScene : BaseScene
 
         if( nRemainMonsterCount == 0 && _spawnedCount >= Define.STAGE_WAVE_COUNT )
         {
-            _isGamePaused = true;
+            Managers.Game.GamePause(true);
             Managers.UI.HidePopupUI<UIGameControl>();
             Managers.UI.ShowPopupUI<UIEffectSelect>();
         }
@@ -165,13 +161,13 @@ public class GameScene : BaseScene
     {
         yield return new WaitForSeconds(_gameTime);
 
-        if (_isGamePaused) { yield break; }
+        if (Managers.Game.IsGamePaused) { yield break; }
 
         int nRemainMonsterCount = _spawner.GetMonsterCount();
         Debug.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount);
-         
-        _isGamePaused = true; 
+
+        Managers.Game.GamePause(true); 
         Managers.UI.HidePopupUI<UIGameControl>();
         Managers.UI.HidePopupUI<UIEffectSelect>();
 

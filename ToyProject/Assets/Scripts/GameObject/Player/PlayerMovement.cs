@@ -9,27 +9,19 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody playerRigidboy;
     private PlayerInput playerInput;
-    private Animator playerAnimator;
-
-    GameScene _currentScene;
+    private Animator playerAnimator; 
 
     // Start is called before the first frame update
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerRigidboy = GetComponent<Rigidbody>();
-        playerAnimator = GetComponent<Animator>();
-
-        _currentScene = (GameScene)Managers.Scene.CurrentScene;
+        playerAnimator = GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(_currentScene && _currentScene.IsGamePaused)
-        {
-            return;
-        }
         Move();
         Rotate();
 
