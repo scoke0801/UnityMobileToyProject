@@ -28,11 +28,6 @@ public class SceneManagerEx
         }
     }
 
-    public void Init()
-    {
-
-    }
-
     public void ChangeScene(Define.Scene type)
     {
         CurrentScene.Clear();

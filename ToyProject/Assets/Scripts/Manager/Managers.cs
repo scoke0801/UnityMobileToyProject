@@ -1,62 +1,31 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using System;
  
-public class Managers : MonoBehaviour
+public static class Managers
 {
     ////////////////////////////////////////////////////////////////////////////
     #region manager instance 정의
 
-    public static Managers _instance = null;
-
-    private static ResourceManager _resourceManager = new ResourceManager();
-    private static UIManager _uiManager = new UIManager();
-    private static SceneManagerEx _sceneManager = new SceneManagerEx();
-    private static PoolManager _poolManager = new PoolManager();
-    private static GameManager _gameManager = new GameManager(); 
+    // TODO: 외부에서 Manager 객체들을 생성할 수 있는 문제점이 있음. Manager 객체들을 이 클래스 내에서만 생성해야 함을 명시해야 함.
+    private static Lazy<ResourceManager> _resourceManager = new();
+    private static Lazy<UIManager> _uiManager = new();
+    private static Lazy<SceneManagerEx> _sceneManager = new();
+    private static Lazy<PoolManager> _poolManager = new();
+    private static Lazy<GameManager> _gameManager = new(); 
 
     #endregion
     ////////////////////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////////////
     #region manager property 정의
-    public static Managers Instance { get { return _instance; } }
-    public static UIManager UI { get { Init(); return _uiManager; } } 
-    public static ResourceManager Resource { get { Init(); return _resourceManager; } }
-    public static SceneManagerEx Scene { get { Init(); return _sceneManager; } }
-    public static PoolManager Pool { get { Init(); return _poolManager; } }
-    public static GameManager Game { get { Init(); return _gameManager; } }
-    public static PrefabManager Prefab { get { return PrefabManager.instance; } }
 
-    #endregion 
+    public static UIManager UI => _uiManager.Value;
+    public static ResourceManager Resource => _resourceManager.Value;
+    public static SceneManagerEx Scene => _sceneManager.Value;
+    public static PoolManager Pool => _poolManager.Value;
+    public static GameManager Game => _gameManager.Value;
+    public static PrefabManager Prefab => PrefabManager.instance;
+
+    #endregion
+
     ////////////////////////////////////////////////////////////////////////////
-
-    void Start()
-    {
-        Init(); 
-    }
-     
-    private static void Init()
-    {
-        if (_instance == null)
-        {
-            GameObject gameObject = GameObject.Find("@Managers");
-            if (gameObject == null)
-            {
-                gameObject = new GameObject { name = "@Managers" };
-            }
-            _instance = Util.GetOrAddComponent<Managers>(gameObject);
-            // DontDestroyOnLoad(go);
-
-            //s_adsManager.Init();
-            //s_iapManager.Init();
-            //s_dataManager.Init();
-            _resourceManager.Init();
-            _sceneManager.Init();
-
-            _gameManager.Init();
-
-            //s_soundManager.Init();
-            PrefabManager.instance.Init();
-        }
-    }
 } 

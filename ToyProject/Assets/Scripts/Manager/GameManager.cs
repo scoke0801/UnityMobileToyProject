@@ -5,15 +5,11 @@ using UnityEngine.UI;
  
 public class GameManager
 {
-    bool _isGamePaused;
+    bool _isGamePaused = false;
     public bool IsGamePaused { get { return _isGamePaused; } }
 
     private GameObject _player;
     public GameObject Player { get { return _player; } set { _player = value; } }
-    public void Init()
-    {
-        _isGamePaused = false;
-    } 
 
     public void GamePause(bool pause)
     {
