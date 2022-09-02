@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // SceneManager는 Unity에 이미 정의되어있으므로 Ex를 붙여서 구분!
-public class SceneManagerEx : MonoBehaviour
+public class SceneManagerEx
 {
     private Define.Scene _curSceneType = Define.Scene.None;
 
@@ -22,7 +22,7 @@ public class SceneManagerEx : MonoBehaviour
 
     public BaseScene CurrentScene 
     {
-        get 
+        get
         {
             return GameObject.Find("@Scene").GetComponent<BaseScene>(); 
         }
