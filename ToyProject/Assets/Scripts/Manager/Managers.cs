@@ -57,10 +57,6 @@ public class Managers : MonoBehaviour
 
             //s_soundManager.Init();
             PrefabManager.instance.Init();
-             
-            // project setting
-            Application.targetFrameRate = 60;
-            Physics.IgnoreLayerCollision((int)Define.LayerType.Projectile, (int)Define.LayerType.Player);
         }
     }
 } 
