@@ -5,8 +5,8 @@ public class UIGameResult : UIPopup
 { 
 	enum Texts
 	{
-		PlayerLevelText,
-		TimeElapsedText,
+		PlayerLevelValueText,
+		TimeElapsedValueText,
 		AcheivedEffectText,
 		AcheivedEffectNameText,
 		AcheivedEffectInfoText,
@@ -36,12 +36,18 @@ public class UIGameResult : UIPopup
 		BindImage(typeof(Images));
 
 		GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
-		GetButton((int)Buttons.ExitButton).gameObject.BindEvent(OnClickExitButton); 
+		GetButton((int)Buttons.ExitButton).gameObject.BindEvent(OnClickExitButton);
 
 		//GetText((int)Texts.StartButtonText).text = Managers.GetText(Define.StartButtonText);
 		//GetText((int)Texts.ContinueButtonText).text = Managers.GetText(Define.ContinueButtonText);
 		//GetText((int)Texts.CollectionButtonText).text = Managers.GetText(Define.CollectionButtonText);
 
+		GameScene scene = (GameScene)(Managers.Scene.CurrentScene);
+		if (scene)
+		{
+			UpdateElapseGameTimeText(scene.ElapsedTime);
+			UpdatePlayerLevelText(1, 3);
+		}
 		//Managers.Sound.Clear();
 		//Managers.Sound.Play(Sound.Effect, "Sound_MainTitle");
 		return true;
@@ -54,5 +60,17 @@ public class UIGameResult : UIPopup
 	void OnClickExitButton()
 	{
 		DebugWrapper.Log("OnClickExitButton");
-	} 
+	}
+
+	public void UpdateElapseGameTimeText(float elapsedTime)
+	{
+		int min = (int)(elapsedTime / 60.0f);
+		int sec = (int)(elapsedTime - min * 60.0f);
+		GetText((int)Texts.TimeElapsedValueText).text = $"{min}분   {sec}초";
+	}
+
+	public void UpdatePlayerLevelText(int nPrevLevel, int nCurrentLevel)
+	{
+		GetText((int)Texts.PlayerLevelValueText).text = $"{nPrevLevel}		->		{nCurrentLevel}";
+	}
 }

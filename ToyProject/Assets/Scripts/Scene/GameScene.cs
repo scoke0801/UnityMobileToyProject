@@ -7,6 +7,9 @@ using Cinemachine;
 
 public class GameScene : BaseScene
 {
+    private float _elapsedTime;
+    public float ElapsedTime { get { return _elapsedTime; } }
+    
     private float _gameTime = 30.0f;
     private float _spawnTime = 1.0f;
     UIGameControl _uiGameControl;
@@ -18,6 +21,7 @@ public class GameScene : BaseScene
     private Spawner _spawner;
     private int _spawnedCount = 0;
 
+    
     protected override bool Init()
     {
         DebugWrapper.Log("GameScene < Init Begin");
@@ -35,7 +39,7 @@ public class GameScene : BaseScene
         InitCamera();
         InitObjects();
 
-        _gameTime = 30.0f;
+        _elapsedTime = _gameTime = 30.0f;
         StartCoroutine(TimeEndCheck());
 
         DebugWrapper.Log("GameScene < Init End");
@@ -92,11 +96,11 @@ public class GameScene : BaseScene
         {
             _gameTime = 0.0f; 
         }
-
+         
         int min = (int)(_gameTime / 60.0f);
         int sec = (int)(_gameTime - min * 60.0f);
-         
-        _uiGameControl.UpdateGameTime(min.ToString() + " : " + sec.ToString()); 
+
+        _uiGameControl.UpdateGameTime($"{min.ToString()} : {sec.ToString()}"); 
     }
 
     private void SpawnMonster()
@@ -132,8 +136,7 @@ public class GameScene : BaseScene
     {
         _spawner.RemoveObject(gameObject);
 
-        int nRemainMonsterCount = _spawner.GetMonsterCount();
-        DebugWrapper.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
+        int nRemainMonsterCount = _spawner.GetMonsterCount(); 
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount); 
 
         if( nRemainMonsterCount == 0 && _spawnedCount >= Define.STAGE_WAVE_COUNT )
@@ -152,9 +155,14 @@ public class GameScene : BaseScene
         _uiGameControl.UpdateAmmoText(ammo);
     }
     public void ShowGameResult()
-    { 
+    {
+        // 소요시간은 Init함수에서 스테이지 남은 시간으로 초기화,
+        // 함수가 호출되었을 때, _gameTime이 0보다 큰 값이라면 빼줘야 함.
+        _elapsedTime -= _gameTime;
+
+        Managers.UI.HidePopupUI<UIGameControl>();
         Managers.UI.HidePopupUI<UIEffectSelect>();
-        Managers.UI.ShowPopupUI<UIGameResult>();
+        Managers.UI.ShowPopupUI<UIGameResult>(); 
     }
 
     private IEnumerator TimeEndCheck()
@@ -163,14 +171,11 @@ public class GameScene : BaseScene
 
         if (Managers.Game.IsGamePaused) { yield break; }
 
-        int nRemainMonsterCount = _spawner.GetMonsterCount();
-        DebugWrapper.Log($"remain :{nRemainMonsterCount}, spawnedCount :{_spawnedCount}");
+        int nRemainMonsterCount = _spawner.GetMonsterCount(); 
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount);
 
-        Managers.Game.GamePause(true); 
-        Managers.UI.HidePopupUI<UIGameControl>();
-        Managers.UI.HidePopupUI<UIEffectSelect>();
+        Managers.Game.GamePause(true);  
 
-        Managers.UI.ShowPopupUI<UIGameResult>();
+        ShowGameResult();   
     }
 }
