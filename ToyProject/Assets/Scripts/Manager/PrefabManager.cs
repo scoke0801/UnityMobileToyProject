@@ -25,6 +25,14 @@ public enum PrefabTypeName
     Spawner,
 
     Budy,
+
+    // For Test
+    ParticleStart,
+    ParticleHit1 = ParticleStart,
+    ParticleHit2,
+    ParticleHit3,
+    ParticleHit4,
+    // ParticleEnd
 }
 public class PrefabManager : MonoBehaviour
 {

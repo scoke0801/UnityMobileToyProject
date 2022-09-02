@@ -40,7 +40,8 @@ public class Monster : LivingObject
         status = new Status();
         status.speed = 5.0f;
         status.hp = 10;
-        _collider.enabled = true;
+        _collider.enabled = true; 
+        _monsterRigidboy.useGravity = true;
 
         StartCoroutine(FindTarget());
     }
@@ -87,9 +88,13 @@ public class Monster : LivingObject
         }
     }
     override public void OnDamage(float damage, Vector3 hitPos, Vector3 hitNormal)
-    { 
-        Die();
-        //base.OnDamage(damage, hitPos, hitNormal);  
+    {
+        base.OnDamage(damage, hitPos, hitNormal);
+
+        PrefabTypeName target = (PrefabTypeName)Random.Range( (int)PrefabTypeName.ParticleHit1, (int)PrefabTypeName.ParticleHit4);
+        GameObject prefab = Managers.Prefab.GetPrefab(target);
+        Instantiate(prefab, hitPos, Quaternion.identity);
+        // Die();
     }
     public override void Die()
     {
@@ -100,6 +105,7 @@ public class Monster : LivingObject
         // _audioSource.PlayOneShot();
         _animator.SetBool("Die", true);
         _collider.enabled = false;
+        _monsterRigidboy.useGravity = false;
 
         StartCoroutine(ReturnObject());
     }

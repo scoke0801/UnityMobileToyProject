@@ -20,8 +20,7 @@ public class GameScene : BaseScene
 
     private Spawner _spawner;
     private int _spawnedCount = 0;
-
-    
+     
     protected override bool Init()
     {
         DebugWrapper.Log("GameScene < Init Begin");
