@@ -33,7 +33,7 @@ public class Define
 		Projectile = 7,
 		Player, 
     }
-	public const int STAGE_WAVE_COUNT = 30;
+	public const int STAGE_WAVE_COUNT = 100;
 
 	public const int HIT_PARTICLE_COUNT = 4;
 

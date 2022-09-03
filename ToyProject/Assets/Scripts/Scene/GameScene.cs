@@ -10,7 +10,7 @@ public class GameScene : BaseScene
     private float _elapsedTime;
     public float ElapsedTime { get { return _elapsedTime; } }
     
-    private float _gameTime = 30.0f;
+    private float _gameTime = 90.0f;
     private float _spawnTime = 1.0f;
     UIGameControl _uiGameControl;
 
@@ -38,7 +38,7 @@ public class GameScene : BaseScene
         InitCamera();
         InitObjects();
 
-        _elapsedTime = _gameTime = 30.0f;
+        _elapsedTime = _gameTime = 90.0f;
         StartCoroutine(TimeEndCheck());
 
         DebugWrapper.Log("GameScene < Init End");

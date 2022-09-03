@@ -20,8 +20,7 @@ public class Monster : LivingObject
     private AudioSource _audioSource;
     private Animator _animator;
     private Rigidbody _monsterRigidboy;
-    private CapsuleCollider _collider;
-    private GameObject _particleObject;
+    private CapsuleCollider _collider; 
 
     private void Awake()
     {
@@ -43,8 +42,7 @@ public class Monster : LivingObject
         status.speed = 5.0f;
         status.hp = 10;
         _collider.enabled = true; 
-        _monsterRigidboy.useGravity = true;
-        _particleObject = null;
+        _monsterRigidboy.useGravity = true; 
 
         StartCoroutine(FindTarget());
     }
@@ -93,14 +91,11 @@ public class Monster : LivingObject
     override public void OnDamage(float damage, Vector3 hitPos, Vector3 hitNormal)
     {
         base.OnDamage(damage, hitPos, hitNormal);
-
-        if (_particleObject == null)
-        {
-            _particleObject = Util.GetRandomParticle(PrefabTypeName.ParticleHit1, PrefabTypeName.ParticleHit4);
-
-            StartCoroutine(ReturnParticle());
-        }
-        _particleObject.transform.position = hitPos;
+         
+        GameObject particle = Util.GetRandomParticle(PrefabTypeName.ParticleHit1, PrefabTypeName.ParticleHit4);
+        particle.transform.position = hitPos;
+        
+        StartCoroutine(ReturnParticle(particle));
     }
     public override void Die()
     {
@@ -118,21 +113,18 @@ public class Monster : LivingObject
     private IEnumerator ReturnObject()
     {
         // 1.8초 동안 잠시 처리를 대기
-        yield return new WaitForSeconds(1.8f);
-        DebugWrapper.Log($"ReturnObject {this.gameObject.name}");
-        ((GameScene)(Managers.Scene.CurrentScene)).RefreshWaveCount(this.gameObject);
-        //Managers.Pool.Push(this.gameObject);  
+        yield return new WaitForSeconds(1.8f); 
+        ((GameScene)(Managers.Scene.CurrentScene)).RefreshWaveCount(this.gameObject); 
     }
 
-    private IEnumerator ReturnParticle()
+    private IEnumerator ReturnParticle(GameObject particle)
     { 
         yield return new WaitForSeconds(0.5f);
-        if (_particleObject == null)
+        if (particle == null)
         {
             yield break;
-        }
-        DebugWrapper.Log("ReturnParticle");
+        } 
 
-        Managers.Pool.Push(_particleObject);  
+        Managers.Pool.Push(particle);  
     }
 }
