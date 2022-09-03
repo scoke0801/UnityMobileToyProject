@@ -60,4 +60,11 @@ public class Util : MonoBehaviour
         }
         return null;
     }
-} 
+
+    public static GameObject GetRandomParticle(PrefabTypeName min, PrefabTypeName max)
+    {
+        PrefabTypeName target = (PrefabTypeName)UnityEngine.Random.Range((int)min, (int)max);
+        return Managers.Pool.Pop(Managers.Prefab.GetPrefab(target));
+    }
+     
+}

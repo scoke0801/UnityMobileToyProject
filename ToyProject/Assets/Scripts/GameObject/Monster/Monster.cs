@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Monster : LivingObject
 {
@@ -20,6 +21,7 @@ public class Monster : LivingObject
     private Animator _animator;
     private Rigidbody _monsterRigidboy;
     private CapsuleCollider _collider;
+    private GameObject _particleObject;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class Monster : LivingObject
         status.hp = 10;
         _collider.enabled = true; 
         _monsterRigidboy.useGravity = true;
+        _particleObject = null;
 
         StartCoroutine(FindTarget());
     }
@@ -91,10 +94,13 @@ public class Monster : LivingObject
     {
         base.OnDamage(damage, hitPos, hitNormal);
 
-        PrefabTypeName target = (PrefabTypeName)Random.Range( (int)PrefabTypeName.ParticleHit1, (int)PrefabTypeName.ParticleHit4);
-        GameObject prefab = Managers.Prefab.GetPrefab(target);
-        Instantiate(prefab, hitPos, Quaternion.identity);
-        // Die();
+        if (_particleObject == null)
+        {
+            _particleObject = Util.GetRandomParticle(PrefabTypeName.ParticleHit1, PrefabTypeName.ParticleHit4);
+
+            StartCoroutine(ReturnParticle());
+        }
+        _particleObject.transform.position = hitPos;
     }
     public override void Die()
     {
@@ -116,5 +122,17 @@ public class Monster : LivingObject
         DebugWrapper.Log($"ReturnObject {this.gameObject.name}");
         ((GameScene)(Managers.Scene.CurrentScene)).RefreshWaveCount(this.gameObject);
         //Managers.Pool.Push(this.gameObject);  
+    }
+
+    private IEnumerator ReturnParticle()
+    { 
+        yield return new WaitForSeconds(0.5f);
+        if (_particleObject == null)
+        {
+            yield break;
+        }
+        DebugWrapper.Log("ReturnParticle");
+
+        Managers.Pool.Push(_particleObject);  
     }
 }

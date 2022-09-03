@@ -74,8 +74,13 @@ public class GameScene : BaseScene
     private void InitObjects()
     {
         GameObject prefab = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
-        Managers.Pool.CreatePool(prefab, 50);
+        Managers.Pool.CreatePool(prefab, Define.PROJECTILE_POOL_COUNT);
 
+        for (int i = 0; i < Define.HIT_PARTICLE_COUNT; ++i)
+        {
+            GameObject hitParticle = Managers.Prefab.GetPrefab(PrefabTypeName.ParticleHit1 + i);
+            Managers.Pool.CreatePool(hitParticle, Define.HIT_PARTICLE_POOL_COUNT); 
+        }
         _spawner = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Spawner), this.transform).GetComponent<Spawner>();
         _spawner.transform.position = Vector3.zero;
 

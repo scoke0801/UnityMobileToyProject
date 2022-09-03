@@ -34,4 +34,9 @@ public class Define
 		Player, 
     }
 	public const int STAGE_WAVE_COUNT = 30;
+
+	public const int HIT_PARTICLE_COUNT = 4;
+
+	public const int HIT_PARTICLE_POOL_COUNT = 5;
+	public const int PROJECTILE_POOL_COUNT = 30;
 }
