@@ -52,7 +52,7 @@ public class PrefabManager : MonoBehaviour
         } 
     }
 
-    public void Init()
+    void Awake()
     { 
         DontDestroyOnLoad(this);
     }

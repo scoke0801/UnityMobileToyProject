@@ -7,10 +7,6 @@ public class ResourceManager
 {
 	public Dictionary<string, Sprite> _sprites = new Dictionary<string, Sprite>(); 
 
-	public void Init()
-	{
-	}
-
 	public T Load<T>(string path) where T : Object
 	{
 		if (typeof(T) == typeof(Sprite))
