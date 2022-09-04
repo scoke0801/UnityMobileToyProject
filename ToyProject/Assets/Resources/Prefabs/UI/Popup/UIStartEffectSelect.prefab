@@ -252,7 +252,7 @@ RectTransform:
   m_Children:
   - {fileID: 4795597837713968355}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC15\uD654\uD560 \uB2A5\uB825\uCE58\uB97C \uC120\uD0DD\uD558\uC138\uC694."
+  m_text: "\uC2DC\uC791 \uB2A5\uB825\uC744 \uC120\uD0DD\uD558\uC138\uC694!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4beb8816bac50fd4aa5108b985e0694c, type: 2}
   m_sharedMaterial: {fileID: -6644441896811373201, guid: 4beb8816bac50fd4aa5108b985e0694c,

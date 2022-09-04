@@ -9,6 +9,7 @@ public class UIEffectSelect : UIPopup
 		Text1,
 		Text2,
 		Text3,
+		ChangeText,
 	}
 
 	enum Buttons
@@ -16,6 +17,7 @@ public class UIEffectSelect : UIPopup
 		Button1,
 		Button2,
 		Button3,
+		ChangeButton,
 	}
 	enum Images
 	{
@@ -40,13 +42,8 @@ public class UIEffectSelect : UIPopup
 		GetButton((int)Buttons.Button1).gameObject.BindEvent(OnClickButton1);
 		GetButton((int)Buttons.Button2).gameObject.BindEvent(OnClickButton2);
 		GetButton((int)Buttons.Button3).gameObject.BindEvent(OnClickButton3);
-
-		//GetText((int)Texts.StartButtonText).text = Managers.GetText(Define.StartButtonText);
-		//GetText((int)Texts.ContinueButtonText).text = Managers.GetText(Define.ContinueButtonText);
-		//GetText((int)Texts.CollectionButtonText).text = Managers.GetText(Define.CollectionButtonText);
-
-		//Managers.Sound.Clear();
-		//Managers.Sound.Play(Sound.Effect, "Sound_MainTitle");
+		GetButton((int)Buttons.ChangeButton).gameObject.BindEvent(OnClickChangeButton);
+		  
 		return true;
 	}
 
@@ -77,5 +74,9 @@ public class UIEffectSelect : UIPopup
 			scene.ShowGameResult();
 		}
 		DebugWrapper.Log("OnClickButton3");
-	} 
+	}
+
+	void OnClickChangeButton()
+	{ 
+	}
 }
