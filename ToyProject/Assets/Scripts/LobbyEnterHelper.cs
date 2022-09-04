@@ -15,43 +15,30 @@ public enum SceneType
 public class LobbyEnterHelper : MonoBehaviour
 {
     [SerializeField] SceneType sceneType;
-      
-    private void OnTriggerEnter(Collider other)
-    { 
-        switch (Managers.Scene.CurrentSceneType)
-        {
-            //case SceneType.SHOP:
-            //    {
-            //        Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.SHOP");
-            //    }break;
-            //case SceneType.GAME:
-            //case SceneType.GAME_INFINITE:
-            //    {
-            //        LobbyScene lobbyScene = (LobbyScene)scene;
-            //        if (lobbyScene == null)
-            //        {
-            //            Debug.LogWarning("OnTriggerEnter < lobbyScene is empty");
-            //            break;
-            //        }
-            //        lobbyScene.ActiveGameModePannel();
-            //        Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.GAME");
-            //    }
-            //    break;
 
-            //case SceneType.MANAGEMENT:
-            //    {
-            //        LobbyScene lobbyScene = (LobbyScene)scene;
-            //        if (lobbyScene == null)
-            //        {
-            //            Debug.LogWarning("OnTriggerEnter < lobbyScene is empty");
-            //            break;
-            //        }
-            //        lobbyScene.ActiveStatusModifyPannel();
-            //        Debug.Log("OnTriggerEnter < case SceneEnterTriggerType.MANAGEMENT");
-            //    }
-            //    break;
-            default:
-                { 
+    LobbyScene _scene;
+
+    public void Start()
+    {
+        _scene = (LobbyScene)Managers.Scene.CurrentScene;        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        switch (sceneType)
+        {
+            case SceneType.SHOP:
+                {
+//                     Managers.UI.ShowPopupUI<>();
+                }break;
+            case SceneType.GAME:
+                {
+                    Managers.UI.ShowPopupUI<UIGameModeSelect>();
+                }
+                break;
+            case SceneType.MANAGEMENT:
+                {
+                    Managers.UI.ShowPopupUI<UIStartEffectSelect>();
                 }break;
         }
     }
