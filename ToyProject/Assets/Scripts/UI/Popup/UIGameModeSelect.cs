@@ -1,28 +1,32 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIGameModeSelect : UIPopup
 {
 	enum Texts
 	{
 		TitleText,
-		Text1,
-		Text2,
-		Text3,
+		ModeSelectOneText,
+		ModeSelectTwoText,
+		GameStartText,
 	}
 
 	enum Buttons
 	{
-		Button1,
-		Button2,
-		Button3,
+		ModeOneSelectButton,
+		ModeTwoSelectButton,
+		GameStartButton,
+		CloseButton,
 	}
-	enum Images
-	{
-		Image1,
-		Image2,
-		Image3,
-	}
+	//enum Images
+	//{
+	//	Image1,
+	//	Image2,
+	//	Image3,
+	//}
+
+	SceneType _sceneType;
 
 	public override bool Init()
 	{
@@ -35,47 +39,45 @@ public class UIGameModeSelect : UIPopup
 
 		BindText(typeof(Texts));
 		BindButton(typeof(Buttons));
-		BindImage(typeof(Images));
+		//BindImage(typeof(Images));
 
-		GetButton((int)Buttons.Button1).gameObject.BindEvent(OnClickButton1);
-		GetButton((int)Buttons.Button2).gameObject.BindEvent(OnClickButton2);
-		GetButton((int)Buttons.Button3).gameObject.BindEvent(OnClickButton3);
+		GetButton((int)Buttons.ModeOneSelectButton).gameObject.BindEvent(OnClickModeOneSelectButton);
+		GetButton((int)Buttons.ModeTwoSelectButton).gameObject.BindEvent(OnClickModeTwoSelectButton);
+		GetButton((int)Buttons.GameStartButton).gameObject.BindEvent(OnClickGameStartButton);
+		GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnClickCloseButton);
 
-		//GetText((int)Texts.StartButtonText).text = Managers.GetText(Define.StartButtonText);
-		//GetText((int)Texts.ContinueButtonText).text = Managers.GetText(Define.ContinueButtonText);
-		//GetText((int)Texts.CollectionButtonText).text = Managers.GetText(Define.CollectionButtonText);
+		_sceneType = SceneType.NONE;
 
-		//Managers.Sound.Clear();
-		//Managers.Sound.Play(Sound.Effect, "Sound_MainTitle");
 		return true;
 	}
 
-	void OnClickButton1()
+	void OnClickModeOneSelectButton()
 	{
-		GameScene scene = (GameScene)Managers.Scene.CurrentScene;
-		if (scene)
-		{
-			scene.ShowGameResult();
-		}
+		_sceneType = SceneType.GAME;
+	}
+	void OnClickModeTwoSelectButton()
+	{
+		_sceneType = SceneType.GAME_INFINITE;
+	}
 
-		DebugWrapper.Log("OnClickButton1");
-	}
-	void OnClickButton2()
+	void OnClickGameStartButton()
 	{
-		GameScene scene = (GameScene)Managers.Scene.CurrentScene;
-		if (scene)
-		{
-			scene.ShowGameResult();
-		}
-		DebugWrapper.Log("OnClickButton2");
+        switch (_sceneType)
+        {
+			case SceneType.GAME:
+				{
+					SceneManager.LoadScene("GameScene");
+				}
+				break;
+			case SceneType.GAME_INFINITE:
+				{
+					SceneManager.LoadScene("InfiniteGameScene");
+				}
+				break;
+		} 
 	}
-	void OnClickButton3()
+	void OnClickCloseButton()
 	{
-		GameScene scene = (GameScene)Managers.Scene.CurrentScene;
-		if (scene)
-		{
-			scene.ShowGameResult();
-		}
-		DebugWrapper.Log("OnClickButton3");
+		Managers.UI.HidePopupUI<UIGameModeSelect>();
 	}
 }

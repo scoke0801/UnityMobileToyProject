@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7415283400444452198}
   - component: {fileID: 7415283400444452193}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ModeSelectOneText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 7415283400779411268}
   - component: {fileID: 7415283400779411271}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ModeSelectTwoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 7415283401020531019}
   - component: {fileID: 7415283401020531018}
   m_Layer: 5
-  m_Name: "\uAC8C\uC784\uC2DC\uC791"
+  m_Name: GameStartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 7415283401354690270}
   - component: {fileID: 7415283401354690265}
   m_Layer: 5
-  m_Name: TitleInfo
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

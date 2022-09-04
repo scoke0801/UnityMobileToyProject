@@ -28,7 +28,12 @@ public class LobbyScene : BaseScene
     }
 
     private void InitUI()
-    {  
+    {
+        Managers.UI.PushPopupUI<UIGameModeSelect>();
+        Managers.UI.HidePopupUI<UIGameModeSelect>();
+
+        Managers.UI.PushPopupUI<UIStartEffectSelect>();
+        Managers.UI.HidePopupUI<UIStartEffectSelect>();
     }
 
     private void InitPlayer()
@@ -46,3 +51,4 @@ public class LobbyScene : BaseScene
         _vcam.m_LookAt = _player.transform;
     } 
 }
+    
