@@ -13,7 +13,7 @@ public class BudyCarrierAttack : BudyAttack
         _objects = new List<GameObject>(nInterceptorCount); 
         _scripts = new List<Interceptor>(nInterceptorCount);
 
-        GameObject newObjectPrefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.Inteceptor);
+        GameObject newObjectPrefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.INTECEPTOR);
         for (int i = 0; i < nInterceptorCount; ++i)
         { 
             GameObject newObject = MonoBehaviour.Instantiate<GameObject>(newObjectPrefab);

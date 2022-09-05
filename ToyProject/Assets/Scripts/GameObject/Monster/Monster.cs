@@ -15,7 +15,7 @@ public class Monster : LivingObject
     Vector3 vecToTarget;
 
     Status status;
-    public Define.OBJECT_TYPE objType { get; set; }
+    public Define.ObjectType objType { get; set; }
 
     private AudioSource _audioSource;
     private Animator _animator;

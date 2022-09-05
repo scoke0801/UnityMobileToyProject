@@ -3,37 +3,44 @@ using UnityEngine;
 
 public class Define
 {
-	public enum UIEvent
-	{
-		Click,
-		Pressed,
-		PointerDown,
-		PointerUp,
-	}
-
-	public enum Scene
-	{
-		None,
-		Title,
-		Loading,
-		Lobby,
-		Game,
-		Test,
-	}
-
-	public enum LayerType : int
+    /// *-------------------------------------------------
+    /// 
+    /// -------------------------------------------------*
+    public enum UIEvent
     {
-		Defualt = 0,
-		TransparentFX,
-		IgnoreRaycast,
-		
-		Water = 4,
-		UI,
-
-		Projectile = 7,
-		Player,
+        Click,
+        Pressed,
+        PointerDown,
+        PointerUp,
     }
-    public enum OBJECT_TYPE
+
+    public enum LayerType : int
+    {
+        Defualt = 0,
+        TransparentFX,
+        IgnoreRaycast,
+
+        Water = 4,
+        UI,
+
+        Projectile = 7,
+        Player,
+    }
+
+    /// *-------------------------------------------------
+    /// 
+    /// -------------------------------------------------*
+
+    public enum Scene
+    {
+        SCENE_TYPE_NONE,
+        SCENE_TYPE_TITLE,
+        SCENE_TYPE_LOADING,
+        SCENE_TYPE_LOBBY,
+        SCENE_TYPE_GAME,
+        SCENE_TYPE_TEST,
+    }
+    public enum ObjectType
     {
         OBJ_TYPE_MIN = 0,
         OBJ_MONSTER_GHOST_MALE = OBJ_TYPE_MIN,
@@ -48,7 +55,7 @@ public class Define
         OBJ_TYPE_MAX,
     };
 
-    public enum PROJECTILE_ACT_TYPE
+    public enum ProjectileActType
     {
         PROJECTILE_ACT_TYPE_MIN = 0,
         PROJECTILE_ACT_TYPE_LINEAR = PROJECTILE_ACT_TYPE_MIN, // 선형
@@ -61,27 +68,27 @@ public class Define
 
     public enum PrefabTypeName
     {
-        None = -1,
-        Player = 0,
+        NONE = -1,
+        PLAYER = 0,
 
-        MonsterStart = 1,
-        MonsterGhost1 = MonsterStart,
-        MonsterGhost2,
-        MonsterGoblinMale,
-        MonsterGoblinFemale,
-        MonsterRockGolem,
-        MonsterSkeletonKnight,
-        MonsterSkeletonSlave,
-        MonsterEnd = MonsterSkeletonSlave,
+        MONSTER_START = 1,
+        MONSTER_GHOST_1 = MONSTER_START,
+        MONSTER_GHOST_2,
+        MONSTER_GOBLIN_MALE,
+        MONSTER_GOBLIN_FEMALE,
+        MONSTER_ROCK_GOLEM,
+        MONSTER_SKELETON_KNIGHT,
+        MONSTER_SKELETON_SLAVE,
+        MONSTER_END = MONSTER_SKELETON_SLAVE,
 
-        Projectile,
-        AtomBall,
-        Inteceptor,
-        Chicken,
-        Condor,
-        Spawner,
+        PROJECTILE,
+        ATOM_BALL,
+        INTECEPTOR,
+        CHICKEN,
+        CONDOR,
+        SPAWNER,
 
-        Budy,
+        BUDY,
 
         // For Test
         ParticleStart,
@@ -91,10 +98,22 @@ public class Define
         ParticleHit4,
         // ParticleEnd
     }
+
+    /// *-------------------------------------------------
+    /// const 
+    /// -------------------------------------------------*
     public const int STAGE_WAVE_COUNT = 100;
 
 	public const int HIT_PARTICLE_COUNT = 4;
 
 	public const int HIT_PARTICLE_POOL_COUNT = 5;
 	public const int PROJECTILE_POOL_COUNT = 30;
+
+    public const float PLAYER_ATTACK_COOLTILE = 0.1f;
+
+    public const float BUDY_BASE_ATTACK_COOLTILE = 0.2f;
+    public const float BUDY_FORWARD_ATTACK_COOLTILE = 0.5f;
+    public const float BUDY_ATTACK_HOLDINGTIME = 0.5f;
+
+    public const int MAX_PROJECTILE_SHOOT_COUNT_AT_ONCE = 15;     // 한 번에 발사할 수 있는 총알의 개수. 
 }

@@ -67,12 +67,12 @@ public class PlayerGun : MonoBehaviour
         muzzleFlashEffect.Play();
         shellEjectEffect.Play();
          
-        GameObject prefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.Projectile);
+        GameObject prefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.PROJECTILE);
         GameObject instance = Managers.Pool.Pop(prefab).gameObject;
 
         if (instance)
         { 
-            instance.GetComponent<Projectile>().Shoot(Define.PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos.normalized, fireTransform.position);
+            instance.GetComponent<Projectile>().Shoot(Define.ProjectileActType.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos.normalized, fireTransform.position);
         } 
 
         --curAmmo;

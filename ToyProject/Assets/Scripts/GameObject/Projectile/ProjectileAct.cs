@@ -31,11 +31,11 @@ public abstract class ProjectileActor : IProjectileAct
 
         direction = (targetPosition - shootPos).normalized;
     }
-    static public ProjectileActor GetProjectileActor(Define.PROJECTILE_ACT_TYPE actType, GameObject shooter, GameObject target, Vector3 shootPos)
+    static public ProjectileActor GetProjectileActor(Define.ProjectileActType actType, GameObject shooter, GameObject target, Vector3 shootPos)
     { 
         switch (actType)
         { 
-            case Define.PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING:
+            case Define.ProjectileActType.PROJECTILE_ACT_TYPE_TRACKING:
                 {
                     return new ProjectileTrackingActor(shooter, target, shootPos);
                 } 
@@ -50,19 +50,19 @@ public abstract class ProjectileActor : IProjectileAct
         return null;
     }
 
-    static public ProjectileActor GetProjectileActor(Define.PROJECTILE_ACT_TYPE actType, GameObject shooter, Vector3 direction, Vector3 shootPos)
+    static public ProjectileActor GetProjectileActor(Define.ProjectileActType actType, GameObject shooter, Vector3 direction, Vector3 shootPos)
     {
         switch (actType)
         {
-            case Define.PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR:
+            case Define.ProjectileActType.PROJECTILE_ACT_TYPE_LINEAR:
                 {
                     return new ProjectileLinearActor(shooter, direction, shootPos);
                 }
-            case Define.PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_PARABOLA:
+            case Define.ProjectileActType.PROJECTILE_ACT_TYPE_PARABOLA:
                 {
                     return new ProjectileParabolaActor(shooter, direction, shootPos);
                 }
-            case Define.PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_VERTICAL_WAVE:
+            case Define.ProjectileActType.PROJECTILE_ACT_TYPE_VERTICAL_WAVE:
                 {
                     return new ProjectileVerticalWaveActor(shooter, direction, shootPos);
                 } 
