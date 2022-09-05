@@ -59,7 +59,7 @@ public class GameScene : BaseScene
 
     private void InitPlayer()
     {
-        _player = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Player), this.transform);
+        _player = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.Player), this.transform);
         _player.transform.position = _sceneData.playerPos;
 
         Managers.Game.Player = _player;
@@ -73,18 +73,18 @@ public class GameScene : BaseScene
     }
     private void InitObjects()
     {
-        GameObject prefab = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
+        GameObject prefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.Projectile);
         Managers.Pool.CreatePool(prefab, Define.PROJECTILE_POOL_COUNT);
 
         for (int i = 0; i < Define.HIT_PARTICLE_COUNT; ++i)
         {
-            GameObject hitParticle = Managers.Prefab.GetPrefab(PrefabTypeName.ParticleHit1 + i);
+            GameObject hitParticle = Managers.Prefab.GetPrefab(Define.PrefabTypeName.ParticleHit1 + i);
             Managers.Pool.CreatePool(hitParticle, Define.HIT_PARTICLE_POOL_COUNT); 
         }
-        _spawner = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Spawner), this.transform).GetComponent<Spawner>();
+        _spawner = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.Spawner), this.transform).GetComponent<Spawner>();
         _spawner.transform.position = Vector3.zero;
 
-        GameObject budy = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Budy), this.transform);
+        GameObject budy = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.Budy), this.transform);
         budy.GetComponent<TargetFollow>().target = _player;
     }
 

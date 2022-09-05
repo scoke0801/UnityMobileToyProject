@@ -58,38 +58,23 @@ public class PlayerGun : MonoBehaviour
 
     // 실제 발사 처리
     private void Shot()
-    {
-        RaycastHit hit;
+    { 
         Vector3 hitPos = Vector3.zero;
-
-        //if (Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
-        //{
-        //    IDamageable target = hit.collider.GetComponent<IDamageable>();
-        //    if (target != null)
-        //    {
-        //        target.OnDamage(gunData.damage, hit.point, hit.normal);
-        //    }
-        //    hitPos = hit.point;
-        //}
-        //else 
-        //{
-        //    hitPos = fireTransform.position + fireTransform.forward * fireDistance;
-        //}
-
+          
         hitPos = fireTransform.localPosition + fireTransform.forward * fireDistance;
 
         // 발사 이펙트와 소리를 재생 
         muzzleFlashEffect.Play();
         shellEjectEffect.Play();
          
-        GameObject prefab = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
+        GameObject prefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.Projectile);
         GameObject instance = Managers.Pool.Pop(prefab).gameObject;
 
         if (instance)
         { 
-            instance.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos.normalized, fireTransform.position);
-        }
-        //  Todo 탄창 처리.
+            instance.GetComponent<Projectile>().Shoot(Define.PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos.normalized, fireTransform.position);
+        } 
+
         --curAmmo;
         ((GameScene)(Managers.Scene.CurrentScene)).RefreshPlayerAmmoText(curAmmo);
         

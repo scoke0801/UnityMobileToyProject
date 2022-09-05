@@ -15,7 +15,7 @@ public class Monster : LivingObject
     Vector3 vecToTarget;
 
     Status status;
-    public OBJECT_TYPE objType { get; set; }
+    public Define.OBJECT_TYPE objType { get; set; }
 
     private AudioSource _audioSource;
     private Animator _animator;
@@ -92,7 +92,7 @@ public class Monster : LivingObject
     {
         base.OnDamage(damage, hitPos, hitNormal);
          
-        GameObject particle = Util.GetRandomParticle(PrefabTypeName.ParticleHit1, PrefabTypeName.ParticleHit4);
+        GameObject particle = Util.GetRandomParticle(Define.PrefabTypeName.ParticleHit1, Define.PrefabTypeName.ParticleHit4);
         particle.transform.position = hitPos;
         
         StartCoroutine(ReturnParticle(particle));

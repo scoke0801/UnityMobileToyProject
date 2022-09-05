@@ -24,8 +24,7 @@ public class LobbyEnterHelper : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        DebugWrapper.Log("OnTriggerEnter!");
+    { 
         switch (sceneType)
         {
             case SceneType.SHOP:
