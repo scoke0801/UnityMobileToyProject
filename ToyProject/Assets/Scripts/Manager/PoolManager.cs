@@ -6,19 +6,13 @@ public class PoolManager
 {
     Dictionary<string, Pool> _pool = new Dictionary<string, Pool>();
     Transform _root;
-    public void Init()
+    
+    public PoolManager()
     {
-        if (_root == null)
-        {
-            _root = new GameObject { name = "@Pool_Root" }.transform;
-            Object.DontDestroyOnLoad(_root);
-        }
-        if (Managers.Scene.CurrentSceneType != Define.Scene.Game)
-        {
-            return;
-        }
-
+        _root = new GameObject { name = "@Pool_Root" }.transform;
+        Object.DontDestroyOnLoad(_root);
     }
+    
     public void CreatePool(GameObject original, int count = 5)
     {
         Pool pool = new Pool();
