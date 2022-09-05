@@ -16,11 +16,13 @@ public class Monster : LivingObject
 
     Status status;
     public OBJECT_TYPE objType { get; set; }
+    
+    public event Action<Monster> OnDyingAnimationDone = delegate {  };
 
     private AudioSource _audioSource;
     private Animator _animator;
     private Rigidbody _monsterRigidboy;
-    private CapsuleCollider _collider; 
+    private CapsuleCollider _collider;
 
     private void Awake()
     {
@@ -114,7 +116,8 @@ public class Monster : LivingObject
     {
         // 1.8초 동안 잠시 처리를 대기
         yield return new WaitForSeconds(1.8f); 
-        ((GameScene)(Managers.Scene.CurrentScene)).RefreshWaveCount(this.gameObject); 
+        OnDyingAnimationDone(this);
+        OnDyingAnimationDone = delegate {  };
     }
 
     private IEnumerator ReturnParticle(GameObject particle)

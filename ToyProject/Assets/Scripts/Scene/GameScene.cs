@@ -7,6 +7,9 @@ using Cinemachine;
 
 public class GameScene : BaseScene
 {
+    [SerializeField]
+    MonsterSpawner _spawnerPrefab;
+    
     private float _elapsedTime;
     public float ElapsedTime { get { return _elapsedTime; } }
     
@@ -18,7 +21,7 @@ public class GameScene : BaseScene
     private GameObject _player;
     public GameObject Player { get { return _player; } }
 
-    private Spawner _spawner;
+    private MonsterSpawner _spawner;
     private int _spawnedCount = 0;
      
     protected override bool Init()
@@ -81,7 +84,8 @@ public class GameScene : BaseScene
             GameObject hitParticle = Managers.Prefab.GetPrefab(PrefabTypeName.ParticleHit1 + i);
             Managers.Pool.CreatePool(hitParticle, Define.HIT_PARTICLE_POOL_COUNT); 
         }
-        _spawner = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Spawner), this.transform).GetComponent<Spawner>();
+        
+        _spawner = Instantiate(_spawnerPrefab);
         _spawner.transform.position = Vector3.zero;
 
         GameObject budy = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Budy), this.transform);
@@ -130,17 +134,22 @@ public class GameScene : BaseScene
 
         for (int i = 0; i < spawnCount; ++i)
         {
-            _spawner.Spawn();
+            Toy.Pooled<Monster> pooledMonster = _spawner.Spawn();
+            pooledMonster.Object.OnDyingAnimationDone += _ =>
+            {
+                if(this != null)
+                    RefreshWaveCount(pooledMonster);
+            };
         }
 
-        _uiGameControl.UpdateWaveCount(_spawner.GetMonsterCount());
+        _uiGameControl.UpdateWaveCount(_spawner.SpawnedCount);
     }
 
-    public void RefreshWaveCount(GameObject gameObject)
+    private void RefreshWaveCount(Toy.Pooled<Monster> pooledMonster)
     {
-        _spawner.RemoveObject(gameObject);
+        pooledMonster.Release();
 
-        int nRemainMonsterCount = _spawner.GetMonsterCount(); 
+        int nRemainMonsterCount = _spawner.SpawnedCount; 
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount); 
 
         if( nRemainMonsterCount == 0 && _spawnedCount >= Define.STAGE_WAVE_COUNT )
@@ -175,7 +184,7 @@ public class GameScene : BaseScene
 
         if (Managers.Game.IsGamePaused) { yield break; }
 
-        int nRemainMonsterCount = _spawner.GetMonsterCount(); 
+        int nRemainMonsterCount = _spawner.SpawnedCount; 
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount);
 
         Managers.Game.GamePause(true);  
