@@ -5,13 +5,7 @@ namespace Toy
 {
     public interface IManagedPool<T> : IDisposable where T : class
     {
-        public bool IsValid { get; }
-        
-        public bool TryGetPool(out IPool<T> pool);
-        public void Release();
-        void IDisposable.Dispose()
-        {
-            Release();
-        }
+        bool IsValid { get; }
+        bool TryGetPool(out IPool<T> pool);
     }
 }

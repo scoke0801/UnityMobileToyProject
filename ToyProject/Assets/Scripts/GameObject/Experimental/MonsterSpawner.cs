@@ -115,7 +115,7 @@ public class MonsterSpawner : MonoBehaviour
                 if (!managedPool.TryGetPool(out var pool))
                     return 0;
 
-                return pool.SpawnedCount;
+                return pool.CountActive;
             });
         }
     }
@@ -136,7 +136,7 @@ public class MonsterSpawner : MonoBehaviour
                 continue;
         
             if (containedPool is {IsValid: false})
-                containedPool.Release();
+                containedPool.Dispose();
 
             var prefab = _prefabs[i];
             var preparedPool = new Toy.ManagedMonoBehaviourPrefabPool<Monster>(prefab, SPAWNER_POOL_NAME + prefab.name);
@@ -157,7 +157,7 @@ public class MonsterSpawner : MonoBehaviour
     void OnDestroy()
     {
         foreach(var managedPrefabPool in _managedPrefabPools)
-            managedPrefabPool?.Release();
+            managedPrefabPool?.Dispose();
     }
 
     public Toy.Pooled<Monster> Spawn()

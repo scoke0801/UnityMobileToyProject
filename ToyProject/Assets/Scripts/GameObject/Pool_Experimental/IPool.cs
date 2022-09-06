@@ -10,12 +10,12 @@ namespace Toy
         event Action<T> OnGet;
         event Action<T> OnRelease;
 
-        int Count { get; }
-        int DespawnedCount { get; }
-        int SpawnedCount { get; }
+        int CountAll { get; }
+        int CountInactive { get; }
+        int CountActive { get; }
         
         bool Contains(T obj);
-        bool IsSpawned(T obj);
+        bool IsActive(T obj);
         
         void Reserve(int count);
         Pooled<T> Get();

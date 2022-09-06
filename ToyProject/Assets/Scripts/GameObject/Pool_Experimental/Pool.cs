@@ -8,17 +8,17 @@ namespace Toy
     public class Pool<T> : IPool<T> where T : class
     {
         private readonly Func<T> _createFunc;
-        private readonly Stack<T> _despawnedObjects = new();
-        private readonly HashSet<T> _spawnedObjects = new();
+        private readonly Stack<T> _inactiveObjects = new();
+        private readonly HashSet<T> _activeObjects = new();
 
         public event Action<T> OnCreate = delegate { };
         public event Action<T> OnDestroy = delegate { };
         public event Action<T> OnGet = delegate { };
         public event Action<T> OnRelease = delegate { };
         
-        public int Count => DespawnedCount + SpawnedCount;
-        public int DespawnedCount => _despawnedObjects.Count;
-        public int SpawnedCount => _spawnedObjects.Count;
+        public int CountAll => CountInactive + CountActive;
+        public int CountInactive => _inactiveObjects.Count;
+        public int CountActive => _activeObjects.Count;
         
 
         public Pool(Func<T> createFunc)
@@ -28,12 +28,17 @@ namespace Toy
         
         public bool Contains(T obj)
         {
-            return IsSpawned(obj) || _despawnedObjects.Contains(obj);
+            return IsActive(obj) || IsInactive(obj);
         }
 
-        public bool IsSpawned(T obj)
+        public bool IsActive(T obj)
         {
-            return _spawnedObjects.Contains(obj);
+            return _activeObjects.Contains(obj);
+        }
+
+        public bool IsInactive(T obj)
+        {
+            return _inactiveObjects.Contains(obj);
         }
 
         private void Create()
@@ -46,18 +51,18 @@ namespace Toy
 
         public void Reserve(int count)
         {
-            int createCount = Mathf.Max(0, count - this.Count);
+            int createCount = Mathf.Max(0, count - this.CountAll);
             for (int i = 0; i < createCount; ++i)
                 Create();
         }
 
         public Pooled<T> Get()
         {
-            if (_despawnedObjects.Count == 0)
+            if (_inactiveObjects.Count == 0)
                 Create();
 
-            T obj = _despawnedObjects.Pop();
-            _spawnedObjects.Add(obj);
+            T obj = _inactiveObjects.Pop();
+            _activeObjects.Add(obj);
             
             OnGet(obj);
             return new Pooled<T>(this, obj);
@@ -65,14 +70,14 @@ namespace Toy
 
         void ReleaseUnsafe(T obj)
         {
-            _spawnedObjects.Remove(obj);
-            _despawnedObjects.Push(obj);
+            _activeObjects.Remove(obj);
+            _inactiveObjects.Push(obj);
             OnRelease(obj);
         }
 
         public bool Release(T obj)
         {
-            if (!IsSpawned(obj))
+            if (!IsActive(obj))
                 return false;
 
             ReleaseUnsafe(obj);
@@ -81,14 +86,14 @@ namespace Toy
 
         public void Clear()
         {
-            var tempSpawnedObjects = new List<T>(_spawnedObjects);  // TODO: global pool을 사용한 최적화 필요.
+            var tempSpawnedObjects = new List<T>(_activeObjects);  // TODO: global pool을 사용한 최적화 필요.
             foreach (var obj in tempSpawnedObjects)
                 ReleaseUnsafe(obj);
 
-            foreach (var obj in _despawnedObjects)
+            foreach (var obj in _inactiveObjects)
                 OnDestroy(obj);
             
-            _despawnedObjects.Clear();
+            _inactiveObjects.Clear();
         }
     }
 }

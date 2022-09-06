@@ -8,7 +8,7 @@ namespace Toy
         private IPool<T> _pool;
         private T _object;
 
-        public bool IsValid => _pool.IsSpawned(_object);
+        public bool IsValid => _pool.IsActive(_object);
 
         public T Object => _object;
 

@@ -11,7 +11,7 @@ namespace Toy
         
         public bool IsValid => _storage != null && _poolImpl != null;
         
-        public bool IsReleased => _storage == null && _poolImpl == null;
+        public bool IsDisposed => _storage == null && _poolImpl == null;
 
         public Transform Storage => _storage;
 
@@ -63,7 +63,7 @@ namespace Toy
             return true;
         }
         
-        public void Release()
+        public void Dispose()
         {
             if (_storage != null)
             {
