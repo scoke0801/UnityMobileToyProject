@@ -116,4 +116,6 @@ public class Define
     public const float BUDY_ATTACK_HOLDINGTIME = 0.5f;
 
     public const int MAX_PROJECTILE_SHOOT_COUNT_AT_ONCE = 15;     // 한 번에 발사할 수 있는 총알의 개수. 
+
+    public const float DASH_COOLTIME = 1.0f;
 }
