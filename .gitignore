@@ -491,3 +491,4 @@ FodyWeavers.xsd
 **/build 
 **/Temp
 **/obj/Debug
+**/.vsconfig
