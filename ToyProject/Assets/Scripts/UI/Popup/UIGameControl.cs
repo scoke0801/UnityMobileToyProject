@@ -52,8 +52,9 @@ public class UIGameControl : UIPopup
 		GetButton((int)Buttons.ControlSubButton2).gameObject.BindEvent(OnClickContorlSub2Button);
 		GetButton((int)Buttons.ControlSubButton3).gameObject.BindEvent(OnClickContorlSub3Button);
 		 
-		Util.GetOrAddComponent<UICooltime>(GetImage((int)Images.DashCoolTimeImage).gameObject);
-		 
+		_dashUICoolTime = Util.GetOrAddComponent<UICooltime>(GetImage((int)Images.DashCoolTimeImage).gameObject);
+		_dashUICoolTime.enabled = false;
+
 		//Managers.Sound.Clear();
 		//Managers.Sound.Play(Sound.Effect, "Sound_MainTitle");
 
