@@ -99,6 +99,13 @@ public class Define
         // ParticleEnd
     }
 
+    public enum FadeType
+    {
+        FADE_TYPE_IN,
+        FADE_TYPE_OUT,
+    }
+
+
     /// *-------------------------------------------------
     /// const 
     /// -------------------------------------------------*
