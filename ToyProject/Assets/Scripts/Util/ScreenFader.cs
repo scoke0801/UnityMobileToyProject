@@ -5,13 +5,14 @@ namespace Toy
 {
     public class ScreenFader : MonoBehaviour
     {
+        [SerializeField]
         Image _image;
+        
         float _alpha;
         Define.FadeType _type;
 
         private void Awake()
         {
-            TryGetComponent<Image>(out _image);
             _type = Define.FadeType.FADE_TYPE_IN;
         }
         private void OnEnable()
