@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using Toy;
+
 public class MonsterSpawner : MonoBehaviour
 {
     const string SPAWNER_POOL_NAME = "Spawner Pool: ";
@@ -166,6 +168,6 @@ public class MonsterSpawner : MonoBehaviour
 
         int selected = UnityEngine.Random.Range(0, _prefabs.Count);
         _managedPrefabPools[selected].TryGetPool(out var pool);
-        return pool.Get();
+        return pool.GetAsPooled();
     }
 }

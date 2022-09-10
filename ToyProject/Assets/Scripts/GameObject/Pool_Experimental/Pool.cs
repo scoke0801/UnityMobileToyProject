@@ -56,7 +56,7 @@ namespace Toy
                 Create();
         }
 
-        public Pooled<T> Get()
+        public T Get()
         {
             if (_inactiveObjects.Count == 0)
                 Create();
@@ -65,7 +65,7 @@ namespace Toy
             _activeObjects.Add(obj);
             
             OnGet(obj);
-            return new Pooled<T>(this, obj);
+            return obj;
         }
 
         void ReleaseUnsafe(T obj)

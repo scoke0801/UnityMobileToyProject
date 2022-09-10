@@ -18,7 +18,7 @@ namespace Toy
         bool IsActive(T obj);
         
         void Reserve(int count);
-        Pooled<T> Get();
+        T Get();
         bool Release(T obj);
         void Clear();
     }
