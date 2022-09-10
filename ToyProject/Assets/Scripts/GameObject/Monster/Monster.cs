@@ -15,7 +15,8 @@ public class Monster : LivingObject
     Vector3 vecToTarget;
 
     Status status;
-    public OBJECT_TYPE objType { get; set; }
+    
+    public Define.ObjectType objType { get; set; }
     
     public event Action<Monster> OnDyingAnimationDone = delegate {  };
 
@@ -86,7 +87,7 @@ public class Monster : LivingObject
                 Quaternion rotation = Quaternion.LookRotation(vecToTarget);
                 transform.rotation = rotation; 
             }
-            // 0.15ÃÊ µ¿¾È Àá½Ã Ã³¸®¸¦ ´ë±â
+            // 0.15ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             yield return var;
         }
     }
@@ -94,7 +95,7 @@ public class Monster : LivingObject
     {
         base.OnDamage(damage, hitPos, hitNormal);
          
-        GameObject particle = Util.GetRandomParticle(PrefabTypeName.ParticleHit1, PrefabTypeName.ParticleHit4);
+        GameObject particle = Util.GetRandomParticle(Define.PrefabTypeName.ParticleHit1, Define.PrefabTypeName.ParticleHit4);
         particle.transform.position = hitPos;
         
         StartCoroutine(ReturnParticle(particle));
@@ -114,7 +115,7 @@ public class Monster : LivingObject
     }
     private IEnumerator ReturnObject()
     {
-        // 1.8ÃÊ µ¿¾È Àá½Ã Ã³¸®¸¦ ´ë±â
+        // 1.8ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1.8f); 
         OnDyingAnimationDone(this);
         OnDyingAnimationDone = delegate {  };

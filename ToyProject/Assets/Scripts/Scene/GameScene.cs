@@ -32,12 +32,12 @@ public class GameScene : BaseScene
             return false;
         }
 
-        SceneType = Define.Scene.Game; 
+        SceneType = Define.Scene.SCENE_TYPE_GAME; 
 
         InitPlayer();
         InitUI();
 
-        // Ä«¸Þ¶ó ÃÊ±âÈ­´Â ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­ ÀÌÈÄ¿¡ ½ÇÇàµÇ¾î¾ß ÇÕ´Ï´Ù!
+        // Ä«ï¿½Þ¶ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½!
         InitCamera();
         InitObjects();
 
@@ -52,7 +52,7 @@ public class GameScene : BaseScene
     {
         _uiGameControl = Managers.UI.PushPopupUI<UIGameControl>(); 
 
-        // »ý¼º ÈÄ ¾Èº¸ÀÌµµ·Ï. 
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Èºï¿½ï¿½Ìµï¿½ï¿½ï¿½. 
         Managers.UI.PushPopupUI<UIEffectSelect>();
         Managers.UI.HidePopupUI<UIEffectSelect>();
 
@@ -62,7 +62,7 @@ public class GameScene : BaseScene
 
     private void InitPlayer()
     {
-        _player = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Player), this.transform);
+        _player = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.PLAYER), this.transform);
         _player.transform.position = _sceneData.playerPos;
 
         Managers.Game.Player = _player;
@@ -76,19 +76,19 @@ public class GameScene : BaseScene
     }
     private void InitObjects()
     {
-        GameObject prefab = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
+        GameObject prefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.PROJECTILE);
         Managers.Pool.CreatePool(prefab, Define.PROJECTILE_POOL_COUNT);
 
         for (int i = 0; i < Define.HIT_PARTICLE_COUNT; ++i)
         {
-            GameObject hitParticle = Managers.Prefab.GetPrefab(PrefabTypeName.ParticleHit1 + i);
+            GameObject hitParticle = Managers.Prefab.GetPrefab(Define.PrefabTypeName.ParticleHit1 + i);
             Managers.Pool.CreatePool(hitParticle, Define.HIT_PARTICLE_POOL_COUNT); 
         }
         
         _spawner = Instantiate(_spawnerPrefab);
         _spawner.transform.position = Vector3.zero;
 
-        GameObject budy = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(PrefabTypeName.Budy), this.transform);
+        GameObject budy = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.BUDY), this.transform);
         budy.GetComponent<TargetFollow>().target = _player;
     }
 
@@ -125,7 +125,7 @@ public class GameScene : BaseScene
             return;
         }
 
-        // ·£´ýÇÏ°Ô ´ÙÀ½¿¡ »ý¼ºÇÒ ½Ã°£À» ÁöÁ¤
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float nextSpawnTime = Random.Range(0.5f, 1.5f);
         int spawnCount = Random.Range(1, 5);
         _spawnedCount += spawnCount;
@@ -169,8 +169,8 @@ public class GameScene : BaseScene
     }
     public void ShowGameResult()
     {
-        // ¼Ò¿ä½Ã°£Àº InitÇÔ¼ö¿¡¼­ ½ºÅ×ÀÌÁö ³²Àº ½Ã°£À¸·Î ÃÊ±âÈ­,
-        // ÇÔ¼ö°¡ È£ÃâµÇ¾úÀ» ¶§, _gameTimeÀÌ 0º¸´Ù Å« °ªÀÌ¶ó¸é »©Áà¾ß ÇÔ.
+        // ï¿½Ò¿ï¿½Ã°ï¿½ï¿½ï¿½ Initï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­,
+        // ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½, _gameTimeï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
         _elapsedTime -= _gameTime;
 
         Managers.UI.HidePopupUI<UIGameControl>();

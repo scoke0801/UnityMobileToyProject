@@ -57,7 +57,7 @@ public class PrefabManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public GameObject GetPrefab(PrefabTypeName name)
+    public GameObject GetPrefab(Define.PrefabTypeName name)
     {
         return _objectPrefabs[(int)name];
     }

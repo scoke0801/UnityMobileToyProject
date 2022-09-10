@@ -8,7 +8,7 @@ public class BudyAttack
     protected GameObject toCreatePrefab;
 
     [SerializeField]
-    protected PROJECTILE_ACT_TYPE projectileActType;
+    protected Define.ProjectileActType projectileActType;
 
     protected Budy budy;
 
@@ -17,7 +17,7 @@ public class BudyAttack
         this.budy = budy;
         
         status = new Status();
-        projectileActType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
+        projectileActType = Define.ProjectileActType.PROJECTILE_ACT_TYPE_LINEAR;
     }
       
     virtual public void Update()
@@ -28,7 +28,7 @@ public class BudyAttack
             status.UpdateAttackHoldingTime(); 
             if (status.attackHoldingTime <= 0.0f)
             {
-                status.attackCoolTime += Constants.BUDY_BASE_ATTACK_COOLTILE; 
+                status.attackCoolTime += Define.BUDY_BASE_ATTACK_COOLTILE; 
             }
         }
         else if (status.attackCoolTime > 0.0f)
@@ -36,7 +36,7 @@ public class BudyAttack
             status.UpdateAttackCoolTime(); 
             if (status.attackHoldingTime <= 0.0f)
             {
-                status.attackHoldingTime += Constants.BUDY_ATTACK_HOLDINGTIME;
+                status.attackHoldingTime += Define.BUDY_ATTACK_HOLDINGTIME;
             }
         }
     }
@@ -56,10 +56,10 @@ public class BudyAttack
 
         Vector3 dir = budy.transform.forward;
           
-        GameObject newProjectile = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
+        GameObject newProjectile = Managers.Prefab.GetPrefab(Define.PrefabTypeName.PROJECTILE);
         if (newProjectile)
         {
-            newProjectile.GetComponent<Projectile>().Shoot(PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING, budy.gameObject, target.gameObject, shootPos);
+            newProjectile.GetComponent<Projectile>().Shoot(Define.ProjectileActType.PROJECTILE_ACT_TYPE_TRACKING, budy.gameObject, target.gameObject, shootPos);
         }
          
         return;

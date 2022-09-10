@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
 
         _target = Managers.Game.Player;
 
-        for (PrefabTypeName index = PrefabTypeName.MonsterStart; index <= PrefabTypeName.MonsterEnd; ++index)
+        for (Define.PrefabTypeName index = Define.PrefabTypeName.MONSTER_START; index <= Define.PrefabTypeName.MONSTER_END; ++index)
         {
             GameObject prefab = Managers.Prefab.GetPrefab(index);
             Managers.Pool.CreatePool(prefab, 20);
@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     { 
-        int selection = Random.Range((int)PrefabTypeName.MonsterStart, (int)PrefabTypeName.MonsterEnd + 1); 
+        int selection = Random.Range((int)Define.PrefabTypeName.MONSTER_START, (int)Define.PrefabTypeName.MONSTER_END + 1); 
        
         Vector3 spawnPos; 
         while (true)
@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour
         } 
         float spawnAngle = Random.Range(0, 360);
 
-        GameObject prefab = Managers.Prefab.GetPrefab((PrefabTypeName)selection); 
+        GameObject prefab = Managers.Prefab.GetPrefab((Define.PrefabTypeName)selection); 
         GameObject instance = Managers.Pool.Pop(prefab).gameObject;
 
         instance.transform.position = spawnPos;

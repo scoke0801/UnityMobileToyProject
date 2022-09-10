@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         get { return shooter; }
         set { if (value) shooter = value; }
     }
-    protected PROJECTILE_ACT_TYPE actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_LINEAR;
+    protected Define.ProjectileActType actType = Define.ProjectileActType.PROJECTILE_ACT_TYPE_LINEAR;
     protected ProjectileActor actor;
      
     private TrailRenderer _trailRenderer;
@@ -78,7 +78,7 @@ public class Projectile : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, GameObject target, Vector3 shootPos)
+    public void Shoot(Define.ProjectileActType actType, GameObject shooter, GameObject target, Vector3 shootPos)
     {
         this.shooter = shooter;
         this.transform.position = shootPos; 
@@ -88,7 +88,7 @@ public class Projectile : MonoBehaviour
         actor = ProjectileActor.GetProjectileActor(actType, shooter, target, shootPos);
         this.gameObject.SetActive(true);
     }
-    public void Shoot(PROJECTILE_ACT_TYPE actType, GameObject shooter, Vector3 direction, Vector3 shootPos)
+    public void Shoot(Define.ProjectileActType actType, GameObject shooter, Vector3 direction, Vector3 shootPos)
     {
         this.shooter = shooter;
         this.transform.position = shootPos; 

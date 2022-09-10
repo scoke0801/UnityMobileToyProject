@@ -10,7 +10,7 @@ public class Interceptor : Projectile
         status.damage = 100000.0f;
 
         status.attackCoolTime = 0.0f;
-        actType = PROJECTILE_ACT_TYPE.PROJECTILE_ACT_TYPE_TRACKING;
+        actType = Define.ProjectileActType.PROJECTILE_ACT_TYPE_TRACKING;
     }
     
     public void Update()

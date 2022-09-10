@@ -8,6 +8,8 @@ public class UIGameControl : UIPopup
 {
 	PlayerShooter _playerShooter;
 	PlayerMovement _playerMovement;
+
+	UICooltime _dashUICoolTime;
 	enum Texts
 	{
 		RemainTime,
@@ -25,7 +27,11 @@ public class UIGameControl : UIPopup
 		ControlSubButton2,
 		ControlSubButton3
 	}
- 
+
+	enum Images
+	{ 
+		DashCoolTimeImage,	
+	}
 	public override bool Init()
 	{
 		if (base.Init() == false)
@@ -36,7 +42,8 @@ public class UIGameControl : UIPopup
 		DebugWrapper.Log("UIGameControl::Init");
 		 
 		BindText(typeof(Texts));
-		BindButton(typeof(Buttons)); 
+		BindButton(typeof(Buttons));
+		BindImage(typeof(Images));
 
 		GetButton((int)Buttons.ControlMainButton).gameObject.BindEvent(OnClickContorlMainButton);
 		GetButton((int)Buttons.ControlDashButton).gameObject.BindEvent(OnClickContorlDashButton);
@@ -44,6 +51,9 @@ public class UIGameControl : UIPopup
 		GetButton((int)Buttons.ControlSubButton1).gameObject.BindEvent(OnClickContorlSub1Button);
 		GetButton((int)Buttons.ControlSubButton2).gameObject.BindEvent(OnClickContorlSub2Button);
 		GetButton((int)Buttons.ControlSubButton3).gameObject.BindEvent(OnClickContorlSub3Button);
+		 
+		_dashUICoolTime = Util.GetOrAddComponent<UICooltime>(GetImage((int)Images.DashCoolTimeImage).gameObject);
+		_dashUICoolTime.enabled = false;
 
 		//Managers.Sound.Clear();
 		//Managers.Sound.Play(Sound.Effect, "Sound_MainTitle");
@@ -62,13 +72,16 @@ public class UIGameControl : UIPopup
 	}
 
 	void OnClickContorlMainButton()
-	{
+	{ 
 		_playerShooter.Shoot();
 		DebugWrapper.Log("OnClickContorlMainButton");
 	}
 	void OnClickContorlDashButton()
-	{
+	{ 
 		_playerMovement.Dash();
+
+		_dashUICoolTime.enabled = true; 
+		
 		DebugWrapper.Log("OnClickContorlDashButton");
 	}
 	void OnClickContorlReloadButton()

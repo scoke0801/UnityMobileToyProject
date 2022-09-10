@@ -7,7 +7,7 @@ public class Atomball : Projectile
     {
         base.Awake(); 
     }
-    new public void Update()
+    public void Update()
     {
         if (status.attackCoolTime >= 0.0f)
         {

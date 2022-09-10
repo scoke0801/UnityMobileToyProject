@@ -14,7 +14,7 @@ public class BudyForwardAttack : BudyAttack
         if (status.attackCoolTime <= 0.0f)
         {
             Attack();
-            status.attackCoolTime = Constants.BUDY_FORWARD_ATTACK_COOLTILE;
+            status.attackCoolTime = Define.BUDY_FORWARD_ATTACK_COOLTILE;
         } 
     }
 

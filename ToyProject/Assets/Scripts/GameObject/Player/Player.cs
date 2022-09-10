@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public int ProjectileShootCountAtOnce
     {
         get { return projectileShootCountAtOnce; }
-        set { Mathf.Min( Mathf.Max(projectileShootCountAtOnce + value, 3), Constants.MAX_PROJECTILE_SHOOT_COUNT_AT_ONCE); }
+        set { Mathf.Min( Mathf.Max(projectileShootCountAtOnce + value, 3), Define.MAX_PROJECTILE_SHOOT_COUNT_AT_ONCE); }
     }
     // Start is called before the first frame update
     void Start()
@@ -47,13 +47,13 @@ public class Player : MonoBehaviour
 
         Vector3 dir = transform.forward;
          
-        GameObject newProjectile = Managers.Prefab.GetPrefab(PrefabTypeName.Projectile);
+        GameObject newProjectile = Managers.Prefab.GetPrefab(Define.PrefabTypeName.PROJECTILE);
         if (newProjectile)
         {
             newProjectile.GetComponent<Projectile>().Swing(this.gameObject, dir, shootPos); 
         }
 
-        status.attackCoolTime = Constants.PLAYER_ATTACK_COOLTILE;
+        status.attackCoolTime = Define.PLAYER_ATTACK_COOLTILE;
     }
 
     public void OnButtonClick()
