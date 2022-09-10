@@ -15,12 +15,15 @@ public class Monster : LivingObject
     Vector3 vecToTarget;
 
     Status status;
+    
     public Define.ObjectType objType { get; set; }
+    
+    public event Action<Monster> OnDyingAnimationDone = delegate {  };
 
     private AudioSource _audioSource;
     private Animator _animator;
     private Rigidbody _monsterRigidboy;
-    private CapsuleCollider _collider; 
+    private CapsuleCollider _collider;
 
     private void Awake()
     {
@@ -84,7 +87,7 @@ public class Monster : LivingObject
                 Quaternion rotation = Quaternion.LookRotation(vecToTarget);
                 transform.rotation = rotation; 
             }
-            // 0.15ÃÊ µ¿¾È Àá½Ã Ã³¸®¸¦ ´ë±â
+            // 0.15ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             yield return var;
         }
     }
@@ -112,9 +115,10 @@ public class Monster : LivingObject
     }
     private IEnumerator ReturnObject()
     {
-        // 1.8ÃÊ µ¿¾È Àá½Ã Ã³¸®¸¦ ´ë±â
+        // 1.8ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1.8f); 
-        ((GameScene)(Managers.Scene.CurrentScene)).RefreshWaveCount(this.gameObject); 
+        OnDyingAnimationDone(this);
+        OnDyingAnimationDone = delegate {  };
     }
 
     private IEnumerator ReturnParticle(GameObject particle)

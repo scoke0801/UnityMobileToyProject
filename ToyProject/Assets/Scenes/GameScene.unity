@@ -1493,6 +1493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneType: 4
   _sceneData: {fileID: 11400000, guid: 60988ff2314054949a88f472217026c1, type: 2}
+  _spawnerPrefab: {fileID: 1747522411924434313, guid: 654fdefab618f844e87b93aea29d7c27,
+    type: 3}
 --- !u!4 &1569572176203099496
 Transform:
   m_ObjectHideFlags: 0

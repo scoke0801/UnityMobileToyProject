@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1746138561795614430}
   - component: {fileID: 1746138561795614429}
   - component: {fileID: 1746138561795614428}
-  - component: {fileID: 1746138561795614431}
+  - component: {fileID: 1747522411924434313}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -55,7 +55,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 75, y: 3, z: 75}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1746138561795614431
+--- !u!114 &1747522411924434313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,6 +64,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746138561795614371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c8e7fcd6129a9c40aed4cc7743ecac2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e570d994f28450e811fbac0ffa05dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _poolInitializer:
+    _spawnedPositionProvider:
+      _spawnableArea: {fileID: 1746138561795614428}
+    _poolReserver:
+      _reserveCount: 20
+  _prefabs:
+  - {fileID: 5241278282081161333, guid: 515ceed46b2a6534d9a259fc10c3f7ac, type: 3}
+  - {fileID: 7650583832596232940, guid: 23e14ecec233a7040baa0ac1a854901a, type: 3}
+  - {fileID: 2232748636701849702, guid: 65d8fdd05a392814995b3dfe615f04e3, type: 3}
+  - {fileID: 4804220574222531594, guid: 4f5f4dd64a387ed48b4da8c45025320f, type: 3}
+  - {fileID: 3762739250614300484, guid: 55901a45f48e1884d84d6a370fd69ebf, type: 3}
+  - {fileID: 8158777161232483075, guid: 6180a855225d8264c9dbc6d0ddb943f2, type: 3}
+  - {fileID: 1130306205941887914, guid: 04b21fc6c0421ec478c23a7375495ae3, type: 3}

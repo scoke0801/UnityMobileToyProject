@@ -7,6 +7,9 @@ using Cinemachine;
 
 public class GameScene : BaseScene
 {
+    [SerializeField]
+    MonsterSpawner _spawnerPrefab;
+    
     private float _elapsedTime;
     public float ElapsedTime { get { return _elapsedTime; } }
     
@@ -18,7 +21,7 @@ public class GameScene : BaseScene
     private GameObject _player;
     public GameObject Player { get { return _player; } }
 
-    private Spawner _spawner;
+    private MonsterSpawner _spawner;
     private int _spawnedCount = 0;
      
     protected override bool Init()
@@ -34,7 +37,7 @@ public class GameScene : BaseScene
         InitPlayer();
         InitUI();
 
-        // Ä«¸Þ¶ó ÃÊ±âÈ­´Â ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­ ÀÌÈÄ¿¡ ½ÇÇàµÇ¾î¾ß ÇÕ´Ï´Ù!
+        // Ä«ï¿½Þ¶ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½!
         InitCamera();
         InitObjects();
 
@@ -49,7 +52,7 @@ public class GameScene : BaseScene
     {
         _uiGameControl = Managers.UI.PushPopupUI<UIGameControl>(); 
 
-        // »ý¼º ÈÄ ¾Èº¸ÀÌµµ·Ï. 
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Èºï¿½ï¿½Ìµï¿½ï¿½ï¿½. 
         Managers.UI.PushPopupUI<UIEffectSelect>();
         Managers.UI.HidePopupUI<UIEffectSelect>();
 
@@ -81,7 +84,8 @@ public class GameScene : BaseScene
             GameObject hitParticle = Managers.Prefab.GetPrefab(Define.PrefabTypeName.ParticleHit1 + i);
             Managers.Pool.CreatePool(hitParticle, Define.HIT_PARTICLE_POOL_COUNT); 
         }
-        _spawner = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.SPAWNER), this.transform).GetComponent<Spawner>();
+        
+        _spawner = Instantiate(_spawnerPrefab);
         _spawner.transform.position = Vector3.zero;
 
         GameObject budy = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.BUDY), this.transform);
@@ -121,7 +125,7 @@ public class GameScene : BaseScene
             return;
         }
 
-        // ·£´ýÇÏ°Ô ´ÙÀ½¿¡ »ý¼ºÇÒ ½Ã°£À» ÁöÁ¤
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float nextSpawnTime = Random.Range(0.5f, 1.5f);
         int spawnCount = Random.Range(1, 5);
         _spawnedCount += spawnCount;
@@ -130,17 +134,22 @@ public class GameScene : BaseScene
 
         for (int i = 0; i < spawnCount; ++i)
         {
-            _spawner.Spawn();
+            Toy.Pooled<Monster> pooledMonster = _spawner.Spawn();
+            pooledMonster.Object.OnDyingAnimationDone += _ =>
+            {
+                if(this != null)
+                    RefreshWaveCount(pooledMonster);
+            };
         }
 
-        _uiGameControl.UpdateWaveCount(_spawner.GetMonsterCount());
+        _uiGameControl.UpdateWaveCount(_spawner.SpawnedCount);
     }
 
-    public void RefreshWaveCount(GameObject gameObject)
+    private void RefreshWaveCount(Toy.Pooled<Monster> pooledMonster)
     {
-        _spawner.RemoveObject(gameObject);
+        pooledMonster.Release();
 
-        int nRemainMonsterCount = _spawner.GetMonsterCount(); 
+        int nRemainMonsterCount = _spawner.SpawnedCount; 
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount); 
 
         if( nRemainMonsterCount == 0 && _spawnedCount >= Define.STAGE_WAVE_COUNT )
@@ -160,8 +169,8 @@ public class GameScene : BaseScene
     }
     public void ShowGameResult()
     {
-        // ¼Ò¿ä½Ã°£Àº InitÇÔ¼ö¿¡¼­ ½ºÅ×ÀÌÁö ³²Àº ½Ã°£À¸·Î ÃÊ±âÈ­,
-        // ÇÔ¼ö°¡ È£ÃâµÇ¾úÀ» ¶§, _gameTimeÀÌ 0º¸´Ù Å« °ªÀÌ¶ó¸é »©Áà¾ß ÇÔ.
+        // ï¿½Ò¿ï¿½Ã°ï¿½ï¿½ï¿½ Initï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­,
+        // ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½, _gameTimeï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
         _elapsedTime -= _gameTime;
 
         Managers.UI.HidePopupUI<UIGameControl>();
@@ -175,7 +184,7 @@ public class GameScene : BaseScene
 
         if (Managers.Game.IsGamePaused) { yield break; }
 
-        int nRemainMonsterCount = _spawner.GetMonsterCount(); 
+        int nRemainMonsterCount = _spawner.SpawnedCount; 
         _uiGameControl.UpdateWaveCount(nRemainMonsterCount);
 
         Managers.Game.GamePause(true);  
