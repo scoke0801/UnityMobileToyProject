@@ -62,10 +62,7 @@ public class UIGameModeSelect : UIPopup
 
 	void OnClickGameStartButton()
 	{
-		Toy.ScreenFader screenFader = Toy.ScreenFaderEx.GetObject();
-		screenFader.SetUp(Define.FadeType.FADE_TYPE_IN, 1.0f, 20.0f, null);
-
-		// Managers.Scene.ChangeScene(_sceneType); 
+		Managers.Scene.ChangeScene(_sceneType); 
 	}
 	void OnClickCloseButton()
 	{

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections; 
 
 namespace Toy
 { 
@@ -29,13 +29,14 @@ namespace Toy
         private float _speed;
         private float _timePerUpdate;
 
-        private System.Action _callback;
+        private System.Action<string> _callback;
+        private string _parameter;
 
         private void Awake()
         {
             _color = _image.color; 
         }
-        public void SetUp(Define.FadeType type, float time, float timePerUpdate, System.Action callback)
+        public void SetUp(Define.FadeType type, float time, float timePerUpdate, System.Action<string> callback, string parameter)
         {
             _type = type; 
             _time = time;
@@ -43,6 +44,7 @@ namespace Toy
             _timePerUpdate = time / timePerUpdate;
 
             _callback = callback;
+            _parameter = parameter;
              
             _color = _image.color;
 
@@ -76,7 +78,7 @@ namespace Toy
             {
                 if (progress > 1.0f)
                 {
-                    _callback?.Invoke();
+                    _callback?.Invoke(_parameter);
                     Destroy(this);
                     yield break;
                 }
@@ -97,7 +99,7 @@ namespace Toy
             {
                 if (progress > 1.0f)
                 { 
-                    _callback?.Invoke();
+                    _callback?.Invoke(_parameter);
                     Destroy(this);
                     yield break;
                 }

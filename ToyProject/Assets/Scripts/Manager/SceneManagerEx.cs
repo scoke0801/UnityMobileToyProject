@@ -33,7 +33,12 @@ public class SceneManagerEx
         CurrentScene.Clear();
 
         _curSceneType = type;
-        SceneManager.LoadScene(GetSceneName(type));
+
+
+        Toy.ScreenFader screenFader = Toy.ScreenFaderEx.GetObject();
+        screenFader.SetUp(Define.FadeType.FADE_TYPE_IN, 1.0f, 20.0f, SceneManager.LoadScene, GetSceneName(type));
+
+        //SceneManager.LoadScene(GetSceneName(type));
     }
 
     string GetSceneName(Define.Scene type)
