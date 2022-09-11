@@ -3767,8 +3767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4409f32362c8d140b27b7efac7524b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  rotateSpeed: 180
+  _moveSpeed: 1
+  _rotateSpeed: 40
 --- !u!114 &8010478747944837156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3781,11 +3781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c1693987e76b4498b9ad14be3800b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAixName: Vertical
-  rotateAxisName: Horizontal
-  fireButtonName: Fire1
-  reloadButtonName: Reload
-  joyStick: {fileID: 0}
+  _joyStick: {fileID: 0}
 --- !u!114 &8010478747944837155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3906,10 +3902,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4ff97206b45204591acea90414f906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPivot: {fileID: 6611956560727996561}
-  leftHandPos: {fileID: 6611956560067939616}
-  rightHandPos: {fileID: 6611956560427921876}
-  gun: {fileID: 6611956561147425656}
+  _gunPivot: {fileID: 6611956560727996561}
+  _leftHandPos: {fileID: 6611956560067939616}
+  _rightHandPos: {fileID: 6611956560427921876}
+  _gun: {fileID: 6611956561147425656}
 --- !u!1 &6554325995212210384
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,14 +5002,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08036716a9b3b8c4984cc93223ab7eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireTransform: {fileID: 6611956559733591928}
-  muzzleFlashEffect: {fileID: 198000012944515248, guid: 74d744994bc414c37bfda957f1d57118,
+  _fireTransform: {fileID: 6611956559733591928}
+  _muzzleFlashEffect: {fileID: 198000012944515248, guid: 74d744994bc414c37bfda957f1d57118,
     type: 3}
-  shellEjectEffect: {fileID: 198000010131513902, guid: 8e60b325a019543cbb2e3920522a2e6b,
+  _shellEjectEffect: {fileID: 198000010131513902, guid: 8e60b325a019543cbb2e3920522a2e6b,
     type: 3}
-  gunData: {fileID: 11400000, guid: 7d2fb18ad6d03d94580c8c397b43ca0e, type: 2}
-  ammoRemain: 100
-  curAmmo: 0
+  _gunData: {fileID: 11400000, guid: 7d2fb18ad6d03d94580c8c397b43ca0e, type: 2}
+  _ammoRemain: 100
+  _curAmmo: 0
 --- !u!1 &9132116307816652728
 GameObject:
   m_ObjectHideFlags: 0

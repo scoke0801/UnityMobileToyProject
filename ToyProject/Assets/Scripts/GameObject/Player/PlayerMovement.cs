@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 1.0f; 
-    public float rotateSpeed = 40.0f;
+    [SerializeField]
+    private float _moveSpeed = 1.0f;
 
-    private Rigidbody playerRigidboy;
-    private PlayerInput playerInput;
-    private Animator playerAnimator; 
+    [SerializeField]
+    private float _rotateSpeed = 40.0f;
+
+    private Rigidbody _playerRigidboy;
+    private PlayerInput _playerInput;
+    private Animator _playerAnimator; 
 
     // Start is called before the first frame update
     void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
-        playerRigidboy = GetComponent<Rigidbody>();
-        playerAnimator = GetComponent<Animator>(); 
+        _playerInput = GetComponent<PlayerInput>();
+        _playerRigidboy = GetComponent<Rigidbody>();
+        _playerAnimator = GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
@@ -25,28 +28,28 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Rotate();
 
-        playerAnimator.SetFloat("Forward", playerInput.move); 
+        _playerAnimator.SetFloat("Forward", _playerInput.Move); 
         //playerAnimator.SetFloat("Turn", playerInput.rotate);
     }
 
     private void Move()
     {
-        Vector3 moveDist = playerInput.move * transform.forward * moveSpeed * Time.fixedDeltaTime; 
-        playerRigidboy.MovePosition(playerRigidboy.position + moveDist);
+        Vector3 moveDist = _playerInput.Move * transform.forward * _moveSpeed * Time.fixedDeltaTime; 
+        _playerRigidboy.MovePosition(_playerRigidboy.position + moveDist);
     }
 
     private void Rotate()
     {
-        if( playerInput.move == 0.0f ) { return; }
+        if( _playerInput.Move == 0.0f ) { return; }
 
-        float turn = playerInput.rotate * rotateSpeed * Time.fixedDeltaTime;
+        float turn = _playerInput.Rotate * _rotateSpeed * Time.fixedDeltaTime;
 
-        playerRigidboy.rotation = playerRigidboy.rotation * Quaternion.Euler(0f, turn, 0f);
+        _playerRigidboy.rotation = _playerRigidboy.rotation * Quaternion.Euler(0f, turn, 0f);
     }
 
     public void Dash()
     { 
-        Vector3 moveDist = transform.forward * moveSpeed * 1.2f;
-        playerRigidboy.MovePosition(playerRigidboy.position + moveDist);
+        Vector3 moveDist = transform.forward * _moveSpeed * 1.2f;
+        _playerRigidboy.MovePosition(_playerRigidboy.position + moveDist);
     }
 }

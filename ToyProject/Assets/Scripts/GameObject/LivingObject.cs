@@ -4,22 +4,22 @@ using System;
 
 public class LivingObject : MonoBehaviour, IDamageable
 {
-    public float originHP;
-    public float HP { get; protected set; }
-    public bool isDead { get; protected set; }
-    public event Action onDie;
+    public float _originHP;
+    public float _HP { get; protected set; }
+    public bool _isDead { get; protected set; }
+    public event Action _onDie;
 
     protected virtual void OnEnable()
     {
-        isDead = false;
-        HP = originHP;
+        _isDead = false;
+        _HP = _originHP;
     } 
 
     virtual public void OnDamage(float damage, Vector3 hitPos, Vector3 hitNormal)
     {
-        HP -= damage;
+        _HP -= damage;
 
-        if (HP <= 0 && !isDead)
+        if (_HP <= 0 && !_isDead)
         {
             Die();
         }
@@ -27,18 +27,18 @@ public class LivingObject : MonoBehaviour, IDamageable
 
     virtual public void RestoreHP( float addHP )
     {
-        if (isDead) { return; }
+        if (_isDead) { return; }
 
-        HP = Math.Max( HP + addHP, originHP );
+        _HP = Math.Max( _HP + addHP, _originHP );
     }
 
     virtual public void Die()
     {
-        if (onDie != null)
+        if (_onDie != null)
         {
-            onDie();
+            _onDie();
         }
 
-        isDead = true;
+        _isDead = true;
     }
 } 

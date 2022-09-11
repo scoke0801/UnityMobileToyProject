@@ -10,13 +10,13 @@ public class Monster : LivingObject
         Idle, Trace, Attack, Die
     }
 
-    State state;
-    GameObject target;
-    Vector3 vecToTarget;
+    State _state;
+    GameObject _target;
+    Vector3 _vecToTarget;
 
-    Status status;
+    Status _status;
     
-    public Define.ObjectType objType { get; set; }
+    public Define.ObjectType ObjType { get; set; }
     
     public event Action<Monster> OnDyingAnimationDone = delegate {  };
 
@@ -37,13 +37,13 @@ public class Monster : LivingObject
     {
         base.OnEnable();
         
-        state = State.Trace;
+        _state = State.Trace;
 
-        target = Managers.Game.Player;
+        _target = Managers.Game.Player;
 
-        status = new Status();
-        status.speed = 5.0f;
-        status.hp = 10;
+        _status = new Status();
+        _status.speed = 5.0f;
+        _status.hp = 10;
         _collider.enabled = true; 
         _monsterRigidboy.useGravity = true; 
 
@@ -52,11 +52,11 @@ public class Monster : LivingObject
      
     void FixedUpdate()
     {
-        if( isDead ) { return; }
+        if( _isDead ) { return; }
 
-        if (state == State.Trace)
+        if (_state == State.Trace)
         {
-            Vector3 moveDist = vecToTarget.normalized * status.speed * Time.fixedDeltaTime;
+            Vector3 moveDist = _vecToTarget.normalized * _status.speed * Time.fixedDeltaTime;
 
             _monsterRigidboy.MovePosition(_monsterRigidboy.position + moveDist); 
         }
@@ -77,14 +77,14 @@ public class Monster : LivingObject
     private IEnumerator FindTarget()
     {
         WaitForSeconds var = new WaitForSeconds(0.15f);
-        while ( !isDead )
+        while ( !_isDead )
         {
-            if (state == State.Trace && target )
+            if (_state == State.Trace && _target )
             {
-                vecToTarget = target.transform.position - transform.position;
-                vecToTarget.y = target.transform.position.y;
+                _vecToTarget = _target.transform.position - transform.position;
+                _vecToTarget.y = _target.transform.position.y;
 
-                Quaternion rotation = Quaternion.LookRotation(vecToTarget);
+                Quaternion rotation = Quaternion.LookRotation(_vecToTarget);
                 transform.rotation = rotation; 
             }
             // 0.15�� ���� ��� ó���� ���
@@ -102,7 +102,7 @@ public class Monster : LivingObject
     }
     public override void Die()
     {
-        if( isDead ) { return; }
+        if( _isDead ) { return; }
 
         base.Die();
 

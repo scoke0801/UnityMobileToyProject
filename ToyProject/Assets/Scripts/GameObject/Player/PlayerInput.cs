@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public string moveAixName = "Vertical";
-    public string rotateAxisName = "Horizontal";
-    public string fireButtonName = "Fire1";
-    public string reloadButtonName = "Reload";
+    public const string moveAixName = "Vertical";
+    public const string rotateAxisName = "Horizontal";
+    public const string fireButtonName = "Fire1";
+    public const string reloadButtonName = "Reload";
     
-    public float move { get; private set; }
-    public float rotate { get; private set; }
-    public bool fire { get; private set; }
-    public bool reload { get; private set; }
+    public float Move { get; private set; }
+    public float Rotate { get; private set; }
+    public bool Fire { get; private set; }
+    public bool Reload { get; private set; }
 
-    private PlayerShooter playerShooter;
-    private PlayerMovement playerMovement;
+    private PlayerShooter _playerShooter;
+    private PlayerMovement _playerMovement;
 
-    public JoyStick joyStick;
+    public JoyStick _joyStick;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerShooter = GetComponent<PlayerShooter>();
-        playerMovement = GetComponent<PlayerMovement>();
+        _playerShooter = GetComponent<PlayerShooter>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        move = Input.GetAxis(moveAixName);
-        rotate = Input.GetAxis(rotateAxisName);
+        Move = Input.GetAxis(moveAixName);
+        Rotate = Input.GetAxis(rotateAxisName);
 
-        if (joyStick && joyStick.touch)
+        if (_joyStick && _joyStick.touch)
         {
-            move = joyStick.move;
-            rotate = joyStick.rotate;
+            Move = _joyStick.move;
+            Rotate = _joyStick.rotate;
         } 
     }
 
     public void OnButtonClickRightMain()
     {
-        playerShooter.Shoot();
+        _playerShooter.Shoot();
     }
     public void OnButtonClickRightSub1()
     {
@@ -54,10 +54,10 @@ public class PlayerInput : MonoBehaviour
     }
     public void OnButtonClickDash()
     {
-        playerMovement.Dash();
+        _playerMovement.Dash();
     }
     public void OnButtonReload()
     {
-        playerShooter.ReloadGun();
+        _playerShooter.ReloadGun();
     }
 }

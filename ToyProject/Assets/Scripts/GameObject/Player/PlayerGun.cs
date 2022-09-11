@@ -13,44 +13,44 @@ public class PlayerGun : MonoBehaviour
 
     public State state { get; private set; } // 현재 총의 상태
 
-    public Transform fireTransform; // 탄알이 발사될 위치
+    public Transform _fireTransform; // 탄알이 발사될 위치
 
-    public ParticleSystem muzzleFlashEffect; // 총구 화염 효과
-    public ParticleSystem shellEjectEffect; // 탄피 배출 효과
+    public ParticleSystem _muzzleFlashEffect; // 총구 화염 효과
+    public ParticleSystem _shellEjectEffect; // 탄피 배출 효과
      
-    private AudioSource gunAudioPlayer; // 총 소리 재생기
+    private AudioSource _gunAudioPlayer; // 총 소리 재생기
 
-    public GunData gunData; // 총의 현재 데이터
+    public GunData _gunData; // 총의 현재 데이터
 
-    private float fireDistance = 50f; // 사정거리
+    private float _fireDistance = 50f; // 사정거리
 
-    public int ammoRemain = 100; // 남은 전체 탄알
-    public int curAmmo; // 현재 탄알집에 남아 있는 탄알
+    public int _ammoRemain = 100; // 남은 전체 탄알
+    public int _curAmmo; // 현재 탄알집에 남아 있는 탄알
 
-    private float lastFireTime; // 총을 마지막으로 발사한 시점
+    private float _lastFireTime; // 총을 마지막으로 발사한 시점
      
     private void Awake()
     {
         // 사용할 컴포넌트의 참조 가져오기
-        gunAudioPlayer = GetComponent<AudioSource>(); 
+        _gunAudioPlayer = GetComponent<AudioSource>(); 
     }
 
     private void OnEnable()
     {
         // 총 상태 초기화
-        ammoRemain = gunData.startAmmoRemain;
-        curAmmo = gunData.ammoCapacity;
+        _ammoRemain = _gunData.startAmmoRemain;
+        _curAmmo = _gunData.ammoCapacity;
 
         state = State.Ready;
-        lastFireTime = 0;
+        _lastFireTime = 0;
     }
 
     // 발사 시도
     public void Fire()
     {
-        if(state == State.Ready && Time.time >= lastFireTime + gunData.timeBetFire )
+        if(state == State.Ready && Time.time >= _lastFireTime + _gunData.timeBetFire )
         {
-            lastFireTime = Time.time;
+            _lastFireTime = Time.time;
 
             Shot();
         }
@@ -61,24 +61,24 @@ public class PlayerGun : MonoBehaviour
     { 
         Vector3 hitPos = Vector3.zero;
           
-        hitPos = fireTransform.localPosition + fireTransform.forward * fireDistance;
+        hitPos = _fireTransform.localPosition + _fireTransform.forward * _fireDistance;
 
         // 발사 이펙트와 소리를 재생 
-        muzzleFlashEffect.Play();
-        shellEjectEffect.Play();
+        _muzzleFlashEffect.Play();
+        _shellEjectEffect.Play();
          
         GameObject prefab = Managers.Prefab.GetPrefab(Define.PrefabTypeName.PROJECTILE);
         GameObject instance = Managers.Pool.Pop(prefab).gameObject;
 
         if (instance)
         { 
-            instance.GetComponent<Projectile>().Shoot(Define.ProjectileActType.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos.normalized, fireTransform.position);
+            instance.GetComponent<Projectile>().Shoot(Define.ProjectileActType.PROJECTILE_ACT_TYPE_LINEAR, this.gameObject, hitPos.normalized, _fireTransform.position);
         } 
 
-        --curAmmo;
-        ((GameScene)(Managers.Scene.CurrentScene)).RefreshPlayerAmmoText(curAmmo);
+        --_curAmmo;
+        ((GameScene)(Managers.Scene.CurrentScene)).RefreshPlayerAmmoText(_curAmmo);
         
-        if (curAmmo <= 0)
+        if (_curAmmo <= 0)
         {
             state = State.Empty;
         }
@@ -98,12 +98,12 @@ public class PlayerGun : MonoBehaviour
         state = State.Reloading;
 
         // 재장전 소요 시간 만큼 처리 쉬기
-        yield return new WaitForSeconds(gunData.reloadTime);
+        yield return new WaitForSeconds(_gunData.reloadTime);
 
         // 총의 현재 상태를 발사 준비된 상태로 변경
         state = State.Ready;
 
-        curAmmo = gunData.ammoCapacity; 
-        ((GameScene)(Managers.Scene.CurrentScene)).RefreshPlayerAmmoText(curAmmo);
+        _curAmmo = _gunData.ammoCapacity; 
+        ((GameScene)(Managers.Scene.CurrentScene)).RefreshPlayerAmmoText(_curAmmo);
     }
 } 

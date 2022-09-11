@@ -64,7 +64,7 @@ public class UIGameControl : UIPopup
 			_playerShooter = player.GetComponent<PlayerShooter>();
 			_playerMovement = player.GetComponent<PlayerMovement>();
 
-			UpdateAmmoText(_playerShooter.gun.curAmmo);
+			UpdateAmmoText(_playerShooter._gun._curAmmo);
 			UpdateWaveCount(0);
 		}
 

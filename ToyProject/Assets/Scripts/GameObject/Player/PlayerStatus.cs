@@ -4,24 +4,27 @@ using UnityEngine.UI;
 
 public class PlayerStatus : LivingObject
 {
-    public AudioClip dieClip;   // 사망 시 소리
-    public AudioClip hitClip;   // 피격 시 소리
+    [SerializeField]
+    private AudioClip _dieClip;   // 사망 시 소리
+    
+    [SerializeField]
+    private AudioClip _hitClip;   // 피격 시 소리
 
-    private AudioSource playerAudioSource;
-    private Animator playerAnimator;
+    private AudioSource _playerAudioSource;
+    private Animator _playerAnimator;
 
-    private PlayerMovement playerMovement;
+    private PlayerMovement _playerMovement;
 
     private void Awake()
     {
-        playerAudioSource = GetComponent<AudioSource>();
-        playerAnimator = GetComponent<Animator>();
+        _playerAudioSource = GetComponent<AudioSource>();
+        _playerAnimator = GetComponent<Animator>();
 
-        playerMovement = GetComponent<PlayerMovement>();
+        _playerMovement = GetComponent<PlayerMovement>();
 
-        if (playerMovement)
+        if (_playerMovement)
         {
-            playerMovement.enabled = true;
+            _playerMovement.enabled = true;
         }
     }
 
@@ -35,11 +38,11 @@ public class PlayerStatus : LivingObject
 
     override public void OnDamage(float damage, Vector3 hitPos, Vector3 hitNormal)
     { 
-        if( isDead ) { return; }
+        if( _isDead ) { return; }
 
         base.OnDamage(damage, hitPos, hitNormal);
 
-        playerAudioSource.PlayOneShot(hitClip);
+        _playerAudioSource.PlayOneShot(_hitClip);
 
         // To do...
         // UI 갱신
@@ -49,15 +52,15 @@ public class PlayerStatus : LivingObject
     {
         base.Die();
 
-        playerAudioSource.PlayOneShot(dieClip);
-        playerAnimator.SetTrigger("Die");
+        _playerAudioSource.PlayOneShot(_dieClip);
+        _playerAnimator.SetTrigger("Die");
 
-        playerMovement.enabled = false;
+        _playerMovement.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if( isDead) { return; }
+        if( _isDead) { return; }
 
         // To do..
     }

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private BoxCollider area; 
+    private BoxCollider _area; 
 
     private int _monsterCount = 0;
     private GameObject _target;
 
     void Start()
     {
-        area = GetComponent<BoxCollider>();
-        area.enabled = false;
+        _area = GetComponent<BoxCollider>();
+        _area.enabled = false;
 
         _target = Managers.Game.Player;
 
@@ -50,7 +50,7 @@ public class Spawner : MonoBehaviour
     private Vector3 GetRandomPos()
     {
         Vector3 basePosition = transform.position;
-        Vector3 size = area.size;
+        Vector3 size = _area.size;
 
         float posX = basePosition.x + Random.Range(-size.x * 0.5f, size.x * 0.5f);
         float posY = Random.Range(0.0f, 5.0f);
