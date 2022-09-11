@@ -76,8 +76,9 @@ public class Define
     {
         NONE = -1,
         PLAYER = 0,
+        PLAYER_NO_WEAPON,
 
-        MONSTER_START = 1,
+        MONSTER_START = 2,
         MONSTER_GHOST_1 = MONSTER_START,
         MONSTER_GHOST_2,
         MONSTER_GOBLIN_MALE,

@@ -38,8 +38,8 @@ public class LobbyScene : BaseScene
 
     private void InitPlayer()
     {
-        _player = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.PLAYER), transform);
-        _player.transform.position = _sceneData.playerPos;
+        _player = Managers.Resource.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.PLAYER_NO_WEAPON), transform);
+        _player.transform.position = _sceneData.playerPos; 
 
         Managers.Game.Player = _player;
     }
