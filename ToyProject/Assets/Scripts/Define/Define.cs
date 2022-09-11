@@ -31,14 +31,20 @@ public class Define
     /// 
     /// -------------------------------------------------*
 
+    // 코드에서 사용할 목적으로 Scene이름과 동일하게 정의
     public enum Scene
     {
-        SCENE_TYPE_NONE,
-        SCENE_TYPE_TITLE,
+        None,
+        TitleScene,
         SCENE_TYPE_LOADING,
-        SCENE_TYPE_LOBBY,
-        SCENE_TYPE_GAME,
-        SCENE_TYPE_TEST,
+        LobbyScene,
+        GameScene,
+        InfiniteGameScene,
+
+        TestScene = 100,
+
+        SCENE_INNER_TYPE_SHOP = 200,
+        SCENE_INNER_TYPE_MANAGEMENT,
     }
     public enum ObjectType
     {
@@ -86,17 +92,20 @@ public class Define
         INTECEPTOR,
         CHICKEN,
         CONDOR,
-        SPAWNER,
 
         BUDY,
 
         // For Test
-        ParticleStart,
-        ParticleHit1 = ParticleStart,
-        ParticleHit2,
-        ParticleHit3,
-        ParticleHit4,
-        // ParticleEnd
+        PARTICLE_START,
+        PARTICLE_HIT_1 = PARTICLE_START,
+        PARTICLE_HIT_2,
+        PARTICLE_HIT_3,
+        PARTICLE_HIT_4,
+        PARTICLE_END = PARTICLE_HIT_4,
+
+        // For Util
+        SPAWNER,
+        SCREEN_FADER,
     }
 
     public enum FadeType

@@ -95,7 +95,7 @@ public class Monster : LivingObject
     {
         base.OnDamage(damage, hitPos, hitNormal);
          
-        GameObject particle = Util.GetRandomParticle(Define.PrefabTypeName.ParticleHit1, Define.PrefabTypeName.ParticleHit4);
+        GameObject particle = Util.GetRandomParticle(Define.PrefabTypeName.PARTICLE_HIT_1, Define.PrefabTypeName.PARTICLE_HIT_4);
         particle.transform.position = hitPos;
         
         StartCoroutine(ReturnParticle(particle));

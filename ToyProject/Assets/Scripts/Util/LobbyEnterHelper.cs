@@ -2,19 +2,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 
-public enum SceneType
-{
-    NONE = -1,
-    LOBBY,
-    SHOP,
-    GAME,
-    GAME_INFINITE,
-    MANAGEMENT,
-}
-
 public class LobbyEnterHelper : MonoBehaviour
 {
-    [SerializeField] SceneType sceneType;
+    [SerializeField] Define.Scene _sceneType;
 
     LobbyScene _scene;
 
@@ -25,18 +15,18 @@ public class LobbyEnterHelper : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     { 
-        switch (sceneType)
+        switch (_sceneType)
         {
-            case SceneType.SHOP:
+            case Define.Scene.SCENE_INNER_TYPE_SHOP:
                 {
 //                     Managers.UI.ShowPopupUI<>();
                 }break;
-            case SceneType.GAME:
+            case Define.Scene.GameScene:
                 {
                     Managers.UI.ShowPopupUI<UIGameModeSelect>();
                 }
                 break;
-            case SceneType.MANAGEMENT:
+            case Define.Scene.SCENE_INNER_TYPE_MANAGEMENT:
                 {
                     Managers.UI.ShowPopupUI<UIStartEffectSelect>();
                 }break;

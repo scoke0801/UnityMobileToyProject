@@ -3,7 +3,7 @@ using UnityEngine;
  
 public class BaseScene : MonoBehaviour
 {
-    public Define.Scene SceneType = Define.Scene.SCENE_TYPE_NONE;
+    public Define.Scene SceneType = Define.Scene.None;
     
     public SceneData _sceneData;
 

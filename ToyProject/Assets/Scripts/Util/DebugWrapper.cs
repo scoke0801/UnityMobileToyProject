@@ -26,4 +26,16 @@ public static class DebugWrapper
     {
         UnityEngine.Debug.LogError(message, context);
     }
+
+    [System.Diagnostics.Conditional("ENABLE_LOG")]
+    public static void Assert(bool condition, object message)
+    {
+        UnityEngine.Debug.Assert(false, message);
+    }
+
+    [System.Diagnostics.Conditional("ENABLE_LOG")]
+    public static void Assert(bool condition, object message, UnityEngine.Object context)
+    {
+        UnityEngine.Debug.Assert(false, message, context);
+    }
 }

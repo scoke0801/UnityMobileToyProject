@@ -32,12 +32,11 @@ public class GameScene : BaseScene
             return false;
         }
 
-        SceneType = Define.Scene.SCENE_TYPE_GAME; 
+        SceneType = Define.Scene.GameScene; 
 
         InitPlayer();
         InitUI();
-
-        // ī�޶� �ʱ�ȭ�� �÷��̾� �ʱ�ȭ ���Ŀ� ����Ǿ�� �մϴ�!
+         
         InitCamera();
         InitObjects();
 
@@ -51,8 +50,7 @@ public class GameScene : BaseScene
     private void InitUI()
     {
         _uiGameControl = Managers.UI.PushPopupUI<UIGameControl>(); 
-
-        // ���� �� �Ⱥ��̵���. 
+         
         Managers.UI.PushPopupUI<UIEffectSelect>();
         Managers.UI.HidePopupUI<UIEffectSelect>();
 
@@ -81,7 +79,7 @@ public class GameScene : BaseScene
 
         for (int i = 0; i < Define.HIT_PARTICLE_COUNT; ++i)
         {
-            GameObject hitParticle = Managers.Prefab.GetPrefab(Define.PrefabTypeName.ParticleHit1 + i);
+            GameObject hitParticle = Managers.Prefab.GetPrefab(Define.PrefabTypeName.PARTICLE_HIT_1 + i);
             Managers.Pool.CreatePool(hitParticle, Define.HIT_PARTICLE_POOL_COUNT); 
         }
         

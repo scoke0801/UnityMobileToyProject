@@ -1,59 +1,113 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Toy
-{
+{ 
+    public static class ScreenFaderEx
+    {
+        public static ScreenFader GetObject()
+        {
+            GameObject newObject = Object.Instantiate(Managers.Prefab.GetPrefab(Define.PrefabTypeName.SCREEN_FADER));
+            if(newObject != null)
+            {
+                return newObject.GetComponent<ScreenFader>();
+            }
+            return null;
+        }
+    }
+
     public class ScreenFader : MonoBehaviour
     {
         [SerializeField]
-        Image _image;
-        
-        float _alpha;
-        Define.FadeType _type;
+        private Image _image;
+
+        private Color _color;
+
+        private Define.FadeType _type; 
+        private float _time;
+        private float _speed;
+        private float _timePerUpdate;
+
+        private System.Action _callback;
 
         private void Awake()
         {
-            _type = Define.FadeType.FADE_TYPE_IN;
+            _color = _image.color; 
         }
-        private void OnEnable()
+        public void SetUp(Define.FadeType type, float time, float timePerUpdate, System.Action callback)
         {
-            _alpha = 1.0f;
-        }
+            _type = type; 
+            _time = time;
+            
+            _timePerUpdate = time / timePerUpdate;
 
-        // Update is called once per frame
-        void Update()
+            _callback = callback;
+             
+            _color = _image.color;
+
+            switch (type)
+            {
+                case Define.FadeType.FADE_TYPE_IN:
+                    {
+                        _color.a = 0.0f;
+                        _image.color = _color;
+                        StartCoroutine(FadeIn());
+                    }
+                    break;
+                case Define.FadeType.FADE_TYPE_OUT:
+                    { 
+                        _color.a = 1.0f;
+                        _image.color = _color;
+                        StartCoroutine(FadeOut());
+                    }break;
+                default:
+                    {
+                        DebugWrapper.Assert(false, $"ScreenFader::Setup < Not allowed fade type < {type}");
+                    }break;
+            } 
+        }
+         
+        private IEnumerator FadeIn()
         {
-            Color color = _image.color;
-            color.a = _alpha;
-            _image.color = color;
+            float progress = 0.0f; 
 
-            if(_type == Define.FadeType.FADE_TYPE_IN)
+            while (true)
             {
-                FadeIn();
-            }
-            else 
-            {
-                FadeOut();
-            }
+                if (progress > 1.0f)
+                {
+                    _callback?.Invoke();
+                    Destroy(this);
+                    yield break;
+                }
+
+                progress += _timePerUpdate;
+                _color.a += _timePerUpdate;
+                _image.color = _color;
+
+                yield return new WaitForSeconds(_timePerUpdate); 
+            } 
         }
 
-        void FadeIn()
-        { 
-            _alpha -= Time.deltaTime;
-            if (_alpha >= 1.0f)
+        private IEnumerator FadeOut()
+        {
+            float progress = 0.0f;
+
+            while (true)
             {
+                if (progress > 1.0f)
+                { 
+                    _callback?.Invoke();
+                    Destroy(this);
+                    yield break;
+                }
 
-            }  
-        }
+                progress += _timePerUpdate;
+                _color.a -= _timePerUpdate;
+                _image.color = _color;
 
-        void FadeOut()
-        { 
-            _alpha += Time.deltaTime;
-            if (_alpha <= 0.0f)
-            {
-
+                yield return new WaitForSeconds(_timePerUpdate);
             }
-
         }
     }
 }

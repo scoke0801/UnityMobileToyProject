@@ -15,7 +15,7 @@ public class LobbyScene : BaseScene
             return false;
         }
 
-        SceneType = Define.Scene.SCENE_TYPE_LOBBY;
+        SceneType = Define.Scene.LobbyScene;
 
         InitPlayer();
         InitUI();

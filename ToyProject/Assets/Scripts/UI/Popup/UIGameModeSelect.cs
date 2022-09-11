@@ -26,7 +26,7 @@ public class UIGameModeSelect : UIPopup
 	//	Image3,
 	//}
 
-	SceneType _sceneType;
+	Define.Scene _sceneType;
 
 	public override bool Init()
 	{
@@ -46,35 +46,26 @@ public class UIGameModeSelect : UIPopup
 		GetButton((int)Buttons.GameStartButton).gameObject.BindEvent(OnClickGameStartButton);
 		GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnClickCloseButton);
 
-		_sceneType = SceneType.NONE;
+		_sceneType = Define.Scene.None;
 
 		return true;
 	}
 
 	void OnClickModeOneSelectButton()
 	{
-		_sceneType = SceneType.GAME;
+		_sceneType = Define.Scene.GameScene;
 	}
 	void OnClickModeTwoSelectButton()
 	{
-		_sceneType = SceneType.GAME_INFINITE;
+		_sceneType = Define.Scene.InfiniteGameScene;
 	}
 
 	void OnClickGameStartButton()
 	{
-        switch (_sceneType)
-        {
-			case SceneType.GAME:
-				{
-					SceneManager.LoadScene("GameScene");
-				}
-				break;
-			case SceneType.GAME_INFINITE:
-				{
-					SceneManager.LoadScene("InfiniteGameScene");
-				}
-				break;
-		} 
+		Toy.ScreenFader screenFader = Toy.ScreenFaderEx.GetObject();
+		screenFader.SetUp(Define.FadeType.FADE_TYPE_IN, 1.0f, 20.0f, null);
+
+		// Managers.Scene.ChangeScene(_sceneType); 
 	}
 	void OnClickCloseButton()
 	{
