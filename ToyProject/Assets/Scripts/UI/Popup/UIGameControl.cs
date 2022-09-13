@@ -102,11 +102,6 @@ public class UIGameControl : UIPopup
 		DebugWrapper.Log("OnClickContorlSub3Button");
 	}
 
-    public void UpdateGameTime(string text)
-    {
-		GetText((int)Texts.RemainTime).text = text;
-	}
-
 	public void UpdateWaveCount(int count)
 	{
 		GetText((int)Texts.RemainMonsterWave).text = $"Wave : {count}";

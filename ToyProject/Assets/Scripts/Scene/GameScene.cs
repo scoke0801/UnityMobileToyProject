@@ -1,15 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
-using TMPro;
 using Cinemachine;
+
+using Inferno;
 
 public class GameScene : BaseScene
 {
     [SerializeField]
     MonsterSpawner _spawnerPrefab;
-    
+
+    [SerializeField]
+    ScriptableEventRaiser<float> _gameTimeChangingEventRaiser;
+
     private float _elapsedTime;
     public float ElapsedTime { get { return _elapsedTime; } }
     
@@ -41,6 +43,8 @@ public class GameScene : BaseScene
         InitObjects();
 
         _elapsedTime = _gameTime = 90.0f;
+        _gameTimeChangingEventRaiser.Raise(_gameTime);
+        
         StartCoroutine(TimeEndCheck());
 
         DebugWrapper.Log("GameScene < Init End");
@@ -97,16 +101,13 @@ public class GameScene : BaseScene
     }
     private void UpdateGameTime()
     {
-        _gameTime -= Time.deltaTime;
-        if (_gameTime < 0)
-        {
-            _gameTime = 0.0f; 
-        }
-         
-        int min = (int)(_gameTime / 60.0f);
-        int sec = (int)(_gameTime - min * 60.0f);
+        var oldGameTime = _gameTime;
+        _gameTime = Mathf.Max(0.0f, oldGameTime - Time.deltaTime);
 
-        _uiGameControl.UpdateGameTime($"{min.ToString()} : {sec.ToString()}"); 
+        if (Mathf.Approximately(_gameTime, oldGameTime))
+            return;
+         
+        _gameTimeChangingEventRaiser.Raise(_gameTime);
     }
 
     private void SpawnMonster()
