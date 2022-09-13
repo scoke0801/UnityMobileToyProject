@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.inferno.scriptable-event": {
+      "version": "https://github.com/CinderVolunteer/Inferno-Unity-Scriptable-Event.git?path=/Packages/com.inferno.scriptable-event",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6df5f2bddbe45f47e393c635c0b209ea39741234"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
