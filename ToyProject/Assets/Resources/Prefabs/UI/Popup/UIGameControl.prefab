@@ -784,6 +784,8 @@ GameObject:
   - component: {fileID: 4161051911191497120}
   - component: {fileID: 55574469504056013}
   - component: {fileID: 1838723089067251549}
+  - component: {fileID: 8405239386892093480}
+  - component: {fileID: 6436214818434045305}
   m_Layer: 5
   m_Name: RemainTime
   m_TagString: Untagged
@@ -909,6 +911,48 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8405239386892093480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274488265438142863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e752e7e829401ebb0a66ebf708a3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1838723089067251549}
+--- !u!114 &6436214818434045305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274488265438142863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8bb6407320a4dbfb54a5a9a08daec65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listenerRegister:
+    _scriptableEvent: {fileID: 11400000, guid: 3d844114dbe5a1d408c46544bb3e00f6, type: 2}
+  _onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8405239386892093480}
+        m_TargetAssemblyTypeName: Toy.TimerText, Assembly-CSharp
+        m_MethodName: UpdateTimerText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2761787998729550580
 GameObject:
   m_ObjectHideFlags: 0
