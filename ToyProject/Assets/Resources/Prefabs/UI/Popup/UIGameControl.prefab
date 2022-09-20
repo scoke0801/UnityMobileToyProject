@@ -920,7 +920,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2274488265438142863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17784a0e601a4594c9956a0e858e07b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f094995e9a1f364db9915e6664f649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1838723089067251549}
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _listenerRegister:
-    _scriptableEvent: {fileID: 11400000, guid: d3901cf950a945043a0dec9898e10e07, type: 2}
+    _scriptableEvent: {fileID: 11400000, guid: 3d844114dbe5a1d408c46544bb3e00f6, type: 2}
   _onEventRaised:
     m_PersistentCalls:
       m_Calls:
