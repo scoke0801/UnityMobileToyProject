@@ -492,3 +492,7 @@ FodyWeavers.xsd
 **/Temp
 **/obj/Debug
 **/.vsconfig
+
+
+### Custom Ignore
+!**/[Aa]ssets/**/*.meta
