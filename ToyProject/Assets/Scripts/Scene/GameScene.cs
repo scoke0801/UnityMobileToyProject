@@ -60,6 +60,9 @@ public class GameScene : BaseScene
 
         Managers.UI.PushPopupUI<UIGameResult>();
         Managers.UI.HidePopupUI<UIGameResult>();
+
+        Managers.UI.PushPopupUI<UIGetCard>();
+        Managers.UI.HidePopupUI<UIGetCard>();
     }
 
     private void InitPlayer()
@@ -189,5 +192,14 @@ public class GameScene : BaseScene
         Managers.Game.GamePause(true);  
 
         ShowGameResult();   
+    }
+
+    public void GetNewCard()
+    {
+        UIGetCard uiGetCard = Managers.UI.FindPopup<UIGetCard>();
+        if (uiGetCard)
+        {
+            uiGetCard.RefreshUI();
+        }
     }
 }
