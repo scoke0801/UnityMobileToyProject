@@ -1,0 +1,2 @@
+ScriptableObject based Event System Package
+https://www.github.com/CinderVolunteer/Inferno-Unity-Scriptable-Event
